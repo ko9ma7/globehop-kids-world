@@ -1,0 +1,61 @@
+{
+  "code2": "TH",
+  "specialties": [
+    "Tropical fruit",
+    "Jasmine rice",
+    "Silk"
+  ],
+  "animals": [
+    "Asian elephant",
+    "Gibbon"
+  ],
+  "plants": [
+    "Ratchaphruek",
+    "Orchid"
+  ],
+  "facts": [
+    "Thailand has tropical weather in most regions.",
+    "Bangkok is built around the Chao Phraya River.",
+    "Floating markets are part of local trading traditions."
+  ],
+  "ko": {
+    "specialties": [
+      "열대과일",
+      "재스민쌀",
+      "실크"
+    ],
+    "animals": [
+      "아시아코끼리",
+      "긴팔원숭이"
+    ],
+    "plants": [
+      "라차프륵",
+      "난초"
+    ],
+    "facts": [
+      "태국의 많은 지역은 열대 기후입니다.",
+      "방콕은 차오프라야강 주변으로 발달했습니다.",
+      "수상시장은 물길을 이용한 전통 상업 문화의 한 모습입니다."
+    ],
+    "overview": "태국은 열대 날씨와 사원, 섬, 다채로운 음식 문화로 잘 알려져 있어요.",
+    "greeting": "안녕하세요: 사와디 (สวัสดี)",
+    "climate": "대부분 따뜻한 열대 기후예요.",
+    "bestSeason": "비교적 선선한 건기가 가족 여행에 인기가 많아요.",
+    "travelTips": "지역에 따라 배, 기차, 도시철도를 모두 이용할 수 있어요.",
+    "landmarks": [
+      "왕궁",
+      "치앙마이 사원들",
+      "푸껫 해변"
+    ]
+  },
+  "overview": "Thailand is known for tropical weather, temples, islands, and colorful food culture.",
+  "greeting": "Hello: Sawasdee (สวัสดี)",
+  "climate": "Most of the country is warm and tropical.",
+  "bestSeason": "The cooler dry season is popular for family trips.",
+  "travelTips": "Boats, trains, and city rail are all useful in different regions.",
+  "landmarks": [
+    "Grand Palace",
+    "Chiang Mai temples",
+    "Phuket beaches"
+  ]
+}

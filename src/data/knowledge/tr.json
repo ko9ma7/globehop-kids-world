@@ -1,0 +1,61 @@
+{
+  "code2": "TR",
+  "specialties": [
+    "Hazelnuts",
+    "Olives",
+    "Textiles"
+  ],
+  "animals": [
+    "Anatolian wild sheep",
+    "Loggerhead turtle"
+  ],
+  "plants": [
+    "Tulip",
+    "Olive tree"
+  ],
+  "landmarks": [
+    "Hagia Sophia",
+    "Cappadocia",
+    "Pamukkale"
+  ],
+  "overview": "Türkiye sits between Europe and Asia and has long coasts, high plateaus, ancient cities, and major trade routes.",
+  "greeting": "Hello: Merhaba",
+  "climate": "Coastal areas can be Mediterranean while the interior has hotter summers and colder winters.",
+  "bestSeason": "Spring and autumn are popular for sightseeing.",
+  "travelTips": "Domestic flights and buses are useful for long distances.",
+  "facts": [
+    "Istanbul lies on both sides of the Bosporus.",
+    "Cappadocia is famous for unusual rock formations.",
+    "Türkiye has coastlines on several seas."
+  ],
+  "ko": {
+    "specialties": [
+      "헤이즐넛",
+      "올리브",
+      "직물"
+    ],
+    "animals": [
+      "아나톨리아야생양",
+      "붉은바다거북"
+    ],
+    "plants": [
+      "튤립",
+      "올리브나무"
+    ],
+    "landmarks": [
+      "아야소피아",
+      "카파도키아",
+      "파묵칼레"
+    ],
+    "overview": "튀르키예는 유럽과 아시아 사이에 있으며 긴 해안선과 고원, 고대 도시와 교역로가 있는 나라예요.",
+    "greeting": "안녕하세요: 메르하바 (Merhaba)",
+    "climate": "해안은 지중해성 기후가 나타나고 내륙은 여름이 더 덥고 겨울이 더 추울 수 있어요.",
+    "bestSeason": "봄과 가을이 관광하기 좋은 시기로 많이 꼽혀요.",
+    "travelTips": "장거리 이동에는 국내선 비행기와 버스를 많이 이용해요.",
+    "facts": [
+      "이스탄불은 보스포루스해협의 양쪽에 걸쳐 있어요.",
+      "카파도키아는 독특한 바위 지형으로 유명해요.",
+      "여러 바다에 해안선을 가지고 있어요."
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "code2": "BR",
+  "specialties": [
+    "Coffee",
+    "Soybeans",
+    "Açaí"
+  ],
+  "animals": [
+    "Jaguar",
+    "Capybara"
+  ],
+  "plants": [
+    "Brazil nut tree",
+    "Ipê"
+  ],
+  "landmarks": [
+    "Christ the Redeemer",
+    "Amazon rainforest",
+    "Iguazu Falls"
+  ],
+  "overview": "Brazil is the largest country in South America, with the Amazon rainforest, long coasts, huge rivers, and very large cities.",
+  "greeting": "Hello: Olá",
+  "climate": "Much of the country is tropical, but the south can have cooler seasons.",
+  "bestSeason": "The best time depends strongly on the region and rainy season.",
+  "travelTips": "Domestic flights are common because distances are very large.",
+  "facts": [
+    "Most of the Amazon rainforest lies in Brazil.",
+    "Portuguese is Brazil’s official language.",
+    "The Amazon River carries enormous amounts of water to the Atlantic."
+  ],
+  "ko": {
+    "specialties": [
+      "커피",
+      "대두",
+      "아사이"
+    ],
+    "animals": [
+      "재규어",
+      "카피바라"
+    ],
+    "plants": [
+      "브라질너트나무",
+      "이페"
+    ],
+    "landmarks": [
+      "구세주 그리스도상",
+      "아마존 열대우림",
+      "이과수 폭포"
+    ],
+    "overview": "브라질은 남아메리카에서 가장 큰 나라로 아마존 열대우림, 긴 해안선, 큰 강과 대도시가 있어요.",
+    "greeting": "안녕하세요: 올라 (Olá)",
+    "climate": "많은 지역이 열대기후지만 남부는 계절에 따라 더 서늘해질 수 있어요.",
+    "bestSeason": "지역과 우기에 따라 좋은 여행 시기가 크게 달라요.",
+    "travelTips": "거리가 매우 길어서 국내선 비행기를 많이 이용해요.",
+    "facts": [
+      "아마존 열대우림의 큰 부분이 브라질에 있어요.",
+      "브라질의 공용어는 포르투갈어예요.",
+      "아마존강은 엄청난 양의 물을 대서양으로 흘려보내요."
+    ]
+  }
+}

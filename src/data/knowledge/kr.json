@@ -1,0 +1,61 @@
+{
+  "code2": "KR",
+  "specialties": [
+    "Kimchi",
+    "Ginseng",
+    "Seaweed"
+  ],
+  "animals": [
+    "Korean magpie",
+    "Water deer"
+  ],
+  "plants": [
+    "Mugunghwa",
+    "Korean pine"
+  ],
+  "facts": [
+    "Korea has a high-speed rail network called KTX.",
+    "Hangul was created in the 15th century.",
+    "The country has four distinct seasons."
+  ],
+  "ko": {
+    "specialties": [
+      "김치",
+      "인삼",
+      "김"
+    ],
+    "animals": [
+      "까치",
+      "고라니"
+    ],
+    "plants": [
+      "무궁화",
+      "소나무"
+    ],
+    "facts": [
+      "KTX라는 고속철도가 주요 도시를 빠르게 이어 줍니다.",
+      "한글은 15세기에 만들어진 문자입니다.",
+      "봄·여름·가을·겨울의 사계절이 뚜렷합니다."
+    ],
+    "overview": "한국은 현대적인 도시와 산, 섬, 음식 문화가 함께 있는 나라예요.",
+    "greeting": "안녕하세요: 안녕하세요 (Annyeonghaseyo)",
+    "climate": "사계절이 뚜렷해요.",
+    "bestSeason": "봄과 가을이 특히 여행하기 좋아요.",
+    "travelTips": "지하철·버스·KTX로 이동하기 편해요.",
+    "landmarks": [
+      "경복궁",
+      "제주도",
+      "N서울타워"
+    ]
+  },
+  "overview": "Korea mixes modern cities, mountains, islands, and a strong food culture.",
+  "greeting": "안녕하세요: 안녕하세요 (Annyeonghaseyo)",
+  "climate": "The country has four clear seasons.",
+  "bestSeason": "Spring and autumn are especially pleasant.",
+  "travelTips": "Subways, buses, and KTX make travel easy.",
+  "landmarks": [
+    "Gyeongbokgung Palace",
+    "Jeju Island",
+    "N Seoul Tower"
+  ]
+}

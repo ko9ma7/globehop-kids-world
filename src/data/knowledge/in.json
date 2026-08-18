@@ -1,0 +1,77 @@
+{
+  "code2": "IN",
+  "specialties": [
+    "Tea",
+    "Spices",
+    "Textiles"
+  ],
+  "animals": [
+    "Bengal tiger",
+    "Indian elephant"
+  ],
+  "plants": [
+    "Lotus",
+    "Neem tree"
+  ],
+  "facts": [
+    "India has many languages and cultures across a very large land area.",
+    "The Ganges is one of the country’s most important rivers.",
+    "Many people celebrate colorful festivals such as Diwali and Holi."
+  ],
+  "overview": "India is one of the world’s most populous countries and has mountains, deserts, forests, coasts, and huge cities.",
+  "greeting": "Hello: Namaste (नमस्ते)",
+  "climate": "The weather changes a lot by region, and monsoon rains are important in many places.",
+  "bestSeason": "Winter and the cooler dry season are often easiest for travel.",
+  "travelTips": "India is very large, so train and domestic air travel are both useful.",
+  "landmarks": [
+    "Taj Mahal",
+    "Ganges River",
+    "Jaipur forts"
+  ],
+  "gallery": [
+    {
+      "title": "Taj Mahal",
+      "caption": "A world-famous monument in Agra",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Taj-Mahal.jpg/640px-Taj-Mahal.jpg",
+      "alt": "Taj Mahal"
+    }
+  ],
+  "ko": {
+    "specialties": [
+      "차",
+      "향신료",
+      "직물"
+    ],
+    "animals": [
+      "벵골호랑이",
+      "인도코끼리"
+    ],
+    "plants": [
+      "연꽃",
+      "님나무"
+    ],
+    "facts": [
+      "인도는 아주 넓은 나라로 언어와 문화가 무척 다양해요.",
+      "갠지스강은 인도에서 매우 중요한 강 가운데 하나예요.",
+      "디왈리와 홀리처럼 화려한 축제가 널리 알려져 있어요."
+    ],
+    "overview": "인도는 세계에서 인구가 많은 나라 가운데 하나이며, 산·사막·숲·해안과 큰 도시가 함께 있어요.",
+    "greeting": "안녕하세요: 나마스테 (नमस्ते)",
+    "climate": "지역마다 날씨 차이가 크고, 계절풍 비가 중요한 곳이 많아요.",
+    "bestSeason": "겨울과 비교적 선선한 건기가 여행하기 편한 편이에요.",
+    "travelTips": "나라가 매우 커서 기차와 국내선 비행기를 함께 많이 이용해요.",
+    "landmarks": [
+      "타지마할",
+      "갠지스강",
+      "자이푸르의 성들"
+    ],
+    "gallery": [
+      {
+        "title": "타지마할",
+        "caption": "아그라에 있는 세계적인 건축물",
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Taj-Mahal.jpg/640px-Taj-Mahal.jpg",
+        "alt": "타지마할"
+      }
+    ]
+  }
+}

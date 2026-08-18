@@ -1,0 +1,254 @@
+[
+  {
+    "id": "seoul",
+    "countryCode": "KR",
+    "timezone": "Asia/Seoul",
+    "lat": 37.5665,
+    "lon": 126.978,
+    "emoji": "🇰🇷",
+    "names": {
+      "ko": "서울",
+      "en": "Seoul",
+      "ja": "ソウル",
+      "zh": "首尔",
+      "hi": "सियोल",
+      "de": "Seoul",
+      "fr": "Séoul",
+      "es": "Seúl",
+      "pt": "Seul",
+      "ar": "سيول",
+      "id": "Seoul"
+    }
+  },
+  {
+    "id": "new-delhi",
+    "countryCode": "IN",
+    "timezone": "Asia/Kolkata",
+    "lat": 28.6139,
+    "lon": 77.209,
+    "emoji": "🇮🇳",
+    "names": {
+      "ko": "뉴델리",
+      "en": "New Delhi",
+      "ja": "ニューデリー",
+      "zh": "新德里",
+      "hi": "नई दिल्ली",
+      "de": "Neu-Delhi",
+      "fr": "New Delhi",
+      "es": "Nueva Delhi",
+      "pt": "Nova Deli",
+      "ar": "نيودلهي",
+      "id": "New Delhi"
+    }
+  },
+  {
+    "id": "berlin",
+    "countryCode": "DE",
+    "timezone": "Europe/Berlin",
+    "lat": 52.52,
+    "lon": 13.405,
+    "emoji": "🇩🇪",
+    "names": {
+      "ko": "베를린",
+      "en": "Berlin",
+      "ja": "ベルリン",
+      "zh": "柏林",
+      "hi": "बर्लिन",
+      "de": "Berlin",
+      "fr": "Berlin",
+      "es": "Berlín",
+      "pt": "Berlim",
+      "ar": "برلين",
+      "id": "Berlin"
+    }
+  },
+  {
+    "id": "paris",
+    "countryCode": "FR",
+    "timezone": "Europe/Paris",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "emoji": "🇫🇷",
+    "names": {
+      "ko": "파리",
+      "en": "Paris",
+      "ja": "パリ",
+      "zh": "巴黎",
+      "hi": "पेरिस",
+      "de": "Paris",
+      "fr": "Paris",
+      "es": "París",
+      "pt": "Paris",
+      "ar": "باريس",
+      "id": "Paris"
+    }
+  },
+  {
+    "id": "tokyo",
+    "countryCode": "JP",
+    "timezone": "Asia/Tokyo",
+    "lat": 35.6762,
+    "lon": 139.6503,
+    "emoji": "🇯🇵",
+    "names": {
+      "ko": "도쿄",
+      "en": "Tokyo",
+      "ja": "東京",
+      "zh": "东京",
+      "hi": "टोक्यो",
+      "de": "Tokio",
+      "fr": "Tokyo",
+      "es": "Tokio",
+      "pt": "Tóquio",
+      "ar": "طوكيو",
+      "id": "Tokyo"
+    }
+  },
+  {
+    "id": "beijing",
+    "countryCode": "CN",
+    "timezone": "Asia/Shanghai",
+    "lat": 39.9042,
+    "lon": 116.4074,
+    "emoji": "🇨🇳",
+    "names": {
+      "ko": "베이징",
+      "en": "Beijing",
+      "ja": "北京",
+      "zh": "北京",
+      "hi": "बीजिंग",
+      "de": "Peking",
+      "fr": "Pékin",
+      "es": "Pekín",
+      "pt": "Pequim",
+      "ar": "بكين",
+      "id": "Beijing"
+    }
+  },
+  {
+    "id": "jakarta",
+    "countryCode": "ID",
+    "timezone": "Asia/Jakarta",
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "emoji": "🇮🇩",
+    "names": {
+      "ko": "자카르타",
+      "en": "Jakarta",
+      "ja": "ジャカルタ",
+      "zh": "雅加达",
+      "hi": "जकार्ता",
+      "de": "Jakarta",
+      "fr": "Jakarta",
+      "es": "Yakarta",
+      "pt": "Jacarta",
+      "ar": "جاكرتا",
+      "id": "Jakarta"
+    }
+  },
+  {
+    "id": "bangkok",
+    "countryCode": "TH",
+    "timezone": "Asia/Bangkok",
+    "lat": 13.7563,
+    "lon": 100.5018,
+    "emoji": "🇹🇭",
+    "names": {
+      "ko": "방콕",
+      "en": "Bangkok",
+      "ja": "バンコク",
+      "zh": "曼谷",
+      "hi": "बैंकॉक",
+      "de": "Bangkok",
+      "fr": "Bangkok",
+      "es": "Bangkok",
+      "pt": "Banguecoque",
+      "ar": "بانكوك",
+      "id": "Bangkok"
+    }
+  },
+  {
+    "id": "new-york",
+    "countryCode": "US",
+    "timezone": "America/New_York",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "emoji": "🇺🇸",
+    "names": {
+      "ko": "뉴욕",
+      "en": "New York",
+      "ja": "ニューヨーク",
+      "zh": "纽约",
+      "hi": "न्यूयॉर्क",
+      "de": "New York",
+      "fr": "New York",
+      "es": "Nueva York",
+      "pt": "Nova York",
+      "ar": "نيويورك",
+      "id": "New York"
+    }
+  },
+  {
+    "id": "sao-paulo",
+    "countryCode": "BR",
+    "timezone": "America/Sao_Paulo",
+    "lat": -23.5505,
+    "lon": -46.6333,
+    "emoji": "🇧🇷",
+    "names": {
+      "ko": "상파울루",
+      "en": "São Paulo",
+      "ja": "サンパウロ",
+      "zh": "圣保罗",
+      "hi": "साओ पाउलो",
+      "de": "São Paulo",
+      "fr": "São Paulo",
+      "es": "São Paulo",
+      "pt": "São Paulo",
+      "ar": "ساو باولو",
+      "id": "São Paulo"
+    }
+  },
+  {
+    "id": "cairo",
+    "countryCode": "EG",
+    "timezone": "Africa/Cairo",
+    "lat": 30.0444,
+    "lon": 31.2357,
+    "emoji": "🇪🇬",
+    "names": {
+      "ko": "카이로",
+      "en": "Cairo",
+      "ja": "カイロ",
+      "zh": "开罗",
+      "hi": "काहिरा",
+      "de": "Kairo",
+      "fr": "Le Caire",
+      "es": "El Cairo",
+      "pt": "Cairo",
+      "ar": "القاهرة",
+      "id": "Cairo"
+    }
+  },
+  {
+    "id": "dubai",
+    "countryCode": "AE",
+    "timezone": "Asia/Dubai",
+    "lat": 25.2048,
+    "lon": 55.2708,
+    "emoji": "🇦🇪",
+    "names": {
+      "ko": "두바이",
+      "en": "Dubai",
+      "ja": "ドバイ",
+      "zh": "迪拜",
+      "hi": "दुबई",
+      "de": "Dubai",
+      "fr": "Dubaï",
+      "es": "Dubái",
+      "pt": "Dubai",
+      "ar": "دبي",
+      "id": "Dubai"
+    }
+  }
+]
