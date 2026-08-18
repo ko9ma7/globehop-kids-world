@@ -123,6 +123,7 @@ function renderAppShell() {
               <button type="button" data-camera="destination">🔴 <span data-i18n="destinationFocus"></span></button>
               <button type="button" data-camera="world">🌍 <span data-i18n="worldFocus"></span></button>
             </div>
+            <div class="route-country-legend" id="routeCountryLegend" hidden></div>
             <div class="map-interaction-hint" id="mapInteractionHint"></div>
           </div>
 
@@ -196,7 +197,7 @@ function renderAppShell() {
       </section>
     </main>
 
-    <footer class="site-footer"><span data-i18n="footer"></span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
+    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="Regional camera + cache fix">V4.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
 
     <dialog id="sourceDialog" class="source-dialog">
       <button class="dialog-close icon-button" type="button" data-dialog-close aria-label="Close">${icon('close')}</button>
@@ -295,8 +296,10 @@ function updateViewControls() {
   if (surface3D) surface3D.hidden = state.viewMode !== 'globe';
   const cameraControls = $('#mapCameraControls');
   const resetButton = $('#resetMapButton');
+  const routeLegend = $('#routeCountryLegend');
   if (cameraControls) cameraControls.hidden = state.viewMode !== 'globe';
   if (resetButton) resetButton.hidden = state.viewMode === 'globe';
+  if (routeLegend) routeLegend.hidden = state.viewMode !== 'globe' || !state.destination;
   const hint = $('#mapInteractionHint');
   if (hint) hint.textContent = state.viewMode === 'globe' ? t('globeInteractionHint') : t('mapInteractionHint');
   hideMapTooltip();
@@ -344,6 +347,36 @@ function formatDuration(hours) {
 
 function getDestinationTimezone() {
   return state.destination?.timezone || state.country?.timezones?.[0] || state.country?.timezone || null;
+}
+
+
+function localizedCapitalName(country) {
+  if (!country) return '';
+  const point = state.mapPoints.find((p) => p.type === 'capital' && p.countryCode === country.code2);
+  if (state.locale === 'ko') return point?.nameKo || country.capital || '';
+  return point?.name || country.capital || '';
+}
+
+function syncRouteDisplayData() {
+  if (state.origin) {
+    state.origin.displayLabel = originLabel(state.origin);
+    if (state.originCountry) {
+      state.origin.countryCode = state.originCountry.code2;
+      state.origin.countryLabel = displayCountryName(state.originCountry.code2, state.locale, state.originCountry.name || state.originCountry.nativeName || state.originCountry.code2);
+    }
+  }
+  if (state.destination && state.country) {
+    const countryLabel = displayCountryName(state.country.code2, state.locale, state.country.name || state.country.nativeName || state.country.code2);
+    state.destination.countryLabel = countryLabel;
+    state.destination.displayLabel = state.destination.kind === 'country' ? localizedCapitalName(state.country) : state.destination.name;
+  }
+}
+
+function updateInteractiveRoute({ focus3D = true } = {}) {
+  if (!state.origin || !state.destination) return;
+  syncRouteDisplayData();
+  globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+  globe3D?.setRoute(state.origin, state.destination, state.tripType, { focus: focus3D });
 }
 
 function mapItemName(item) {
@@ -551,13 +584,13 @@ async function renderMedia() {
   const gallery = $('#mediaGallery');
   if (!gallery || !state.country) return;
   const token = ++state.mediaRenderToken;
-  const places = famousPlacesForCurrentCountry().slice(0, 8);
+  const places = famousPlacesForCurrentCountry().slice(0, 10);
   if (!places.length) {
     gallery.innerHTML = `<div class="media-empty">${escapeHtml(t('knowledgeFallback'))}</div>`;
     return;
   }
-  gallery.innerHTML = places.slice(0, Math.min(6, places.length)).map((place, index) => `<div class="famous-place-card media-skeleton${index === 0 ? ' famous-place-card-featured' : ''}"><span></span><strong>${escapeHtml(famousPlaceDisplayName(place))}</strong></div>`).join('');
-  const resolved = await resolveWikipediaImages(places, { size: 900, limit: 8 }).catch(() => places.map((item) => ({ ...item, image: null })));
+  gallery.innerHTML = places.slice(0, Math.min(8, places.length)).map((place, index) => `<div class="famous-place-card media-skeleton${index === 0 ? ' famous-place-card-featured' : ''}"><span></span><strong>${escapeHtml(famousPlaceDisplayName(place))}</strong></div>`).join('');
+  const resolved = await resolveWikipediaImages(places, { size: 900, limit: 10 }).catch(() => places.map((item) => ({ ...item, image: null })));
   if (token !== state.mediaRenderToken || !gallery.isConnected) return;
   gallery.innerHTML = resolved.map(renderFamousPlaceCard).join('');
   $$('.famous-place-card[data-famous-index]', gallery).forEach((button) => {
@@ -656,6 +689,7 @@ function renderJourneyStats() {
 
 function renderCurrentSelection() {
   if (!state.origin || !$('#originLabel')) return;
+  syncRouteDisplayData();
   $('#originLabel').textContent = state.origin.isCustom ? t('locationReady') : `${t('currentOrigin')}: ${originLabel(state.origin)}`;
   if (!state.destination || !state.country || !$('#destinationTitle')) {
     $('#mapOriginLabel').textContent = originLabel(state.origin);
@@ -667,6 +701,12 @@ function renderCurrentSelection() {
   $('#destinationType').textContent = d.kind === 'country' ? t('country') : d.kind === 'landmark' ? t('landmark') : d.kind === 'region' ? t('regionPlace') : d.kind === 'capital' ? t('capital') : t('city');
   $('#destinationTitle').textContent = d.name;
   const countryName = displayCountryName(c.code2, state.locale, c.name);
+  const originCountryName = state.originCountry ? displayCountryName(state.originCountry.code2, state.locale, state.originCountry.name || state.originCountry.nativeName || state.originCountry.code2) : originLabel(state.origin);
+  const routeLegend = $('#routeCountryLegend');
+  if (routeLegend) {
+    routeLegend.innerHTML = `<span class="route-country-origin">${getFlagEmoji(state.originCountry?.code2 || state.origin.countryCode)} ${escapeHtml(originCountryName)}</span><b>→</b><span class="route-country-destination">${getFlagEmoji(c.code2)} ${escapeHtml(countryName)}</span>`;
+    routeLegend.hidden = state.viewMode !== 'globe';
+  }
   $('#destinationSubtitle').textContent = d.kind === 'country' ? [c.subregion, c.region].filter(Boolean).join(' · ') : [d.subtitle, countryName].filter(Boolean).join(' · ');
   $('#mapOriginLabel').textContent = originLabel(state.origin);
   $('#mapDestinationLabel').textContent = d.name;
@@ -695,8 +735,7 @@ async function setOriginFromPreset(id) {
   renderOriginSelect();
   renderCurrentSelection();
   if (state.destination) {
-    globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
-    globe3D?.setRoute(state.origin, state.destination, state.tripType);
+    updateInteractiveRoute();
     resolveRoadRoute();
   }
 }
@@ -732,8 +771,7 @@ async function useLocation() {
     renderOriginSelect();
     renderCurrentSelection();
     if (state.destination) {
-      globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
-      globe3D?.setRoute(state.origin, state.destination, state.tripType);
+      updateInteractiveRoute();
       resolveRoadRoute();
     }
     btn.disabled = false;
@@ -887,8 +925,7 @@ async function selectResult(result, { skipUrl = false } = {}) {
   state.roadRoute = null;
   globe2D?.highlightCountry(code2);
   globe3D?.setSelectedCountry(code2);
-  globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
-  globe3D?.setRoute(state.origin, state.destination, state.tripType);
+  updateInteractiveRoute();
   renderCurrentSelection();
   resolveRoadRoute();
   const recentItem = { key: state.destination.key, name: state.destination.name, countryCode: code2, kind: state.destination.kind, lat: state.destination.lat, lon: state.destination.lon, timezone: state.destination.timezone, rawName: state.destination.rawName };
@@ -944,6 +981,7 @@ function wireEvents() {
       state.destination.name = displayCountryName(state.country.code2, state.locale, state.country.name);
     }
     renderCurrentSelection();
+    if (state.destination) updateInteractiveRoute({ focus3D: false });
   });
   $('#originSelect').addEventListener('change', async (e) => {
     if (e.target.value === 'custom') return;
@@ -976,8 +1014,7 @@ function wireEvents() {
     setStored('tripType', state.tripType);
     updateViewControls();
     if (state.destination) {
-      globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
-      globe3D?.setRoute(state.origin, state.destination, state.tripType);
+      updateInteractiveRoute();
       renderCurrentSelection();
     }
   });
@@ -988,7 +1025,8 @@ function wireEvents() {
     setStored('viewMode', state.viewMode);
     updateViewControls();
     if (state.destination) {
-      if (state.viewMode === 'globe') { globe3D?.resize(); globe3D?.setRoute(state.origin, state.destination, state.tripType); }
+      syncRouteDisplayData();
+      if (state.viewMode === 'globe') { globe3D?.resize(); globe3D?.setRoute(state.origin, state.destination, state.tripType, { focus: true }); }
       else globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
     }
   });
@@ -1072,7 +1110,15 @@ async function init() {
   globe2D.setData({ geometries: geoms, countries: index, places: state.mapPoints });
   globe3D?.setData({ geometries: geoms, countries: index, places: state.mapPoints });
   await loadInitialSelection();
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('./sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    let reloadingForWorker = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (reloadingForWorker) return;
+      reloadingForWorker = true;
+      location.reload();
+    });
+    navigator.serviceWorker.register('./sw.js').then((registration) => registration.update()).catch(() => {});
+  }
   const focus = new URLSearchParams(location.search).get('focus');
   if (focus === 'search') $('#searchInput').focus();
 }

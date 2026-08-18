@@ -531,3 +531,49 @@ button:disabled { opacity: .55; cursor: wait; }
 .map-place-point.is-muted-point { opacity: .12; pointer-events: none; }
 .map-place-capital.is-muted-point { display: none; }
 .map-tooltip p { margin: 7px 0 0; color: #d7e8f2; font-size: 9px; line-height: 1.45; }
+
+/* V4 regional route readability */
+.country-shape.is-route-origin {
+  fill: #36aeea;
+  stroke: #bfeeff;
+  stroke-width: 2.8;
+}
+.country-shape.is-route-destination {
+  fill: #f4b840;
+  stroke: #fff0a7;
+  stroke-width: 3;
+}
+.country-shape.is-route-origin.is-route-destination {
+  fill: #a9dd67;
+  stroke: #f3ffd7;
+}
+
+.route-country-legend {
+  position: absolute;
+  z-index: 9;
+  left: 50%;
+  top: 58px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 28px);
+  padding: 7px 10px;
+  border: 1px solid rgba(177,220,243,.28);
+  border-radius: 999px;
+  color: #eef9ff;
+  background: rgba(6,24,39,.82);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  font-size: 10px;
+  font-weight: 800;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.route-country-legend[hidden] { display: none !important; }
+.route-country-origin { color: #72d5ff; }
+.route-country-destination { color: #ffd36b; }
+@media (max-width: 430px) {
+  .route-country-legend { top: 50px; font-size: 9px; max-width: calc(100% - 18px); }
+}
+.build-version { padding: 3px 7px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); font-size: 9px; font-weight: 800; color: var(--muted); }

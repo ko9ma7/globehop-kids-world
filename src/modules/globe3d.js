@@ -5,6 +5,11 @@ const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 const lerp = (a, b, t) => a + (b - a) * t;
 const ease = (t) => 1 - Math.pow(1 - t, 3);
 
+function flagEmoji(code2 = '') {
+  if (!/^[A-Za-z]{2}$/.test(code2)) return '🌍';
+  return [...code2.toUpperCase()].map((c) => String.fromCodePoint(127397 + c.charCodeAt())).join('');
+}
+
 function latLonToVec(lat, lon, radius = 1) {
   const phi = lat * RAD;
   const lambda = lon * RAD;
@@ -218,6 +223,8 @@ export class Globe3DView {
     this.countryByCode = new Map();
     this.places = [];
     this.selectedCountry = null;
+    this.originCountry = null;
+    this.destinationCountry = null;
     this.route = null;
     this.flightStart = 0;
     this.flightDuration = 4600;
@@ -352,8 +359,11 @@ export class Globe3DView {
       originData: origin,
       destinationData: destination
     };
+    this.originCountry = origin.countryCode || null;
+    this.destinationCountry = destination.countryCode || null;
     this.tripType = tripType;
     this.flightStart = performance.now();
+    this.redrawTexture();
     if (focus) this.focusRoute(origin, destination);
   }
 
@@ -368,31 +378,77 @@ export class Globe3DView {
     return { x: ndcX, y: ndcY, front: rotated.z > 0 };
   }
 
+  countryFitVectors(code2, maxPoints = 36) {
+    if (!code2) return [];
+    const country = this.countryByCode.get(code2);
+    const entry = (this.geoEntries || []).find((g) => g.code2 === code2);
+    if (!entry?.geometry) return [];
+    // Very large countries would force a continent-scale view. For those, the route
+    // endpoints are a better learning view. Small/medium countries are fitted in full.
+    if (Number(country?.areaKm2) > 1800000) return [];
+    const rings = [];
+    if (entry.geometry.type === 'Polygon') rings.push(...entry.geometry.coordinates.slice(0, 1));
+    if (entry.geometry.type === 'MultiPolygon') {
+      for (const polygon of entry.geometry.coordinates) if (polygon?.[0]) rings.push(polygon[0]);
+    }
+    const raw = rings.flat().filter((point) => Array.isArray(point) && point.length >= 2);
+    if (!raw.length) return [];
+    const stride = Math.max(1, Math.ceil(raw.length / maxPoints));
+    const sampled = raw.filter((_, i) => i % stride === 0).slice(0, maxPoints);
+    // Always include geographic extremes so narrow island countries such as Japan fit correctly.
+    const extremes = [];
+    for (const key of ['latMin','latMax','lonMin','lonMax']) {
+      let best = raw[0];
+      for (const point of raw) {
+        if (key === 'latMin' && point[1] < best[1]) best = point;
+        if (key === 'latMax' && point[1] > best[1]) best = point;
+        if (key === 'lonMin' && point[0] < best[0]) best = point;
+        if (key === 'lonMax' && point[0] > best[0]) best = point;
+      }
+      extremes.push(best);
+    }
+    return [...sampled, ...extremes].map(([lon, lat]) => latLonToVec(lat, lon));
+  }
+
   routeCamera(origin, destination) {
     const a = latLonToVec(origin.lat, origin.lon);
     const b = latLonToVec(destination.lat, destination.lon);
     const angular = Math.acos(clamp(dot(normalize(a), normalize(b)), -1, 1));
-    // Keep the great-circle corridor centred, with the destination slightly favoured.
-    // This prevents short trips (e.g. Seoul → Tokyo) from sitting on the rim of the globe.
-    const center = slerp(a, b, angular < 0.35 ? 0.55 : 0.52);
+
+    // The midpoint sets the direction. On short trips the destination is favoured only
+    // slightly, keeping both countries equally readable instead of placing one on the rim.
+    const center = slerp(a, b, angular < 0.45 ? 0.52 : 0.5);
     const ll = vecToLatLon(center);
     const yaw = -ll.lon * RAD;
     const pitch = ll.lat * RAD;
 
-    // Fit both endpoints inside a safe frame. The numerical fit is more reliable than
-    // a single angle→zoom formula on wide/short browser canvases.
-    let distance = angular < 0.18 ? 2.42 : angular < 0.55 ? 2.58 : 2.72 + angular * 0.42;
-    distance = clamp(distance, 2.35, 4.25);
-    for (let i = 0; i < 30; i++) {
-      const pa = this.projectAtCamera(a, yaw, pitch, distance);
-      const pb = this.projectAtCamera(b, yaw, pitch, distance);
-      const fits = pa && pb && pa.front && pb.front &&
-        Math.abs(pa.x) < 0.72 && Math.abs(pb.x) < 0.72 &&
-        Math.abs(pa.y) < 0.66 && Math.abs(pb.y) < 0.66;
-      if (fits) break;
-      distance += 0.08;
+    const fitVectors = [a, b];
+    // For regional trips, fit the actual outlines of the origin/destination countries.
+    // Seoul → Japan therefore frames South Korea AND the Japanese archipelago, not just
+    // two capital coordinates floating on a huge globe.
+    if (angular < 0.55) {
+      fitVectors.push(...this.countryFitVectors(origin.countryCode));
+      if (destination.countryCode !== origin.countryCode) fitVectors.push(...this.countryFitVectors(destination.countryCode));
     }
-    return { yaw, pitch, distance: clamp(distance, 2.35, 4.6), angular };
+
+    // Start close and move the camera back only until everything is inside a safe frame.
+    // This intentionally produces a regional close-up for short routes.
+    let distance = 1.18;
+    const safeX = 0.82;
+    const safeY = 0.72;
+    for (let i = 0; i < 120; i++) {
+      const fits = fitVectors.every((v) => {
+        const p = this.projectAtCamera(v, yaw, pitch, distance);
+        return p && p.front && Math.abs(p.x) < safeX && Math.abs(p.y) < safeY;
+      });
+      if (fits) break;
+      distance += 0.035;
+    }
+    // Do not over-zoom long intercontinental routes even if their endpoints happen to fit.
+    if (angular > 1.15) distance = Math.max(distance, 2.45 + angular * 0.28);
+    else if (angular > 0.55) distance = Math.max(distance, 1.75 + angular * 0.55);
+
+    return { yaw, pitch, distance: clamp(distance, 1.18, 4.75), angular };
   }
 
   focusRoute(origin, destination) {
@@ -401,18 +457,18 @@ export class Globe3DView {
     this.animateCameraTo(camera.yaw, camera.pitch, camera.distance, 1050);
   }
 
-  focusPoint(lat, lon, { zoom = 2.52 } = {}) {
+  focusPoint(lat, lon, { zoom = 1.55 } = {}) {
     this.animateCameraTo(-lon * RAD, lat * RAD, zoom, 820);
   }
 
   focusOrigin() {
     if (!this.route?.originData) return;
-    this.focusPoint(this.route.originData.lat, this.route.originData.lon, { zoom: 2.35 });
+    this.focusPoint(this.route.originData.lat, this.route.originData.lon, { zoom: 1.48 });
   }
 
   focusDestination() {
     if (!this.route?.destinationData) return;
-    this.focusPoint(this.route.destinationData.lat, this.route.destinationData.lon, { zoom: 2.28 });
+    this.focusPoint(this.route.destinationData.lat, this.route.destinationData.lon, { zoom: 1.45 });
   }
 
   animateCameraTo(yaw, pitch, distance, duration = 900) {
@@ -427,7 +483,7 @@ export class Globe3DView {
       fromDistance: this.distance,
       toYaw: targetYaw,
       toPitch: clamp(pitch, -1.25, 1.25),
-      toDistance: clamp(distance, 2.05, 5)
+      toDistance: clamp(distance, 1.15, 5)
     };
   }
 
@@ -475,9 +531,25 @@ export class Globe3DView {
     for (const g of this.geometries) {
       ctx.beginPath();
       drawGeometryPath(ctx, g.geometry, width, height);
-      ctx.fillStyle = g.code2 === this.selectedCountry ? '#f8ca58' : '#54a86f';
-      ctx.strokeStyle = g.code2 === this.selectedCountry ? '#fff2a6' : 'rgba(224,246,222,.45)';
-      ctx.lineWidth = g.code2 === this.selectedCountry ? 3 : 1;
+      const isOrigin = g.code2 === this.originCountry;
+      const isDestination = g.code2 === this.destinationCountry || g.code2 === this.selectedCountry;
+      if (isOrigin && isDestination) {
+        ctx.fillStyle = '#a9dd67';
+        ctx.strokeStyle = '#f3ffd7';
+        ctx.lineWidth = 4;
+      } else if (isOrigin) {
+        ctx.fillStyle = '#36aeea';
+        ctx.strokeStyle = '#bfeeff';
+        ctx.lineWidth = 4;
+      } else if (isDestination) {
+        ctx.fillStyle = '#f4b840';
+        ctx.strokeStyle = '#fff0a7';
+        ctx.lineWidth = 4;
+      } else {
+        ctx.fillStyle = '#4f976d';
+        ctx.strokeStyle = 'rgba(224,246,222,.38)';
+        ctx.lineWidth = 1;
+      }
       ctx.fill('evenodd');
       ctx.stroke();
     }
@@ -506,7 +578,7 @@ export class Globe3DView {
         const pinch = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
         if (this.lastPinchDistance != null) {
           const delta = pinch - this.lastPinchDistance;
-          this.distance = clamp(this.distance - delta * 0.008, 2.05, 5);
+          this.distance = clamp(this.distance - delta * 0.008, 1.15, 5);
         }
         this.lastPinchDistance = pinch;
         this.lastPointer = { x: event.clientX, y: event.clientY };
@@ -544,7 +616,7 @@ export class Globe3DView {
     target.addEventListener('wheel', (event) => {
       event.preventDefault();
       this.focusAnimation = null;
-      this.distance = clamp(this.distance + event.deltaY * 0.0025, 2.05, 5);
+      this.distance = clamp(this.distance + event.deltaY * 0.0025, 1.15, 5);
     }, { passive: false });
   }
 
@@ -717,6 +789,54 @@ export class Globe3DView {
       ctx.restore();
     };
 
+
+    const drawCountryContextLabel = (code2, label, sublabel, color, side = 1) => {
+      if (!code2 || !label) return;
+      const country = this.countryByCode.get(code2);
+      if (!country || !Number.isFinite(Number(country.lat)) || !Number.isFinite(Number(country.lon))) return;
+      const projected = this.projectObjectVector(latLonToVec(Number(country.lat), Number(country.lon)), 1.045);
+      if (!projected?.front) return;
+      ctx.save();
+      const title = `${flagEmoji(code2)} ${label}`;
+      ctx.font = `800 ${13 * scale}px system-ui, sans-serif`;
+      const titleW = ctx.measureText(title).width;
+      ctx.font = `${9 * scale}px system-ui, sans-serif`;
+      const subW = sublabel ? ctx.measureText(sublabel).width : 0;
+      const padX = 10 * scale;
+      const boxW = Math.max(titleW, subW) + padX * 2;
+      const boxH = (sublabel ? 42 : 31) * scale;
+      let x = side < 0 ? projected.x - boxW - 18 * scale : projected.x + 18 * scale;
+      let y = projected.y - boxH / 2;
+      x = clamp(x, 8 * scale, w - boxW - 8 * scale);
+      y = clamp(y, 46 * scale, h - boxH - 12 * scale);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.6 * scale;
+      ctx.fillStyle = 'rgba(6,24,39,.93)';
+      ctx.shadowColor = 'rgba(0,0,0,.32)';
+      ctx.shadowBlur = 10 * scale;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(x, y, boxW, boxH, 10 * scale);
+      else ctx.rect(x, y, boxW, boxH);
+      ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.beginPath();
+      ctx.moveTo(projected.x, projected.y);
+      ctx.lineTo(side < 0 ? x + boxW : x, y + boxH / 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1 * scale;
+      ctx.stroke();
+      ctx.fillStyle = '#f6fbff';
+      ctx.font = `800 ${13 * scale}px system-ui, sans-serif`;
+      ctx.textBaseline = 'top';
+      ctx.fillText(title, x + padX, y + 6 * scale);
+      if (sublabel) {
+        ctx.fillStyle = '#bcd3df';
+        ctx.font = `${9 * scale}px system-ui, sans-serif`;
+        ctx.fillText(sublabel, x + padX, y + 24 * scale);
+      }
+      ctx.restore();
+    };
+
     for (const place of this.places) {
       const selected = place.countryCode === this.selectedCountry;
       const originCountry = this.route?.originData?.countryCode;
@@ -734,6 +854,14 @@ export class Globe3DView {
     if (this.route) {
       const originProjection = this.projectObjectVector(this.route.origin, 1.04);
       const destinationProjection = this.projectObjectVector(this.route.destination, 1.04);
+      const originCountry = this.countryByCode.get(this.route.originData.countryCode);
+      const destinationCountry = this.countryByCode.get(this.route.destinationData.countryCode);
+      const originCountryLabel = this.route.originData.countryLabel || originCountry?.nativeName || originCountry?.name || this.route.originData.countryCode;
+      const destinationCountryLabel = this.route.destinationData.countryLabel || (this.route.destinationData.kind === 'country' ? this.route.destinationData.name : '') || destinationCountry?.nativeName || destinationCountry?.name || this.route.destinationData.countryCode;
+      drawCountryContextLabel(this.route.originData.countryCode, originCountryLabel, this.route.originData.displayLabel || this.route.originData.nameKo || this.route.originData.name || '', '#4cc8ff', -1);
+      if (this.route.destinationData.countryCode !== this.route.originData.countryCode) {
+        drawCountryContextLabel(this.route.destinationData.countryCode, destinationCountryLabel, this.route.destinationData.displayLabel || this.route.destinationData.name || '', '#ffbf4c', 1);
+      }
       const routePoints = [];
       const steps = 80;
       for (let i = 0; i <= steps; i++) {

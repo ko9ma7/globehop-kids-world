@@ -16,6 +16,8 @@ export class GlobeView {
     this.places = [];
     this.animFrame = null;
     this.currentRoute = null;
+    this.originCountry = null;
+    this.destinationCountry = null;
     this.onHover = onHover;
     this.onLeave = onLeave;
     this.onCountryClick = onCountryClick;
@@ -101,9 +103,18 @@ export class GlobeView {
   highlightCountry(code2) {
     this.landLayer.querySelectorAll('.country-shape.is-selected').forEach((p) => p.classList.remove('is-selected'));
     if (code2) this.landLayer.querySelectorAll(`[data-code="${CSS.escape(code2)}"]`).forEach((p) => p.classList.add('is-selected'));
+    this.updateRouteCountryClasses();
     this.placeLayer.querySelectorAll('.map-place-point').forEach((point) => {
-      const relevant = !code2 || point.dataset.country === code2 || point.dataset.searched === '1';
+      const relevant = !code2 || point.dataset.country === code2 || point.dataset.country === this.originCountry || point.dataset.searched === '1';
       point.classList.toggle('is-muted-point', !relevant);
+    });
+  }
+
+  updateRouteCountryClasses() {
+    this.landLayer.querySelectorAll('.country-shape').forEach((path) => {
+      const code = path.dataset.code;
+      path.classList.toggle('is-route-origin', Boolean(this.originCountry && code === this.originCountry));
+      path.classList.toggle('is-route-destination', Boolean(this.destinationCountry && code === this.destinationCountry));
     });
   }
 
@@ -113,6 +124,9 @@ export class GlobeView {
     this.markerLayer.innerHTML = '';
     const route = routeGeometry(origin, destination);
     this.currentRoute = { origin, destination, transport, route, tripType };
+    this.originCountry = origin.countryCode || null;
+    this.destinationCountry = destination.countryCode || null;
+    this.updateRouteCountryClasses();
     const d = `M${route.p1.x},${route.p1.y} Q${route.control.x},${route.control.y} ${route.p2.x},${route.p2.y}`;
     const path = svgEl('path', { d, class: 'travel-path' });
     this.routeLayer.appendChild(path);
@@ -157,9 +171,9 @@ export class GlobeView {
     const maxX = Math.max(x1, x2);
     const minY = Math.min(p1.y, p2.y);
     const maxY = Math.max(p1.y, p2.y);
-    const routeWidth = Math.max(190, maxX - minX);
-    const routeHeight = Math.max(125, maxY - minY);
-    const width = Math.min(1000, Math.max(routeWidth * 1.55, routeHeight * 2.3));
+    const routeWidth = Math.max(82, maxX - minX);
+    const routeHeight = Math.max(52, maxY - minY);
+    const width = Math.min(1000, Math.max(96, routeWidth * 1.65, routeHeight * 2.4));
     const height = Math.min(500, width / 2);
     let centerX = (minX + maxX) / 2;
     while (centerX > 1000) centerX -= 1000;
