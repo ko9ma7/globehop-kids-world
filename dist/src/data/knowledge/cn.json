@@ -1,0 +1,61 @@
+{
+  "code2": "CN",
+  "specialties": [
+    "Tea",
+    "Silk",
+    "Porcelain"
+  ],
+  "animals": [
+    "Giant panda",
+    "Golden snub-nosed monkey"
+  ],
+  "plants": [
+    "Bamboo",
+    "Peony"
+  ],
+  "facts": [
+    "China spans several climate zones.",
+    "The Great Wall stretches across northern China.",
+    "The Yangtze is Asia’s longest river."
+  ],
+  "ko": {
+    "specialties": [
+      "차",
+      "비단",
+      "도자기"
+    ],
+    "animals": [
+      "자이언트판다",
+      "황금들창코원숭이"
+    ],
+    "plants": [
+      "대나무",
+      "모란"
+    ],
+    "facts": [
+      "중국은 여러 기후대에 걸쳐 있는 큰 나라입니다.",
+      "만리장성은 중국 북부의 여러 지역에 이어져 있습니다.",
+      "양쯔강은 아시아에서 가장 긴 강입니다."
+    ],
+    "overview": "중국은 긴 강과 큰 도시, 사막, 산맥, 오랜 역사가 함께 있는 아주 큰 나라예요.",
+    "greeting": "안녕하세요: 니하오 (你好)",
+    "climate": "남북으로 여러 기후대가 있어요.",
+    "bestSeason": "많은 도시에서 봄과 가을이 비교적 쾌적해요.",
+    "travelTips": "주요 도시 사이 이동은 고속철도가 편리해요.",
+    "landmarks": [
+      "만리장성",
+      "자금성",
+      "양쯔강"
+    ]
+  },
+  "overview": "China is a very large country with long rivers, big cities, deserts, mountains, and ancient history.",
+  "greeting": "Hello: Nǐ hǎo (你好)",
+  "climate": "China has many climate zones from north to south.",
+  "bestSeason": "Spring and autumn are comfortable in many cities.",
+  "travelTips": "High-speed rail is one of the easiest ways to travel between major cities.",
+  "landmarks": [
+    "Great Wall",
+    "Forbidden City",
+    "Yangtze River"
+  ]
+}
