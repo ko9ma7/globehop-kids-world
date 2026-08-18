@@ -1,7 +1,7 @@
 export const APP = {
   name: 'GlobeHop',
   defaultLocale: 'ko',
-  supportedLocales: ['ko', 'en', 'ja', 'zh', 'hi', 'de', 'fr', 'es', 'pt', 'ar', 'id'],
+  supportedLocales: ['ko', 'en', 'zh', 'hi', 'es', 'ar', 'bn', 'pt', 'ru', 'ja', 'de', 'fr', 'id', 'ur', 'tr', 'vi', 'it', 'th', 'fa', 'fil'],
   defaultOriginId: 'seoul',
   geocodingEndpoint: 'https://geocoding-api.open-meteo.com/v1/search',
   worldBankEndpoint: 'https://api.worldbank.org/v2',

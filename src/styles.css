@@ -133,20 +133,41 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .ghost-button { background: transparent; color: var(--primary-strong); }
 button:disabled { opacity: .55; cursor: wait; }
 
-.globe-card { position: relative; overflow: hidden; min-height: 360px; background: linear-gradient(160deg, #eaf8fb, #f9fbfc); border-left: 1px solid var(--line); border-right: 1px solid var(--line); isolation: isolate; }
-:root[data-theme="dark"] .globe-card { background: linear-gradient(160deg, #173544, #122631); }
-@media (prefers-color-scheme: dark) { :root[data-theme="system"] .globe-card { background: linear-gradient(160deg, #173544, #122631); } }
-.globe-card::before { content: ""; position: absolute; inset: 18px; pointer-events: none; opacity: 0; transition: opacity .22s ease; z-index: 1; }
-.globe-card.view-globe::before { opacity: 1; border-radius: 50%; box-shadow: inset -36px 0 50px rgba(0, 0, 0, .12), inset 28px 0 32px rgba(255, 255, 255, .22), 0 10px 34px rgba(0, 0, 0, .08); }
-.globe-card.view-globe.is-spinning .globe-svg { animation: globeTurn 1.7s cubic-bezier(.2, .8, .2, 1); }
-.globe-card.view-map .globe-svg { clip-path: inset(0 round 0); }
-.globe-card.view-globe .globe-svg { clip-path: ellipse(46% 43% at 50% 50%); transform-origin: 50% 50%; }
-.globe-svg { display: block; width: 100%; height: auto; min-height: 360px; filter: drop-shadow(0 18px 22px rgba(35, 104, 126, .14)); position: relative; z-index: 0; }
-.map-ocean { fill: url(#oceanShade); }
+.globe-card { position: relative; overflow: hidden; min-height: 420px; background: radial-gradient(circle at 50% 35%, #173f67 0%, #0a1c33 58%, #07131f 100%); border-left: 1px solid var(--line); border-right: 1px solid var(--line); isolation: isolate; }
+.globe-card.view-map { background: linear-gradient(160deg, #eaf8fb, #f9fbfc); }
+:root[data-theme="dark"] .globe-card.view-map { background: linear-gradient(160deg, #173544, #122631); }
+@media (prefers-color-scheme: dark) { :root[data-theme="system"] .globe-card.view-map { background: linear-gradient(160deg, #173544, #122631); } }
+.map-surface { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-surface[hidden] { display: none !important; }
+.map-surface-2d { position: relative; min-height: 420px; }
+.map-surface-3d { min-height: 420px; background:
+  radial-gradient(circle at 18% 20%, rgba(89,176,255,.16), transparent 18%),
+  radial-gradient(circle at 80% 70%, rgba(255,196,76,.08), transparent 16%),
+  linear-gradient(180deg, #081522, #07101a); }
+.map-surface-3d::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .7; background-image:
+  radial-gradient(circle at 10% 15%, rgba(255,255,255,.9) 0 1px, transparent 1.4px),
+  radial-gradient(circle at 70% 18%, rgba(255,221,135,.85) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 35% 77%, rgba(255,255,255,.7) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 88% 57%, rgba(255,255,255,.8) 0 1px, transparent 1.5px);
+  background-size: 170px 150px, 210px 190px, 230px 210px, 260px 230px; }
+.globe-svg { display: block; width: 100%; height: 100%; min-height: 420px; filter: drop-shadow(0 18px 22px rgba(35, 104, 126, .14)); position: relative; z-index: 0; touch-action: none; }
+.globe3d-webgl, .globe3d-overlay { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.globe3d-webgl { z-index: 1; }
+.globe3d-overlay { z-index: 2; cursor: grab; touch-action: none; }
+.globe3d-overlay:active { cursor: grabbing; }
+.globe3d-help { position: absolute; z-index: 3; left: 50%; bottom: 14px; transform: translateX(-50%); pointer-events: none; color: rgba(235,248,255,.72); font-size: 10px; font-weight: 700; background: rgba(7,21,34,.45); border: 1px solid rgba(192,229,246,.18); padding: 6px 9px; border-radius: 999px; backdrop-filter: blur(8px); }
+.map-ocean { fill: url(#oceanShade2d); }
 .globe-grid path { stroke: rgba(255, 255, 255, .42); stroke-width: 1; opacity: .72; }
-.country-shape { fill: var(--land); stroke: color-mix(in srgb, var(--surface) 70%, transparent); stroke-width: 1.15; vector-effect: non-scaling-stroke; transition: fill .18s ease, opacity .18s ease; }
-.country-shape:hover { fill: var(--land-hover); }
+.country-shape { fill: var(--land); stroke: color-mix(in srgb, var(--surface) 70%, transparent); stroke-width: 1.15; vector-effect: non-scaling-stroke; transition: fill .18s ease, opacity .18s ease; cursor: pointer; }
+.country-shape:hover, .country-shape:focus-visible { fill: var(--land-hover); }
 .country-shape.is-selected { fill: var(--land-selected); stroke: #f09b43; stroke-width: 2.2; }
+.map-place-point { cursor: pointer; outline: none; }
+.map-place-dot { fill: #58c9f4; stroke: white; stroke-width: 1.4; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(15,99,145,.55)); }
+.map-place-landmark .map-place-dot { fill: #ffc04f; }
+.map-place-capital { opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.globe-svg.is-zoomed .map-place-capital { opacity: .86; pointer-events: auto; }
+.map-place-capital .map-place-dot { fill: #97cf6b; }
+.map-place-point:hover .map-place-dot, .map-place-point:focus-visible .map-place-dot { r: 7; stroke-width: 2; }
 .travel-path { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 10 12; filter: drop-shadow(0 3px 3px rgba(180, 78, 48, .15)); }
 .travel-path-secondary { opacity: .65; }
 .travel-path-return { opacity: .25; stroke-dasharray: 4 14; }
@@ -156,9 +177,18 @@ button:disabled { opacity: .55; cursor: wait; }
 .map-pin.destination .pin-core { fill: var(--accent); }
 .traveler-bubble { fill: var(--surface); stroke: var(--accent); stroke-width: 3; filter: drop-shadow(0 5px 6px rgba(55, 67, 81, .18)); }
 .traveler-icon { font-size: 18px; }
-.map-label { position: absolute; z-index: 2; padding: 8px 10px; border-radius: 999px; background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); box-shadow: var(--shadow-sm); font-size: 11px; font-weight: 700; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.map-label { position: absolute; z-index: 6; padding: 8px 10px; border-radius: 999px; background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid color-mix(in srgb, var(--line) 80%, transparent); box-shadow: var(--shadow-sm); font-size: 11px; font-weight: 700; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; }
 .map-label-origin { left: 16px; bottom: 16px; }
 .map-label-destination { right: 16px; top: 16px; }
+.map-tooltip { position: absolute; z-index: 12; width: min(220px, calc(100% - 20px)); padding: 12px 13px; border-radius: 14px; color: #edf8ff; background: rgba(8,27,43,.94); border: 1px solid rgba(148,208,239,.32); box-shadow: 0 16px 32px rgba(0,0,0,.28); backdrop-filter: blur(12px); pointer-events: none; }
+.map-tooltip strong, .map-tooltip small, .map-tooltip em { display: block; }
+.map-tooltip strong { font-size: 13px; }
+.map-tooltip small { margin-top: 2px; color: #bcd3df; font-size: 10px; }
+.map-tooltip em { margin-top: 8px; color: #79d3ff; font-size: 9px; font-style: normal; font-weight: 800; }
+.map-tooltip-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 8px; color: #f6d37a; font-size: 9px; }
+.map-reset-button { position: absolute; z-index: 9; left: 14px; top: 14px; min-height: 34px; padding: 0 10px; border-radius: 10px; border: 1px solid rgba(189,222,238,.28); color: #eef9ff; background: rgba(8,28,43,.72); backdrop-filter: blur(8px); cursor: pointer; font-size: 10px; font-weight: 800; box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+.globe-card.view-map .map-reset-button { color: var(--primary-strong); background: color-mix(in srgb, var(--surface) 86%, transparent); border-color: var(--line); }
+.map-interaction-hint { position: absolute; z-index: 7; right: 14px; bottom: 14px; max-width: 65%; padding: 7px 9px; border-radius: 10px; color: rgba(238,248,253,.82); background: rgba(9,27,41,.62); border: 1px solid rgba(190,225,241,.18); backdrop-filter: blur(8px); font-size: 9px; pointer-events: none; }
 
 .journey-panel { padding: 18px; background: var(--surface); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 18px 18px; }
 .journey-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -256,13 +286,6 @@ button:disabled { opacity: .55; cursor: wait; }
 .fatal-error p { color: var(--muted); }
 .fatal-error button { border: 0; border-radius: 12px; background: var(--primary); color: #fff; padding: 10px 16px; }
 
-@keyframes globeTurn {
-  0% { transform: rotateY(0deg) scale(1); }
-  35% { transform: rotateY(24deg) scale(.985); }
-  65% { transform: rotateY(-12deg) scale(.99); }
-  100% { transform: rotateY(0deg) scale(1); }
-}
-
 @media (max-width: 1100px) {
   .page-shell { width: min(100% - 28px, 1000px); }
   .search-hero { grid-template-columns: 1fr; gap: 18px; }
@@ -289,8 +312,7 @@ button:disabled { opacity: .55; cursor: wait; }
   .origin-status small { display: none; }
   .origin-actions { width: 100%; justify-content: flex-end; }
   .secondary-button { min-height: 38px; padding: 0 10px; font-size: 11px; }
-  .globe-card { min-height: 300px; }
-  .globe-svg { min-height: 300px; width: 112%; margin-left: -6%; }
+  .globe-card, .map-surface-2d, .map-surface-3d, .globe-svg { min-height: 340px; }
   .journey-heading { align-items: flex-start; }
   .journey-controls-grid { grid-template-columns: 1fr; }
   .journey-stats { gap: 7px; grid-template-columns: 1fr 1fr; }
@@ -320,8 +342,9 @@ button:disabled { opacity: .55; cursor: wait; }
   .origin-status strong { font-size: 11px; }
   .secondary-button span { display: none; }
   .secondary-button { width: 38px; padding: 0; }
-  .globe-card { min-height: 250px; }
-  .globe-svg { min-height: 250px; width: 128%; margin-left: -14%; }
+  .globe-card, .map-surface-2d, .map-surface-3d, .globe-svg { min-height: 300px; }
+  .globe3d-help { display:none; }
+  .map-interaction-hint { max-width: 78%; }
   .map-label { font-size: 9px; max-width: 130px; }
   .journey-panel { padding: 14px; }
   .journey-heading strong { font-size: 13px; }

@@ -11,7 +11,7 @@ const EN = {
   locationReady: 'Your location is the departure point',
   locationDenied: 'Location is unavailable, so a sample departure city remains.',
   exploreTitle: 'Where should we go today?',
-  exploreBody: 'Choose a country, city, or landmark and compare the trip on a flat map and a globe-style view.',
+  exploreBody: 'Choose a country, city, or landmark and watch the trip on an interactive 2D map and a real WebGL 3D globe.',
   route: 'Journey',
   replay: 'Replay',
   plane: 'Plane',
@@ -24,7 +24,12 @@ const EN = {
   localTime: 'Local time',
   travelView: 'Travel view',
   mapView: '2D map',
-  globeView: 'Globe effect',
+  globeView: '3D globe',
+  mapInteractionHint: 'Hover a country or point for info · click to travel',
+  globeInteractionHint: 'Drag to rotate · wheel/pinch to zoom · hover/tap a point · click to travel',
+  clickToTravel: 'Click to travel here',
+  worldView: 'World view',
+  webglUnavailable: '3D is unavailable in this browser, so the 2D map is being used.',
   tripType: 'Trip type',
   oneWay: 'One-way',
   roundTrip: 'Round trip',
@@ -103,7 +108,7 @@ const STRINGS = {
     locationReady: '내 위치가 출발지예요',
     locationDenied: '위치 권한을 사용할 수 없어 예시 출발지를 유지합니다.',
     exploreTitle: '오늘은 어디로 가볼까요?',
-    exploreBody: '나라·도시·명소를 고르면 평면 지도와 지구본 느낌 화면에서 여행 경로를 비교할 수 있어요.',
+    exploreBody: '나라·도시·명소를 고르면 2D 지도와 실제 WebGL 3D 지구본에서 여행 경로를 보고 바로 탐험할 수 있어요.',
     route: '여행 경로',
     replay: '다시 출발',
     plane: '비행기',
@@ -116,7 +121,12 @@ const STRINGS = {
     localTime: '현지 시간',
     travelView: '보기 방식',
     mapView: '2D 지도',
-    globeView: '지구본 효과',
+    globeView: '3D 지구본',
+    mapInteractionHint: '나라·도시에 마우스를 올리면 정보 · 클릭하면 바로 이동',
+    globeInteractionHint: '드래그로 회전 · 휠/핀치 확대 · 포인트에 마우스 오버/탭 · 클릭하면 이동',
+    clickToTravel: '클릭해서 이곳으로 여행',
+    worldView: '전체 보기',
+    webglUnavailable: '이 브라우저에서는 WebGL 3D를 사용할 수 없어 2D 지도를 사용합니다.',
     tripType: '여행 방식',
     oneWay: '편도',
     roundTrip: '왕복',
@@ -147,11 +157,11 @@ const STRINGS = {
     searchPlaceholder: '国・都市・地名を検索',
     searchHint: '例：日本、パリ、富士山、釜山',
     countries: '国', places: '都市・地名', usingExampleOrigin: 'サンプル出発地を使用中', useMyLocation: '現在地を使う', locationReady: '現在地を出発地に設定しました', locationDenied: '位置情報を使えないため、サンプル出発地を使います。',
-    exploreTitle: '今日はどこへ行く？', exploreBody: '国・都市・名所を選ぶと、2D地図と地球儀風ビューで旅を比べられます。', route: '旅のルート', replay: 'もう一度', plane: '飛行機', planeOnlyNote: '同じ線で混乱しないよう、飛行機ルートだけを表示します。', airDistance: '直線距離', landDistance: '陸路の推定距離', flightTime: '飛行時間の目安', landTime: '陸路移動時間', timeDiff: '時差', localTime: '現地時刻', travelView: '表示', mapView: '2D地図', globeView: '地球儀ビュー', tripType: '旅のタイプ', oneWay: '片道', roundTrip: '往復', routeNote: '飛行機の線は学習用の可視化です。陸路は実際の道路や鉄道と異なる推定値です。', startFrom: '出発地', currentOrigin: '現在の出発地', originCustom: '現在地', countryFacts: '国の基本情報', capital: '首都', population: '人口', area: '面積', currency: '通貨', languages: '言語', region: '地域', callingCode: '国番号', kidKnowledge: '子ども向け学習カード', specialties: '食べ物・特産品', animals: '動物', plants: '植物', landmarks: '名所', greeting: 'あいさつ', climate: '気候', bestSeason: 'おすすめの季節', travelTips: '旅のヒント', overview: 'ポイント', funFacts: 'おもしろ知識', recent: '最近の探検', noRecent: 'まだ探検記録がありません。', dataSources: 'データ出典', close: '閉じる', photos: '画像', flag: '国旗'
+    exploreTitle: '今日はどこへ行く？', exploreBody: '国・都市・名所を選ぶと、2D地図と地球儀風ビューで旅を比べられます。', route: '旅のルート', replay: 'もう一度', plane: '飛行機', planeOnlyNote: '同じ線で混乱しないよう、飛行機ルートだけを表示します。', airDistance: '直線距離', landDistance: '陸路の推定距離', flightTime: '飛行時間の目安', landTime: '陸路移動時間', timeDiff: '時差', localTime: '現地時刻', travelView: '表示', mapView: '2D地図', globeView: '3D地球儀', tripType: '旅のタイプ', oneWay: '片道', roundTrip: '往復', routeNote: '飛行機の線は学習用の可視化です。陸路は実際の道路や鉄道と異なる推定値です。', startFrom: '出発地', currentOrigin: '現在の出発地', originCustom: '現在地', countryFacts: '国の基本情報', capital: '首都', population: '人口', area: '面積', currency: '通貨', languages: '言語', region: '地域', callingCode: '国番号', kidKnowledge: '子ども向け学習カード', specialties: '食べ物・特産品', animals: '動物', plants: '植物', landmarks: '名所', greeting: 'あいさつ', climate: '気候', bestSeason: 'おすすめの季節', travelTips: '旅のヒント', overview: 'ポイント', funFacts: 'おもしろ知識', recent: '最近の探検', noRecent: 'まだ探検記録がありません。', dataSources: 'データ出典', close: '閉じる', photos: '画像', flag: '国旗'
   },
   zh: {
     ...EN,
-    tagline: '搜索、出发、认识世界', searchPlaceholder: '搜索国家、城市或地名', searchHint: '例如：日本、巴黎、富士山、釜山', countries: '国家', places: '城市与地点', usingExampleOrigin: '正在使用示例出发地', useMyLocation: '使用我的位置', locationReady: '已将当前位置设为出发地', locationDenied: '无法使用位置权限，继续使用示例出发地。', exploreTitle: '今天想去哪里？', exploreBody: '选择国家、城市或地标后，可以在平面地图和地球仪效果中比较旅程。', route: '旅行路线', replay: '重新播放', plane: '飞机', planeOnlyNote: '为了避免误导，只显示飞机路线。', airDistance: '直线距离', landDistance: '陆路估算距离', flightTime: '预计飞行时间', landTime: '陆路预计时间', timeDiff: '时差', localTime: '当地时间', travelView: '视图', mapView: '2D地图', globeView: '地球仪效果', tripType: '行程类型', oneWay: '单程', roundTrip: '往返', routeNote: '飞机路线仅用于学习展示。陆路路线是估算值，可能与真实道路或铁路不同。', startFrom: '出发地', currentOrigin: '当前出发地', originCustom: '我的位置', countryFacts: '国家基础信息', kidKnowledge: '儿童学习卡片', landmarks: '地标', greeting: '问候语', climate: '气候', bestSeason: '适合前往的季节', travelTips: '旅行提示', overview: '快速了解', photos: '图片', flag: '国旗'
+    tagline: '搜索、出发、认识世界', searchPlaceholder: '搜索国家、城市或地名', searchHint: '例如：日本、巴黎、富士山、釜山', countries: '国家', places: '城市与地点', usingExampleOrigin: '正在使用示例出发地', useMyLocation: '使用我的位置', locationReady: '已将当前位置设为出发地', locationDenied: '无法使用位置权限，继续使用示例出发地。', exploreTitle: '今天想去哪里？', exploreBody: '选择国家、城市或地标后，可以在平面地图和地球仪效果中比较旅程。', route: '旅行路线', replay: '重新播放', plane: '飞机', planeOnlyNote: '为了避免误导，只显示飞机路线。', airDistance: '直线距离', landDistance: '陆路估算距离', flightTime: '预计飞行时间', landTime: '陆路预计时间', timeDiff: '时差', localTime: '当地时间', travelView: '视图', mapView: '2D地图', globeView: '3D地球仪', tripType: '行程类型', oneWay: '单程', roundTrip: '往返', routeNote: '飞机路线仅用于学习展示。陆路路线是估算值，可能与真实道路或铁路不同。', startFrom: '出发地', currentOrigin: '当前出发地', originCustom: '我的位置', countryFacts: '国家基础信息', kidKnowledge: '儿童学习卡片', landmarks: '地标', greeting: '问候语', climate: '气候', bestSeason: '适合前往的季节', travelTips: '旅行提示', overview: '快速了解', photos: '图片', flag: '国旗'
   },
   hi: {
     ...EN,
@@ -161,7 +171,7 @@ const STRINGS = {
     useMyLocation: 'मेरा स्थान उपयोग करें',
     exploreTitle: 'आज कहाँ चलें?',
     exploreBody: 'देश, शहर या स्थल चुनें और 2D नक्शे व ग्लोब प्रभाव में यात्रा देखें।',
-    route: 'यात्रा', plane: 'विमान', airDistance: 'हवाई दूरी', landDistance: 'स्थल मार्ग अनुमान', flightTime: 'उड़ान समय', landTime: 'स्थलीय समय', travelView: 'दृश्य', mapView: '2D मानचित्र', globeView: 'ग्लोब प्रभाव', tripType: 'यात्रा प्रकार', oneWay: 'एक तरफ़ा', roundTrip: 'आना-जाना', startFrom: 'प्रस्थान', currentOrigin: 'वर्तमान प्रस्थान बिंदु', originCustom: 'मेरा स्थान', countryFacts: 'देश की जानकारी', kidKnowledge: 'बच्चों के लिए सीखने के कार्ड', landmarks: 'प्रमुख स्थल', greeting: 'अभिवादन', climate: 'जलवायु', bestSeason: 'घूमने का अच्छा समय', travelTips: 'यात्रा सुझाव', overview: 'त्वरित परिचय', photos: 'चित्र', flag: 'ध्वज', footer: 'GlobeHop · बच्चों के लिए विश्व अन्वेषक'
+    route: 'यात्रा', plane: 'विमान', airDistance: 'हवाई दूरी', landDistance: 'स्थल मार्ग अनुमान', flightTime: 'उड़ान समय', landTime: 'स्थलीय समय', travelView: 'दृश्य', mapView: '2D मानचित्र', globeView: '3D ग्लोब', tripType: 'यात्रा प्रकार', oneWay: 'एक तरफ़ा', roundTrip: 'आना-जाना', startFrom: 'प्रस्थान', currentOrigin: 'वर्तमान प्रस्थान बिंदु', originCustom: 'मेरा स्थान', countryFacts: 'देश की जानकारी', kidKnowledge: 'बच्चों के लिए सीखने के कार्ड', landmarks: 'प्रमुख स्थल', greeting: 'अभिवादन', climate: 'जलवायु', bestSeason: 'घूमने का अच्छा समय', travelTips: 'यात्रा सुझाव', overview: 'त्वरित परिचय', photos: 'चित्र', flag: 'ध्वज', footer: 'GlobeHop · बच्चों के लिए विश्व अन्वेषक'
   },
   de: {
     ...EN,
@@ -171,7 +181,7 @@ const STRINGS = {
     useMyLocation: 'Meinen Standort nutzen',
     exploreTitle: 'Wohin geht es heute?',
     exploreBody: 'Wähle ein Land, eine Stadt oder ein Wahrzeichen und vergleiche die Reise auf Karte und Globusansicht.',
-    route: 'Reise', plane: 'Flugzeug', airDistance: 'Luftlinie', landDistance: 'Schätzung Landweg', flightTime: 'Geschätzte Flugzeit', landTime: 'Geschätzte Landreisezeit', travelView: 'Ansicht', mapView: '2D-Karte', globeView: 'Globus-Effekt', tripType: 'Reiseart', oneWay: 'Hinweg', roundTrip: 'Hin und zurück', startFrom: 'Startort', currentOrigin: 'Aktueller Startort', originCustom: 'Mein Standort', countryFacts: 'Länderinfos', kidKnowledge: 'Lernkarten für Kinder', landmarks: 'Sehenswürdigkeiten', greeting: 'Begrüßung', climate: 'Klima', bestSeason: 'Gute Reisezeit', travelTips: 'Reisetipps', overview: 'Kurzüberblick', photos: 'Bilder', flag: 'Flagge'
+    route: 'Reise', plane: 'Flugzeug', airDistance: 'Luftlinie', landDistance: 'Schätzung Landweg', flightTime: 'Geschätzte Flugzeit', landTime: 'Geschätzte Landreisezeit', travelView: 'Ansicht', mapView: '2D-Karte', globeView: '3D-Globus', tripType: 'Reiseart', oneWay: 'Hinweg', roundTrip: 'Hin und zurück', startFrom: 'Startort', currentOrigin: 'Aktueller Startort', originCustom: 'Mein Standort', countryFacts: 'Länderinfos', kidKnowledge: 'Lernkarten für Kinder', landmarks: 'Sehenswürdigkeiten', greeting: 'Begrüßung', climate: 'Klima', bestSeason: 'Gute Reisezeit', travelTips: 'Reisetipps', overview: 'Kurzüberblick', photos: 'Bilder', flag: 'Flagge'
   },
   fr: {
     ...EN,
@@ -181,23 +191,50 @@ const STRINGS = {
     useMyLocation: 'Utiliser ma position',
     exploreTitle: 'Où allons-nous aujourd’hui ?',
     exploreBody: 'Choisissez un pays, une ville ou un site et comparez le voyage sur une carte 2D et un globe animé.',
-    route: 'Voyage', plane: 'Avion', airDistance: 'Distance aérienne', landDistance: 'Estimation par voie terrestre', flightTime: 'Temps de vol', landTime: 'Temps de trajet terrestre', travelView: 'Vue', mapView: 'Carte 2D', globeView: 'Effet globe', tripType: 'Type de trajet', oneWay: 'Aller simple', roundTrip: 'Aller-retour', startFrom: 'Départ', currentOrigin: 'Point de départ actuel', originCustom: 'Ma position', countryFacts: 'Infos du pays', kidKnowledge: 'Cartes d’apprentissage', landmarks: 'Lieux célèbres', greeting: 'Salutation', climate: 'Climat', bestSeason: 'Bonne saison', travelTips: 'Conseils de voyage', overview: 'Vue d’ensemble', photos: 'Images', flag: 'Drapeau'
+    route: 'Voyage', plane: 'Avion', airDistance: 'Distance aérienne', landDistance: 'Estimation par voie terrestre', flightTime: 'Temps de vol', landTime: 'Temps de trajet terrestre', travelView: 'Vue', mapView: 'Carte 2D', globeView: 'Globe 3D', tripType: 'Type de trajet', oneWay: 'Aller simple', roundTrip: 'Aller-retour', startFrom: 'Départ', currentOrigin: 'Point de départ actuel', originCustom: 'Ma position', countryFacts: 'Infos du pays', kidKnowledge: 'Cartes d’apprentissage', landmarks: 'Lieux célèbres', greeting: 'Salutation', climate: 'Climat', bestSeason: 'Bonne saison', travelTips: 'Conseils de voyage', overview: 'Vue d’ensemble', photos: 'Images', flag: 'Drapeau'
   },
   es: {
     ...EN,
-    tagline: 'Busca, viaja y descubre el mundo', searchPlaceholder: 'Busca un país, ciudad o lugar', searchHint: 'Prueba Japón, París, monte Fuji o Busan', useMyLocation: 'Usar mi ubicación', exploreTitle: '¿A dónde vamos hoy?', exploreBody: 'Elige un país, ciudad o lugar y compara el viaje en mapa 2D y vista tipo globo.', route: 'Viaje', plane: 'Avión', airDistance: 'Distancia aérea', landDistance: 'Estimación por tierra', flightTime: 'Tiempo de vuelo', landTime: 'Tiempo por tierra', travelView: 'Vista', mapView: 'Mapa 2D', globeView: 'Efecto globo', tripType: 'Tipo de viaje', oneWay: 'Solo ida', roundTrip: 'Ida y vuelta', startFrom: 'Salida', currentOrigin: 'Punto de salida actual', originCustom: 'Mi ubicación', countryFacts: 'Datos del país', kidKnowledge: 'Tarjetas para niños', landmarks: 'Lugares famosos', greeting: 'Saludo', climate: 'Clima', bestSeason: 'Buena época', travelTips: 'Consejos de viaje', overview: 'Resumen', photos: 'Imágenes', flag: 'Bandera'
+    tagline: 'Busca, viaja y descubre el mundo', searchPlaceholder: 'Busca un país, ciudad o lugar', searchHint: 'Prueba Japón, París, monte Fuji o Busan', useMyLocation: 'Usar mi ubicación', exploreTitle: '¿A dónde vamos hoy?', exploreBody: 'Elige un país, ciudad o lugar y compara el viaje en mapa 2D y vista tipo globo.', route: 'Viaje', plane: 'Avión', airDistance: 'Distancia aérea', landDistance: 'Estimación por tierra', flightTime: 'Tiempo de vuelo', landTime: 'Tiempo por tierra', travelView: 'Vista', mapView: 'Mapa 2D', globeView: 'Globo 3D', tripType: 'Tipo de viaje', oneWay: 'Solo ida', roundTrip: 'Ida y vuelta', startFrom: 'Salida', currentOrigin: 'Punto de salida actual', originCustom: 'Mi ubicación', countryFacts: 'Datos del país', kidKnowledge: 'Tarjetas para niños', landmarks: 'Lugares famosos', greeting: 'Saludo', climate: 'Clima', bestSeason: 'Buena época', travelTips: 'Consejos de viaje', overview: 'Resumen', photos: 'Imágenes', flag: 'Bandera'
   },
   pt: {
     ...EN,
-    tagline: 'Pesquise, viaje e descubra o mundo', searchPlaceholder: 'Pesquise um país, cidade ou lugar', searchHint: 'Ex.: Japão, Paris, Monte Fuji, Busan', useMyLocation: 'Usar minha localização', exploreTitle: 'Para onde vamos hoje?', exploreBody: 'Escolha um país, cidade ou ponto famoso e compare a viagem no mapa 2D e no efeito globo.', route: 'Viagem', plane: 'Avião', airDistance: 'Distância aérea', landDistance: 'Estimativa terrestre', flightTime: 'Tempo de voo', landTime: 'Tempo por terra', travelView: 'Visualização', mapView: 'Mapa 2D', globeView: 'Efeito globo', tripType: 'Tipo de viagem', oneWay: 'Só ida', roundTrip: 'Ida e volta', startFrom: 'Saída', currentOrigin: 'Ponto de partida atual', originCustom: 'Minha localização', countryFacts: 'Informações do país', kidKnowledge: 'Cartões para crianças', landmarks: 'Pontos famosos', greeting: 'Saudação', climate: 'Clima', bestSeason: 'Melhor época', travelTips: 'Dicas de viagem', overview: 'Resumo', photos: 'Imagens', flag: 'Bandeira'
+    tagline: 'Pesquise, viaje e descubra o mundo', searchPlaceholder: 'Pesquise um país, cidade ou lugar', searchHint: 'Ex.: Japão, Paris, Monte Fuji, Busan', useMyLocation: 'Usar minha localização', exploreTitle: 'Para onde vamos hoje?', exploreBody: 'Escolha um país, cidade ou ponto famoso e compare a viagem no mapa 2D e no efeito globo.', route: 'Viagem', plane: 'Avião', airDistance: 'Distância aérea', landDistance: 'Estimativa terrestre', flightTime: 'Tempo de voo', landTime: 'Tempo por terra', travelView: 'Visualização', mapView: 'Mapa 2D', globeView: 'Globo 3D', tripType: 'Tipo de viagem', oneWay: 'Só ida', roundTrip: 'Ida e volta', startFrom: 'Saída', currentOrigin: 'Ponto de partida atual', originCustom: 'Minha localização', countryFacts: 'Informações do país', kidKnowledge: 'Cartões para crianças', landmarks: 'Pontos famosos', greeting: 'Saudação', climate: 'Clima', bestSeason: 'Melhor época', travelTips: 'Dicas de viagem', overview: 'Resumo', photos: 'Imagens', flag: 'Bandeira'
   },
   ar: {
     ...EN,
-    tagline: 'ابحث وسافر واكتشف العالم', searchPlaceholder: 'ابحث عن دولة أو مدينة أو مكان', searchHint: 'مثل: اليابان، باريس، جبل فوجي، بوسان', useMyLocation: 'استخدم موقعي', exploreTitle: 'إلى أين نذهب اليوم؟', exploreBody: 'اختر دولة أو مدينة أو معلماً وشاهد الرحلة على خريطة ثنائية الأبعاد وعلى شكل كرة أرضية.', route: 'الرحلة', plane: 'طائرة', airDistance: 'المسافة الجوية', landDistance: 'تقدير المسافة البرية', flightTime: 'مدة الطيران', landTime: 'مدة السفر البري', travelView: 'العرض', mapView: 'خريطة 2D', globeView: 'تأثير الكرة الأرضية', tripType: 'نوع الرحلة', oneWay: 'ذهاب فقط', roundTrip: 'ذهاب وعودة', startFrom: 'الانطلاق من', currentOrigin: 'نقطة الانطلاق الحالية', originCustom: 'موقعي', countryFacts: 'معلومات الدولة', kidKnowledge: 'بطاقات تعليمية للأطفال', landmarks: 'معالم', greeting: 'تحية', climate: 'المناخ', bestSeason: 'أفضل موسم', travelTips: 'نصائح سفر', overview: 'نظرة سريعة', photos: 'صور', flag: 'العلم', footer: 'GlobeHop · مستكشف العالم للأطفال'
+    tagline: 'ابحث وسافر واكتشف العالم', searchPlaceholder: 'ابحث عن دولة أو مدينة أو مكان', searchHint: 'مثل: اليابان، باريس، جبل فوجي، بوسان', useMyLocation: 'استخدم موقعي', exploreTitle: 'إلى أين نذهب اليوم؟', exploreBody: 'اختر دولة أو مدينة أو معلماً وشاهد الرحلة على خريطة ثنائية الأبعاد وعلى شكل كرة أرضية.', route: 'الرحلة', plane: 'طائرة', airDistance: 'المسافة الجوية', landDistance: 'تقدير المسافة البرية', flightTime: 'مدة الطيران', landTime: 'مدة السفر البري', travelView: 'العرض', mapView: 'خريطة 2D', globeView: 'كرة أرضية ثلاثية الأبعاد', tripType: 'نوع الرحلة', oneWay: 'ذهاب فقط', roundTrip: 'ذهاب وعودة', startFrom: 'الانطلاق من', currentOrigin: 'نقطة الانطلاق الحالية', originCustom: 'موقعي', countryFacts: 'معلومات الدولة', kidKnowledge: 'بطاقات تعليمية للأطفال', landmarks: 'معالم', greeting: 'تحية', climate: 'المناخ', bestSeason: 'أفضل موسم', travelTips: 'نصائح سفر', overview: 'نظرة سريعة', photos: 'صور', flag: 'العلم', footer: 'GlobeHop · مستكشف العالم للأطفال'
   },
   id: {
     ...EN,
-    tagline: 'Cari, bepergian, dan kenali dunia', searchPlaceholder: 'Cari negara, kota, atau tempat', searchHint: 'Coba Jepang, Paris, Gunung Fuji, Busan', useMyLocation: 'Gunakan lokasi saya', exploreTitle: 'Hari ini kita pergi ke mana?', exploreBody: 'Pilih negara, kota, atau tempat terkenal lalu bandingkan perjalanan pada peta 2D dan tampilan globe.', route: 'Perjalanan', plane: 'Pesawat', airDistance: 'Jarak udara', landDistance: 'Perkiraan jalur darat', flightTime: 'Waktu terbang', landTime: 'Waktu perjalanan darat', travelView: 'Tampilan', mapView: 'Peta 2D', globeView: 'Efek globe', tripType: 'Jenis perjalanan', oneWay: 'Sekali jalan', roundTrip: 'Pulang-pergi', startFrom: 'Berangkat dari', currentOrigin: 'Titik keberangkatan saat ini', originCustom: 'Lokasi saya', countryFacts: 'Info negara', kidKnowledge: 'Kartu belajar anak', landmarks: 'Tempat terkenal', greeting: 'Sapaan', climate: 'Iklim', bestSeason: 'Musim yang baik', travelTips: 'Tips perjalanan', overview: 'Ringkasan', photos: 'Gambar', flag: 'Bendera'
+    tagline: 'Cari, bepergian, dan kenali dunia', searchPlaceholder: 'Cari negara, kota, atau tempat', searchHint: 'Coba Jepang, Paris, Gunung Fuji, Busan', useMyLocation: 'Gunakan lokasi saya', exploreTitle: 'Hari ini kita pergi ke mana?', exploreBody: 'Pilih negara, kota, atau tempat terkenal lalu bandingkan perjalanan pada peta 2D dan tampilan globe.', route: 'Perjalanan', plane: 'Pesawat', airDistance: 'Jarak udara', landDistance: 'Perkiraan jalur darat', flightTime: 'Waktu terbang', landTime: 'Waktu perjalanan darat', travelView: 'Tampilan', mapView: 'Peta 2D', globeView: 'Globe 3D', tripType: 'Jenis perjalanan', oneWay: 'Sekali jalan', roundTrip: 'Pulang-pergi', startFrom: 'Berangkat dari', currentOrigin: 'Titik keberangkatan saat ini', originCustom: 'Lokasi saya', countryFacts: 'Info negara', kidKnowledge: 'Kartu belajar anak', landmarks: 'Tempat terkenal', greeting: 'Sapaan', climate: 'Iklim', bestSeason: 'Musim yang baik', travelTips: 'Tips perjalanan', overview: 'Ringkasan', photos: 'Gambar', flag: 'Bendera'
+  },
+  bn: {
+    ...EN, tagline: 'খুঁজুন, ভ্রমণ করুন, পৃথিবীকে জানুন', searchPlaceholder: 'দেশ, শহর বা স্থান খুঁজুন', searchHint: 'যেমন: জাপান, প্যারিস, মাউন্ট ফুজি', useMyLocation: 'আমার অবস্থান ব্যবহার করুন', exploreTitle: 'আজ কোথায় যাব?', exploreBody: '২ডি মানচিত্র ও ৩ডি গ্লোবে দেশ, শহর ও দর্শনীয় স্থান ঘুরে দেখুন।', route: 'ভ্রমণপথ', replay: 'আবার চালান', plane: 'বিমান', airDistance: 'আকাশপথের দূরত্ব', landDistance: 'স্থলপথের দূরত্ব', flightTime: 'উড়ানের সময়', landTime: 'স্থলযাত্রার সময়', timeDiff: 'সময়ের পার্থক্য', localTime: 'স্থানীয় সময়', travelView: 'দৃশ্য', mapView: '২ডি মানচিত্র', globeView: '৩ডি গ্লোব', tripType: 'যাত্রার ধরন', oneWay: 'একমুখী', roundTrip: 'যাওয়া-আসা', startFrom: 'যাত্রা শুরু', currentOrigin: 'বর্তমান যাত্রাস্থল', originCustom: 'আমার অবস্থান', countryFacts: 'দেশের তথ্য', capital: 'রাজধানী', population: 'জনসংখ্যা', area: 'আয়তন', languages: 'ভাষা', kidKnowledge: 'শিশুদের শেখার কার্ড', landmarks: 'দর্শনীয় স্থান', clickToTravel: 'এখানে যেতে ক্লিক করুন', globeInteractionHint: 'টেনে ঘোরান · চাকা/পিঞ্চে জুম · পয়েন্টে ক্লিক করে ভ্রমণ করুন'
+  },
+  ru: {
+    ...EN, tagline: 'Ищите, путешествуйте и узнавайте мир', searchPlaceholder: 'Найти страну, город или место', searchHint: 'Например: Япония, Париж, Фудзи', useMyLocation: 'Использовать моё местоположение', exploreTitle: 'Куда отправимся сегодня?', exploreBody: 'Выберите страну, город или место и исследуйте маршрут на 2D-карте и 3D-глобусе.', route: 'Маршрут', replay: 'Повторить', plane: 'Самолёт', airDistance: 'Расстояние по воздуху', landDistance: 'Расстояние по суше', flightTime: 'Время полёта', landTime: 'Время по суше', timeDiff: 'Разница во времени', localTime: 'Местное время', travelView: 'Вид', mapView: '2D-карта', globeView: '3D-глобус', tripType: 'Тип поездки', oneWay: 'В одну сторону', roundTrip: 'Туда и обратно', startFrom: 'Отправление', currentOrigin: 'Точка отправления', originCustom: 'Моё местоположение', countryFacts: 'О стране', capital: 'Столица', population: 'Население', area: 'Площадь', languages: 'Языки', kidKnowledge: 'Карточки для детей', landmarks: 'Достопримечательности', clickToTravel: 'Нажмите, чтобы отправиться сюда', globeInteractionHint: 'Перетаскивайте для вращения · колесо/жест для масштаба · нажмите на место'
+  },
+  tr: {
+    ...EN, tagline: 'Ara, seyahat et ve dünyayı keşfet', searchPlaceholder: 'Ülke, şehir veya yer ara', searchHint: 'Örn: Japonya, Paris, Fuji Dağı', useMyLocation: 'Konumumu kullan', exploreTitle: 'Bugün nereye gidelim?', exploreBody: 'Ülke, şehir veya simge seçin; 2D harita ve 3D kürede yolculuğu izleyin.', route: 'Yolculuk', replay: 'Tekrar oynat', plane: 'Uçak', airDistance: 'Hava mesafesi', landDistance: 'Kara yolu mesafesi', flightTime: 'Uçuş süresi', landTime: 'Kara yolculuğu süresi', timeDiff: 'Saat farkı', localTime: 'Yerel saat', travelView: 'Görünüm', mapView: '2D harita', globeView: '3D küre', tripType: 'Yolculuk türü', oneWay: 'Tek yön', roundTrip: 'Gidiş-dönüş', startFrom: 'Başlangıç', currentOrigin: 'Mevcut başlangıç', originCustom: 'Konumum', countryFacts: 'Ülke bilgileri', capital: 'Başkent', population: 'Nüfus', area: 'Yüzölçümü', languages: 'Diller', kidKnowledge: 'Çocuklar için öğrenme kartları', landmarks: 'Önemli yerler', clickToTravel: 'Buraya gitmek için tıkla', globeInteractionHint: 'Döndürmek için sürükle · yakınlaştırmak için tekerlek/pinch · yere tıkla'
+  },
+  vi: {
+    ...EN, tagline: 'Tìm kiếm, du lịch và khám phá thế giới', searchPlaceholder: 'Tìm quốc gia, thành phố hoặc địa điểm', searchHint: 'Ví dụ: Nhật Bản, Paris, Núi Phú Sĩ', useMyLocation: 'Dùng vị trí của tôi', exploreTitle: 'Hôm nay đi đâu?', exploreBody: 'Chọn quốc gia, thành phố hoặc địa danh và xem hành trình trên bản đồ 2D và địa cầu 3D.', route: 'Hành trình', replay: 'Phát lại', plane: 'Máy bay', airDistance: 'Khoảng cách đường chim bay', landDistance: 'Khoảng cách đường bộ', flightTime: 'Thời gian bay', landTime: 'Thời gian đường bộ', timeDiff: 'Chênh lệch giờ', localTime: 'Giờ địa phương', travelView: 'Chế độ xem', mapView: 'Bản đồ 2D', globeView: 'Địa cầu 3D', tripType: 'Loại hành trình', oneWay: 'Một chiều', roundTrip: 'Khứ hồi', startFrom: 'Khởi hành từ', currentOrigin: 'Điểm khởi hành hiện tại', originCustom: 'Vị trí của tôi', countryFacts: 'Thông tin quốc gia', capital: 'Thủ đô', population: 'Dân số', area: 'Diện tích', languages: 'Ngôn ngữ', kidKnowledge: 'Thẻ học cho trẻ em', landmarks: 'Địa danh', clickToTravel: 'Nhấp để đi tới đây', globeInteractionHint: 'Kéo để xoay · cuộn/chụm để phóng to · nhấp vào địa điểm để đi'
+  },
+  th: {
+    ...EN, tagline: 'ค้นหา เดินทาง และเรียนรู้โลก', searchPlaceholder: 'ค้นหาประเทศ เมือง หรือสถานที่', searchHint: 'เช่น ญี่ปุ่น ปารีส ภูเขาไฟฟูจิ', useMyLocation: 'ใช้ตำแหน่งของฉัน', exploreTitle: 'วันนี้จะไปที่ไหนดี?', exploreBody: 'เลือกประเทศ เมือง หรือสถานที่ แล้วดูเส้นทางบนแผนที่ 2D และลูกโลก 3D', route: 'การเดินทาง', replay: 'เล่นอีกครั้ง', plane: 'เครื่องบิน', airDistance: 'ระยะทางทางอากาศ', landDistance: 'ระยะทางทางบก', flightTime: 'เวลาเที่ยวบิน', landTime: 'เวลาเดินทางทางบก', timeDiff: 'เวลาต่างกัน', localTime: 'เวลาท้องถิ่น', travelView: 'มุมมอง', mapView: 'แผนที่ 2D', globeView: 'ลูกโลก 3D', tripType: 'ประเภทการเดินทาง', oneWay: 'เที่ยวเดียว', roundTrip: 'ไป-กลับ', startFrom: 'ออกเดินทางจาก', currentOrigin: 'จุดออกเดินทางปัจจุบัน', originCustom: 'ตำแหน่งของฉัน', countryFacts: 'ข้อมูลประเทศ', capital: 'เมืองหลวง', population: 'ประชากร', area: 'พื้นที่', languages: 'ภาษา', kidKnowledge: 'การ์ดความรู้สำหรับเด็ก', landmarks: 'สถานที่สำคัญ', clickToTravel: 'คลิกเพื่อเดินทางไปที่นี่'
+  },
+  ur: {
+    ...EN, tagline: 'تلاش کریں، سفر کریں اور دنیا جانیں', searchPlaceholder: 'ملک، شہر یا جگہ تلاش کریں', searchHint: 'مثال: جاپان، پیرس، ماؤنٹ فوجی', useMyLocation: 'میری جگہ استعمال کریں', exploreTitle: 'آج کہاں چلیں؟', exploreBody: 'ملک، شہر یا مقام منتخب کریں اور 2D نقشے اور 3D گلوب پر سفر دیکھیں۔', route: 'سفر', replay: 'دوبارہ چلائیں', plane: 'ہوائی جہاز', airDistance: 'فضائی فاصلہ', landDistance: 'زمینی فاصلہ', flightTime: 'پرواز کا وقت', landTime: 'زمینی سفر کا وقت', timeDiff: 'وقت کا فرق', localTime: 'مقامی وقت', travelView: 'منظر', mapView: '2D نقشہ', globeView: '3D گلوب', tripType: 'سفر کی قسم', oneWay: 'یک طرفہ', roundTrip: 'آنا جانا', startFrom: 'روانگی', currentOrigin: 'موجودہ روانگی', originCustom: 'میری جگہ', countryFacts: 'ملک کی معلومات', capital: 'دارالحکومت', population: 'آبادی', area: 'رقبہ', languages: 'زبانیں', kidKnowledge: 'بچوں کے لیے معلوماتی کارڈ', landmarks: 'مشہور مقامات', clickToTravel: 'یہاں جانے کے لیے کلک کریں'
+  },
+  it: {
+    ...EN, tagline: 'Cerca, viaggia e scopri il mondo', searchPlaceholder: 'Cerca un paese, una città o un luogo', searchHint: 'Es.: Giappone, Parigi, Monte Fuji', useMyLocation: 'Usa la mia posizione', exploreTitle: 'Dove andiamo oggi?', exploreBody: 'Scegli un paese, una città o un luogo e guarda il viaggio sulla mappa 2D e sul globo 3D.', route: 'Viaggio', replay: 'Ripeti', plane: 'Aereo', airDistance: 'Distanza aerea', landDistance: 'Distanza via terra', flightTime: 'Tempo di volo', landTime: 'Tempo via terra', timeDiff: 'Fuso orario', localTime: 'Ora locale', travelView: 'Vista', mapView: 'Mappa 2D', globeView: 'Globo 3D', tripType: 'Tipo di viaggio', oneWay: 'Solo andata', roundTrip: 'Andata e ritorno', startFrom: 'Partenza', currentOrigin: 'Punto di partenza attuale', originCustom: 'La mia posizione', countryFacts: 'Informazioni sul paese', capital: 'Capitale', population: 'Popolazione', area: 'Superficie', languages: 'Lingue', kidKnowledge: 'Schede per bambini', landmarks: 'Luoghi famosi', clickToTravel: 'Clicca per viaggiare qui'
+  },
+  fa: {
+    ...EN, tagline: 'جست‌وجو کنید، سفر کنید و جهان را بشناسید', searchPlaceholder: 'کشور، شهر یا مکان را جست‌وجو کنید', searchHint: 'مثال: ژاپن، پاریس، کوه فوجی', useMyLocation: 'استفاده از موقعیت من', exploreTitle: 'امروز کجا برویم؟', exploreBody: 'کشور، شهر یا دیدنی را انتخاب کنید و سفر را روی نقشه ۲بعدی و کره ۳بعدی ببینید.', route: 'سفر', replay: 'پخش دوباره', plane: 'هواپیما', airDistance: 'فاصله هوایی', landDistance: 'فاصله زمینی', flightTime: 'زمان پرواز', landTime: 'زمان سفر زمینی', timeDiff: 'اختلاف ساعت', localTime: 'زمان محلی', travelView: 'نما', mapView: 'نقشه ۲بعدی', globeView: 'کره ۳بعدی', tripType: 'نوع سفر', oneWay: 'یک‌طرفه', roundTrip: 'رفت و برگشت', startFrom: 'مبدأ', currentOrigin: 'مبدأ فعلی', originCustom: 'موقعیت من', countryFacts: 'اطلاعات کشور', capital: 'پایتخت', population: 'جمعیت', area: 'مساحت', languages: 'زبان‌ها', kidKnowledge: 'کارت‌های آموزشی کودکان', landmarks: 'دیدنی‌ها', clickToTravel: 'برای سفر به اینجا کلیک کنید'
+  },
+  fil: {
+    ...EN, tagline: 'Maghanap, maglakbay, at tuklasin ang mundo', searchPlaceholder: 'Maghanap ng bansa, lungsod, o lugar', searchHint: 'Hal.: Japan, Paris, Mount Fuji', useMyLocation: 'Gamitin ang lokasyon ko', exploreTitle: 'Saan tayo pupunta ngayon?', exploreBody: 'Pumili ng bansa, lungsod, o landmark at panoorin ang biyahe sa 2D mapa at 3D globe.', route: 'Biyahe', replay: 'Ulitin', plane: 'Eroplano', airDistance: 'Distansya sa himpapawid', landDistance: 'Distansya sa lupa', flightTime: 'Oras ng lipad', landTime: 'Oras sa lupa', timeDiff: 'Pagkakaiba ng oras', localTime: 'Lokal na oras', travelView: 'View', mapView: '2D mapa', globeView: '3D globe', tripType: 'Uri ng biyahe', oneWay: 'One-way', roundTrip: 'Balikan', startFrom: 'Mula sa', currentOrigin: 'Kasalukuyang pinanggalingan', originCustom: 'Lokasyon ko', countryFacts: 'Impormasyon ng bansa', capital: 'Kabisera', population: 'Populasyon', area: 'Lawak', languages: 'Mga wika', kidKnowledge: 'Learning cards para sa bata', landmarks: 'Mga sikat na lugar', clickToTravel: 'I-click para bumiyahe rito'
   }
 };
 
@@ -218,6 +255,15 @@ export function localeLabel(locale) {
     es: 'Español',
     pt: 'Português',
     ar: 'العربية',
-    id: 'Bahasa Indonesia'
+    id: 'Bahasa Indonesia',
+    bn: 'বাংলা',
+    ru: 'Русский',
+    tr: 'Türkçe',
+    vi: 'Tiếng Việt',
+    th: 'ไทย',
+    ur: 'اردو',
+    it: 'Italiano',
+    fa: 'فارسی',
+    fil: 'Filipino'
   }[locale] || locale;
 }

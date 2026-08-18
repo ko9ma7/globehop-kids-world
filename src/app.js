@@ -8,6 +8,7 @@ import {
   searchLocal, searchOnlinePlaces
 } from './modules/dataService.js';
 import { GlobeView } from './modules/globe.js';
+import { Globe3DView } from './modules/globe3d.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const $$ = (s, root = document) => [...root.querySelectorAll(s)];
@@ -16,7 +17,7 @@ const escapeHtml = (value = '') => String(value).replace(/[&<>"]/g, (m) => ({ '&
 const state = {
   locale: getStored('locale', navigator.language?.startsWith('ko') ? 'ko' : 'en'),
   theme: getStored('theme', 'system'),
-  viewMode: getStored('viewMode', 'map'),
+  viewMode: getStored('viewMode', 'globe'),
   tripType: getStored('tripType', 'oneway'),
   originPreset: getStored('originPreset', APP.defaultOriginId),
   origin: null,
@@ -27,6 +28,7 @@ const state = {
   stats: null,
   countryIndex: [],
   places: [],
+  mapPoints: [],
   origins: [],
   roadRoute: null,
   searchTimer: null,
@@ -36,7 +38,8 @@ const state = {
 };
 
 let t = translator(state.locale);
-let globe;
+let globe2D;
+let globe3D;
 
 function icon(name, size = 20) {
   const paths = {
@@ -104,9 +107,15 @@ function renderAppShell() {
           </div>
 
           <div class="globe-card" id="globeCard">
-            <svg id="globeSvg" class="globe-svg" viewBox="0 0 1000 500" role="img" aria-label="World map with animated travel route"></svg>
+            <div class="map-surface map-surface-2d" id="map2DSurface">
+              <svg id="globeSvg" class="globe-svg" viewBox="0 0 1000 500" role="img" aria-label="Interactive 2D world map with animated travel route"></svg>
+            </div>
+            <div class="map-surface map-surface-3d" id="globe3DHost" aria-label="Interactive 3D globe"></div>
             <div class="map-label map-label-origin" id="mapOriginLabel"></div>
             <div class="map-label map-label-destination" id="mapDestinationLabel"></div>
+            <div class="map-tooltip" id="mapTooltip" role="status" hidden></div>
+            <button class="map-reset-button" id="resetMapButton" type="button">🌍 <span data-i18n="worldView"></span></button>
+            <div class="map-interaction-hint" id="mapInteractionHint"></div>
           </div>
 
           <div class="journey-panel" id="journeyPanel">
@@ -227,7 +236,7 @@ function renderOriginSelect() {
 function applyTranslations() {
   t = translator(state.locale);
   document.documentElement.lang = state.locale === 'zh' ? 'zh-CN' : state.locale;
-  document.documentElement.dir = state.locale === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = ['ar', 'ur', 'fa'].includes(state.locale) ? 'rtl' : 'ltr';
   $$('[data-i18n]').forEach((el) => { el.textContent = t(el.dataset.i18n); });
   $('#searchInput').placeholder = t('searchPlaceholder');
   $('#searchHint').textContent = t('searchHint');
@@ -269,6 +278,13 @@ function updateViewControls() {
   if (!card) return;
   card.classList.toggle('view-globe', state.viewMode === 'globe');
   card.classList.toggle('view-map', state.viewMode === 'map');
+  const surface2D = $('#map2DSurface');
+  const surface3D = $('#globe3DHost');
+  if (surface2D) surface2D.hidden = state.viewMode !== 'map';
+  if (surface3D) surface3D.hidden = state.viewMode !== 'globe';
+  const hint = $('#mapInteractionHint');
+  if (hint) hint.textContent = state.viewMode === 'globe' ? t('globeInteractionHint') : t('mapInteractionHint');
+  hideMapTooltip();
 }
 
 function localizedLanguage(value) {
@@ -313,6 +329,92 @@ function formatDuration(hours) {
 
 function getDestinationTimezone() {
   return state.destination?.timezone || state.country?.timezones?.[0] || state.country?.timezone || null;
+}
+
+function mapItemName(item) {
+  if (!item?.data) return '';
+  if (item.kind === 'country') return displayCountryName(item.data.code2, state.locale, item.data.name || item.data.code2);
+  return state.locale === 'ko' && item.data.nameKo ? item.data.nameKo : (item.data.name || item.data.nameKo || item.data.id);
+}
+
+function mapItemSecondary(item) {
+  if (!item?.data) return '';
+  if (item.kind === 'country') {
+    const capital = item.data.capital ? `${t('capital')}: ${item.data.capital}` : '';
+    return [capital, displayRegion(item.data.region)].filter(Boolean).join(' · ');
+  }
+  const type = item.data.type === 'landmark' ? t('landmark') : item.data.type === 'region' ? t('regionPlace') : item.data.type === 'capital' ? t('capital') : t('city');
+  const country = displayCountryName(item.data.countryCode, state.locale, item.data.country || '');
+  return [type, country].filter(Boolean).join(' · ');
+}
+
+function showMapTooltip(item, position) {
+  const tooltip = $('#mapTooltip');
+  const card = $('#globeCard');
+  if (!tooltip || !card || !item?.data) return;
+  const rect = card.getBoundingClientRect();
+  const clientX = position?.clientX ?? (rect.left + (position?.x || 0));
+  const clientY = position?.clientY ?? (rect.top + (position?.y || 0));
+  const lat = Number(item.data.capitalLat ?? item.data.lat);
+  const lon = Number(item.data.capitalLon ?? item.data.lon);
+  let distanceText = '';
+  if (state.origin && Number.isFinite(lat) && Number.isFinite(lon)) {
+    const km = haversineKm(state.origin, { lat, lon });
+    distanceText = `<span>✈ ${escapeHtml(formatNumber(Math.round(km)))} km</span>`;
+  }
+  const population = item.data.population ? `<span>👥 ${escapeHtml(formatCompact(item.data.population))}</span>` : '';
+  const area = item.data.areaKm2 ? `<span>📐 ${escapeHtml(formatNumber(Math.round(item.data.areaKm2)))} km²</span>` : '';
+  tooltip.innerHTML = `
+    <strong>${escapeHtml(mapItemName(item))}</strong>
+    <small>${escapeHtml(mapItemSecondary(item))}</small>
+    <div class="map-tooltip-meta">${distanceText}${population}${area}</div>
+    <em>${escapeHtml(t('clickToTravel'))}</em>
+  `;
+  tooltip.hidden = false;
+  const localX = clientX - rect.left;
+  const localY = clientY - rect.top;
+  const left = Math.max(10, Math.min(rect.width - 230, localX + 14));
+  const top = Math.max(10, Math.min(rect.height - 122, localY + 14));
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+
+function hideMapTooltip() {
+  const tooltip = $('#mapTooltip');
+  if (tooltip) tooltip.hidden = true;
+}
+
+function travelToInteractiveItem(item) {
+  if (!item?.data) return;
+  if (item.kind === 'country') {
+    const country = item.data;
+    selectResult({ kind: 'country', ...country, code2: country.code2, displayName: displayCountryName(country.code2, state.locale, country.name || country.code2) });
+    return;
+  }
+  const place = item.data;
+  selectResult({ kind: 'place', ...place, countryCode: place.countryCode || place.code2 });
+}
+
+function buildInteractiveMapPoints(countries, places) {
+  const points = [...places];
+  for (const country of countries) {
+    const lat = Number(country.capitalLat);
+    const lon = Number(country.capitalLon);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon) || !country.capital) continue;
+    const duplicate = places.some((place) => place.countryCode === country.code2 && Math.abs(Number(place.lat) - lat) < 0.2 && Math.abs(Number(place.lon) - lon) < 0.2);
+    if (duplicate) continue;
+    points.push({
+      id: `capital-${country.code2.toLowerCase()}`,
+      name: country.capital,
+      nameKo: country.capital,
+      type: 'capital',
+      countryCode: country.code2,
+      lat, lon,
+      timezone: null,
+      isCapitalPoint: true
+    });
+  }
+  return points;
 }
 
 function resultName(result) {
@@ -477,7 +579,7 @@ function renderCurrentSelection() {
   const d = state.destination;
   const c = state.country;
   $('#flagEmoji').textContent = getFlagEmoji(c.code2);
-  $('#destinationType').textContent = d.kind === 'country' ? t('country') : d.kind === 'landmark' ? t('landmark') : d.kind === 'region' ? t('regionPlace') : t('city');
+  $('#destinationType').textContent = d.kind === 'country' ? t('country') : d.kind === 'landmark' ? t('landmark') : d.kind === 'region' ? t('regionPlace') : d.kind === 'capital' ? t('capital') : t('city');
   $('#destinationTitle').textContent = d.name;
   const countryName = displayCountryName(c.code2, state.locale, c.name);
   $('#destinationSubtitle').textContent = d.kind === 'country' ? [c.subregion, c.region].filter(Boolean).join(' · ') : [d.subtitle, countryName].filter(Boolean).join(' · ');
@@ -508,7 +610,8 @@ async function setOriginFromPreset(id) {
   renderOriginSelect();
   renderCurrentSelection();
   if (state.destination) {
-    globe.setRoute(state.origin, state.destination, 'plane', state.tripType);
+    globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+    globe3D?.setRoute(state.origin, state.destination, state.tripType);
     resolveRoadRoute();
   }
 }
@@ -544,7 +647,8 @@ async function useLocation() {
     renderOriginSelect();
     renderCurrentSelection();
     if (state.destination) {
-      globe.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      globe3D?.setRoute(state.origin, state.destination, state.tripType);
       resolveRoadRoute();
     }
     btn.disabled = false;
@@ -648,12 +752,32 @@ async function selectResult(result, { skipUrl = false } = {}) {
       population: result.population
     };
   }
+  if (result.kind !== 'country' && Number.isFinite(state.destination.lat) && Number.isFinite(state.destination.lon)) {
+    const existsOnMap = state.mapPoints.some((point) => point.countryCode === code2 && Math.abs(Number(point.lat) - state.destination.lat) < 0.02 && Math.abs(Number(point.lon) - state.destination.lon) < 0.02);
+    if (!existsOnMap) {
+      state.mapPoints.push({
+        id: result.id || `searched-${Date.now()}`,
+        name: result.name || state.destination.rawName || state.destination.name,
+        nameKo: result.nameKo || state.destination.name,
+        type: result.type || 'city',
+        countryCode: code2,
+        lat: state.destination.lat,
+        lon: state.destination.lon,
+        timezone: state.destination.timezone,
+        population: result.population || null,
+        isSearchedPoint: true
+      });
+      globe2D?.setPlaces(state.mapPoints);
+      globe3D?.setPlaces(state.mapPoints);
+    }
+  }
   state.knowledge = await loadKnowledge(code2);
   state.stats = null;
   state.roadRoute = null;
-  globe.highlightCountry(code2);
-  globe.setRoute(state.origin, state.destination, 'plane', state.tripType);
-  if (state.viewMode === 'globe') spinGlobe();
+  globe2D?.highlightCountry(code2);
+  globe3D?.setSelectedCountry(code2);
+  globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+  globe3D?.setRoute(state.origin, state.destination, state.tripType);
   renderCurrentSelection();
   resolveRoadRoute();
   const recentItem = { key: state.destination.key, name: state.destination.name, countryCode: code2, kind: state.destination.kind, lat: state.destination.lat, lon: state.destination.lon, timezone: state.destination.timezone, rawName: state.destination.rawName };
@@ -700,14 +824,6 @@ function updateUrl() {
   history.replaceState(null, '', u);
 }
 
-function spinGlobe() {
-  const card = $('#globeCard');
-  if (!card || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  card.classList.remove('is-spinning');
-  void card.offsetWidth;
-  card.classList.add('is-spinning');
-}
-
 function wireEvents() {
   $('#languageSelect').addEventListener('change', (e) => {
     state.locale = e.target.value;
@@ -725,8 +841,13 @@ function wireEvents() {
   $('#themeButton').addEventListener('click', () => setTheme($('#themeButton').dataset.nextTheme));
   $('#locationButton').addEventListener('click', useLocation);
   $('#replayButton').addEventListener('click', () => {
-    globe.replay();
-    if (state.viewMode === 'globe') spinGlobe();
+    globe2D?.replay();
+    globe3D?.replay();
+  });
+  $('#resetMapButton').addEventListener('click', () => {
+    hideMapTooltip();
+    if (state.viewMode === 'globe') globe3D?.resetView();
+    else globe2D?.resetView();
   });
   $('#tripSelector').addEventListener('click', (e) => {
     const button = e.target.closest('button[data-trip]');
@@ -735,7 +856,8 @@ function wireEvents() {
     setStored('tripType', state.tripType);
     updateViewControls();
     if (state.destination) {
-      globe.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      globe3D?.setRoute(state.origin, state.destination, state.tripType);
       renderCurrentSelection();
     }
   });
@@ -745,7 +867,10 @@ function wireEvents() {
     state.viewMode = button.dataset.view;
     setStored('viewMode', state.viewMode);
     updateViewControls();
-    if (state.viewMode === 'globe') spinGlobe();
+    if (state.destination) {
+      if (state.viewMode === 'globe') { globe3D?.resize(); globe3D?.setRoute(state.origin, state.destination, state.tripType); }
+      else globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+    }
   });
   $('#favoriteButton').addEventListener('click', () => {
     if (!state.destination) return;
@@ -796,15 +921,36 @@ async function init() {
   const [geoms, index, places, origins] = await Promise.all([loadWorldGeometries(), loadCountryIndex(), loadPlaces(), loadOrigins()]);
   state.countryIndex = index;
   state.places = places;
+  state.mapPoints = buildInteractiveMapPoints(index, places);
   state.origins = origins;
   const initialOrigin = originPresetById(state.originPreset);
   setOriginObject(initialOrigin);
   applyTranslations();
   wireEvents();
   updateViewControls();
-  globe = new GlobeView($('#globeSvg'));
+  globe2D = new GlobeView($('#globeSvg'), {
+    onHover: showMapTooltip,
+    onLeave: hideMapTooltip,
+    onCountryClick: (country) => travelToInteractiveItem({ kind: 'country', data: country }),
+    onPlaceClick: (place) => travelToInteractiveItem({ kind: 'place', data: place })
+  });
+  try {
+    globe3D = new Globe3DView($('#globe3DHost'), {
+      onHover: showMapTooltip,
+      onLeave: hideMapTooltip,
+      onClick: travelToInteractiveItem
+    });
+  } catch (error) {
+    console.warn('3D globe is unavailable; falling back to the 2D map.', error);
+    globe3D = null;
+    state.viewMode = 'map';
+    const globeButton = $('#viewSelector button[data-view="globe"]');
+    if (globeButton) { globeButton.disabled = true; globeButton.title = t('webglUnavailable'); }
+    updateViewControls();
+  }
   state.originCountry = await getCountry(initialOrigin.countryCode);
-  globe.setGeometries(geoms);
+  globe2D.setData({ geometries: geoms, countries: index, places: state.mapPoints });
+  globe3D?.setData({ geometries: geoms, countries: index, places: state.mapPoints });
   await loadInitialSelection();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('./sw.js').catch(() => {});
   const focus = new URLSearchParams(location.search).get('focus');
