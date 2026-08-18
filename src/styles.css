@@ -376,7 +376,7 @@ button:disabled { opacity: .55; cursor: wait; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .001ms !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
 }
 
-/* V3 route camera + richer destination media */
+/* Rich destination media */
 .map-camera-controls {
   position: absolute;
   z-index: 10;
@@ -532,7 +532,7 @@ button:disabled { opacity: .55; cursor: wait; }
 .map-place-capital.is-muted-point { display: none; }
 .map-tooltip p { margin: 7px 0 0; color: #d7e8f2; font-size: 9px; line-height: 1.45; }
 
-/* V4 regional route readability */
+/* V5 stable regional route readability */
 .country-shape.is-route-origin {
   fill: #36aeea;
   stroke: #bfeeff;

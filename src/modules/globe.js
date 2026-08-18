@@ -8,10 +8,18 @@ function svgEl(name, attrs = {}) {
   return el;
 }
 
+function eachGeometryPoint(geometry, callback) {
+  if (!geometry) return;
+  const walkRing = (ring) => ring.forEach(([lon, lat]) => callback(lon, lat));
+  if (geometry.type === 'Polygon') geometry.coordinates.forEach(walkRing);
+  if (geometry.type === 'MultiPolygon') geometry.coordinates.forEach((polygon) => polygon.forEach(walkRing));
+}
+
 export class GlobeView {
   constructor(svg, { onHover, onLeave, onCountryClick, onPlaceClick } = {}) {
     this.svg = svg;
     this.geometries = [];
+    this.geometryByCode = new Map();
     this.countries = new Map();
     this.places = [];
     this.animFrame = null;
@@ -24,7 +32,6 @@ export class GlobeView {
     this.onPlaceClick = onPlaceClick;
     this.defaultViewBox = { x: 0, y: 0, width: 1000, height: 500 };
     this.currentViewBox = { ...this.defaultViewBox };
-    this.viewAnimation = null;
     this.renderShell();
   }
 
@@ -65,6 +72,7 @@ export class GlobeView {
 
   setGeometries(geometries) {
     this.geometries = geometries;
+    this.geometryByCode = new Map(geometries.map((g) => [g.code2, g]));
     this.landLayer.innerHTML = '';
     const frag = document.createDocumentFragment();
     geometries.forEach((g) => {
@@ -81,13 +89,28 @@ export class GlobeView {
     this.landLayer.appendChild(frag);
   }
 
+  markerVisualScale() {
+    return Math.max(0.18, Math.min(1, this.currentViewBox.width / 1000));
+  }
+
+  pointTransform(x, y) {
+    return `translate(${x} ${y}) scale(${this.markerVisualScale()})`;
+  }
+
   setPlaces(places) {
     this.places = places;
     this.placeLayer.innerHTML = '';
     const frag = document.createDocumentFragment();
     for (const place of places) {
       const p = equirectProject(place.lat, place.lon);
-      const g = svgEl('g', { class: `map-place-point map-place-${place.type || 'city'}`, transform: `translate(${p.x} ${p.y})`, tabindex: place.isCapitalPoint ? '-1' : '0', role: 'button', 'aria-label': place.name || place.nameKo || place.id, 'data-country': place.countryCode || '', 'data-searched': place.isSearchedPoint ? '1' : '0' });
+      const g = svgEl('g', {
+        class: `map-place-point map-place-${place.type || 'city'}`,
+        transform: this.pointTransform(p.x, p.y),
+        tabindex: place.isCapitalPoint ? '-1' : '0', role: 'button',
+        'aria-label': place.name || place.nameKo || place.id,
+        'data-country': place.countryCode || '', 'data-searched': place.isSearchedPoint ? '1' : '0',
+        'data-x': p.x, 'data-y': p.y
+      });
       g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: place.type === 'landmark' ? '5.2' : place.type === 'capital' ? '2.4' : '3.7', class: 'map-place-dot' }));
       const showHover = (event) => this.onHover?.({ kind: 'place', data: place }, { clientX: event.clientX, clientY: event.clientY });
       g.addEventListener('pointerenter', showHover);
@@ -98,6 +121,21 @@ export class GlobeView {
       frag.appendChild(g);
     }
     this.placeLayer.appendChild(frag);
+  }
+
+  refreshFixedSizeGraphics() {
+    const scale = this.markerVisualScale();
+    this.placeLayer?.querySelectorAll('.map-place-point').forEach((node) => {
+      const x = Number(node.dataset.x); const y = Number(node.dataset.y);
+      if (Number.isFinite(x) && Number.isFinite(y)) node.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`);
+    });
+    this.markerLayer?.querySelectorAll('.map-pin').forEach((node) => {
+      const x = Number(node.dataset.x); const y = Number(node.dataset.y);
+      if (Number.isFinite(x) && Number.isFinite(y)) node.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`);
+    });
+    if (this.traveler && this.traveler.dataset.x && this.traveler.dataset.y) {
+      this.updateTravelerTransform(Number(this.traveler.dataset.x), Number(this.traveler.dataset.y));
+    }
   }
 
   highlightCountry(code2) {
@@ -128,62 +166,76 @@ export class GlobeView {
     this.destinationCountry = destination.countryCode || null;
     this.updateRouteCountryClasses();
     const d = `M${route.p1.x},${route.p1.y} Q${route.control.x},${route.control.y} ${route.p2.x},${route.p2.y}`;
-    const path = svgEl('path', { d, class: 'travel-path' });
+    const path = svgEl('path', { d, class: 'travel-path', 'vector-effect': 'non-scaling-stroke' });
     this.routeLayer.appendChild(path);
-    if (tripType === 'roundtrip') {
-      const echo = svgEl('path', { d, class: 'travel-path travel-path-return' });
-      this.routeLayer.appendChild(echo);
-    }
+    if (tripType === 'roundtrip') this.routeLayer.appendChild(svgEl('path', { d, class: 'travel-path travel-path-return', 'vector-effect': 'non-scaling-stroke' }));
     if (route.wrap) {
       const shift = route.p2.x < 0 ? 1000 : -1000;
-      const clone = svgEl('path', {
+      this.routeLayer.appendChild(svgEl('path', {
         d: `M${route.p1.x + shift},${route.p1.y} Q${route.control.x + shift},${route.control.y} ${route.p2.x + shift},${route.p2.y}`,
-        class: 'travel-path travel-path-secondary'
-      });
-      this.routeLayer.appendChild(clone);
+        class: 'travel-path travel-path-secondary', 'vector-effect': 'non-scaling-stroke'
+      }));
     }
     const start = equirectProject(origin.lat, origin.lon);
     const end = equirectProject(destination.lat, destination.lon);
     this.markerLayer.appendChild(this.pin(start.x, start.y, 'origin'));
     this.markerLayer.appendChild(this.pin(end.x, end.y, 'destination'));
-    this.traveler = svgEl('g', { class: 'traveler', 'aria-hidden': 'true' });
-    const bubble = svgEl('circle', { cx: '0', cy: '0', r: '23', class: 'traveler-bubble' });
-    this.traveler.appendChild(bubble);
-    const text = svgEl('text', { x: '0', y: '7', 'text-anchor': 'middle', class: 'traveler-icon' });
+    this.traveler = svgEl('g', { class: 'traveler', 'aria-hidden': 'true', 'data-x': start.x, 'data-y': start.y });
+    this.traveler.appendChild(svgEl('circle', { cx: '0', cy: '0', r: '17', class: 'traveler-bubble' }));
+    const text = svgEl('text', { x: '0', y: '6', 'text-anchor': 'middle', class: 'traveler-icon' });
     text.textContent = '✈️';
     this.traveler.appendChild(text);
     this.markerLayer.appendChild(this.traveler);
+    this.updateTravelerTransform(start.x, start.y);
     if (focus) this.focusRoute(origin, destination);
     this.animate();
+  }
+
+  countryProjectedBounds(code2) {
+    const entry = this.geometryByCode.get(code2);
+    if (!entry?.geometry) return null;
+    const xs = []; const ys = [];
+    eachGeometryPoint(entry.geometry, (lon, lat) => {
+      const p = equirectProject(lat, lon);
+      xs.push(p.x); ys.push(p.y);
+    });
+    if (!xs.length) return null;
+    const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+    const width = maxX - minX; const height = maxY - minY;
+    if (width > 300 || height > 220) return null;
+    return { minX, maxX, minY, maxY };
   }
 
   focusRoute(origin, destination) {
     this.svg.classList.add('is-zoomed');
     const p1 = equirectProject(origin.lat, origin.lon);
     const p2 = equirectProject(destination.lat, destination.lon);
-    let x1 = p1.x;
-    let x2 = p2.x;
-    if (Math.abs(x2 - x1) > 500) {
-      if (x2 > x1) x1 += 1000;
-      else x2 += 1000;
+    const boxes = [{ minX: p1.x, maxX: p1.x, minY: p1.y, maxY: p1.y }, { minX: p2.x, maxX: p2.x, minY: p2.y, maxY: p2.y }];
+    const originBox = this.countryProjectedBounds(origin.countryCode);
+    const destinationBox = this.countryProjectedBounds(destination.countryCode);
+    if (originBox) boxes.push(originBox);
+    if (destinationBox && destination.countryCode !== origin.countryCode) boxes.push(destinationBox);
+
+    let minX = Math.min(...boxes.map((b) => b.minX));
+    let maxX = Math.max(...boxes.map((b) => b.maxX));
+    const minY = Math.min(...boxes.map((b) => b.minY));
+    const maxY = Math.max(...boxes.map((b) => b.maxY));
+    // Dateline routes are fitted from the endpoint pair rather than stretching across the world.
+    if (maxX - minX > 620) {
+      minX = Math.min(p1.x, p2.x);
+      maxX = Math.max(p1.x, p2.x);
     }
-    const minX = Math.min(x1, x2);
-    const maxX = Math.max(x1, x2);
-    const minY = Math.min(p1.y, p2.y);
-    const maxY = Math.max(p1.y, p2.y);
-    const routeWidth = Math.max(82, maxX - minX);
-    const routeHeight = Math.max(52, maxY - minY);
-    const width = Math.min(1000, Math.max(96, routeWidth * 1.65, routeHeight * 2.4));
+    const contentW = Math.max(48, maxX - minX);
+    const contentH = Math.max(34, maxY - minY);
+    // Keep geographic context. The previous 96-unit minimum made Seoul→Japan zoom more than 7×,
+    // which inflated markers and made the map unreadable.
+    const width = Math.min(1000, Math.max(190, contentW * 1.55, contentH * 2.55));
     const height = Math.min(500, width / 2);
-    let centerX = (minX + maxX) / 2;
-    while (centerX > 1000) centerX -= 1000;
-    while (centerX < 0) centerX += 1000;
+    const centerX = (minX + maxX) / 2;
     const centerY = (minY + maxY) / 2;
-    let x = centerX - width / 2;
+    const x = Math.max(0, Math.min(1000 - width, centerX - width / 2));
     const y = Math.max(0, Math.min(500 - height, centerY - height / 2));
-    if (x < 0) x = 0;
-    if (x + width > 1000) x = 1000 - width;
-    this.animateViewBox({ x, y, width, height }, 800);
+    this.animateViewBox({ x, y, width, height }, 760);
   }
 
   animateViewBox(target, duration = 800) {
@@ -199,6 +251,7 @@ export class GlobeView {
         height: from.height + (target.height - from.height) * e
       };
       this.svg.setAttribute('viewBox', `${this.currentViewBox.x} ${this.currentViewBox.y} ${this.currentViewBox.width} ${this.currentViewBox.height}`);
+      this.refreshFixedSizeGraphics();
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
@@ -210,11 +263,17 @@ export class GlobeView {
   }
 
   pin(x, y, kind) {
-    const g = svgEl('g', { class: `map-pin ${kind}` });
-    g.setAttribute('transform', `translate(${x} ${y})`);
-    g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: '11' }));
-    g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: '4', class: 'pin-core' }));
+    const g = svgEl('g', { class: `map-pin ${kind}`, 'data-x': x, 'data-y': y, transform: this.pointTransform(x, y) });
+    g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: '9' }));
+    g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: '3.5', class: 'pin-core' }));
     return g;
+  }
+
+  updateTravelerTransform(x, y) {
+    if (!this.traveler) return;
+    this.traveler.dataset.x = x;
+    this.traveler.dataset.y = y;
+    this.traveler.setAttribute('transform', `translate(${x} ${y}) scale(${this.markerVisualScale()})`);
   }
 
   animate() {
@@ -222,7 +281,7 @@ export class GlobeView {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
       const finalT = this.currentRoute.tripType === 'roundtrip' ? 0 : 1;
       const p = quadraticPoint(this.currentRoute.route, finalT);
-      this.traveler.setAttribute('transform', `translate(${p.x} ${p.y})`);
+      this.updateTravelerTransform(p.x, p.y);
       return;
     }
     const start = performance.now();
@@ -232,7 +291,7 @@ export class GlobeView {
       const eased = 1 - Math.pow(1 - progress, 3);
       const routeT = this.currentRoute.tripType === 'roundtrip' ? (eased < 0.5 ? eased * 2 : 2 - eased * 2) : eased;
       const p = quadraticPoint(this.currentRoute.route, routeT);
-      this.traveler.setAttribute('transform', `translate(${p.x} ${p.y})`);
+      this.updateTravelerTransform(p.x, p.y);
       if (progress < 1) this.animFrame = requestAnimationFrame(tick);
     };
     this.animFrame = requestAnimationFrame(tick);

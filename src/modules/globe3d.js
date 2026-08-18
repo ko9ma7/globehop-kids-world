@@ -353,11 +353,14 @@ export class Globe3DView {
 
   setRoute(origin, destination, tripType = 'oneway', { focus = true } = {}) {
     if (!origin || !destination) return;
+    const originVec = latLonToVec(origin.lat, origin.lon);
+    const destinationVec = latLonToVec(destination.lat, destination.lon);
     this.route = {
-      origin: latLonToVec(origin.lat, origin.lon),
-      destination: latLonToVec(destination.lat, destination.lon),
+      origin: originVec,
+      destination: destinationVec,
       originData: origin,
-      destinationData: destination
+      destinationData: destination,
+      angular: Math.acos(clamp(dot(normalize(originVec), normalize(destinationVec)), -1, 1))
     };
     this.originCountry = origin.countryCode || null;
     this.destinationCountry = destination.countryCode || null;
@@ -415,28 +418,33 @@ export class Globe3DView {
     const b = latLonToVec(destination.lat, destination.lon);
     const angular = Math.acos(clamp(dot(normalize(a), normalize(b)), -1, 1));
 
-    // The midpoint sets the direction. On short trips the destination is favoured only
-    // slightly, keeping both countries equally readable instead of placing one on the rim.
-    const center = slerp(a, b, angular < 0.45 ? 0.52 : 0.5);
+    // Center the visible hemisphere on the great-circle midpoint. For short regional
+    // trips we intentionally do NOT fit the full national outlines: fitting all of
+    // Japan's archipelago pushed the camera too far away and made Korea/Japan tiny.
+    const center = slerp(a, b, angular < 0.45 ? 0.50 : 0.5);
     const ll = vecToLatLon(center);
     const yaw = -ll.lon * RAD;
     const pitch = ll.lat * RAD;
 
-    const fitVectors = [a, b];
-    // For regional trips, fit the actual outlines of the origin/destination countries.
-    // Seoul → Japan therefore frames South Korea AND the Japanese archipelago, not just
-    // two capital coordinates floating on a huge globe.
-    if (angular < 0.55) {
-      fitVectors.push(...this.countryFitVectors(origin.countryCode));
-      if (destination.countryCode !== origin.countryCode) fitVectors.push(...this.countryFitVectors(destination.countryCode));
+    let distance;
+    if (angular < 0.30) {
+      // ~0–17°: regional learning view. Seoul→Tokyo lands here.
+      distance = 1.36;
+    } else if (angular < 0.55) {
+      distance = 1.48;
+    } else if (angular < 0.95) {
+      distance = 1.85 + angular * 0.30;
+    } else if (angular < 1.35) {
+      distance = 2.35 + angular * 0.22;
+    } else {
+      distance = 2.75 + angular * 0.18;
     }
 
-    // Start close and move the camera back only until everything is inside a safe frame.
-    // This intentionally produces a regional close-up for short routes.
-    let distance = 1.18;
-    const safeX = 0.82;
-    const safeY = 0.72;
-    for (let i = 0; i < 120; i++) {
+    // Make sure both route endpoints remain inside a generous safe frame.
+    const fitVectors = [a, b];
+    const safeX = angular < 0.55 ? 0.72 : 0.82;
+    const safeY = angular < 0.55 ? 0.62 : 0.74;
+    for (let i = 0; i < 80; i++) {
       const fits = fitVectors.every((v) => {
         const p = this.projectAtCamera(v, yaw, pitch, distance);
         return p && p.front && Math.abs(p.x) < safeX && Math.abs(p.y) < safeY;
@@ -444,11 +452,8 @@ export class Globe3DView {
       if (fits) break;
       distance += 0.035;
     }
-    // Do not over-zoom long intercontinental routes even if their endpoints happen to fit.
-    if (angular > 1.15) distance = Math.max(distance, 2.45 + angular * 0.28);
-    else if (angular > 0.55) distance = Math.max(distance, 1.75 + angular * 0.55);
 
-    return { yaw, pitch, distance: clamp(distance, 1.18, 4.75), angular };
+    return { yaw, pitch, distance: clamp(distance, 1.28, 4.75), angular };
   }
 
   focusRoute(origin, destination) {
@@ -552,6 +557,32 @@ export class Globe3DView {
       }
       ctx.fill('evenodd');
       ctx.stroke();
+    }
+
+    // Stamp the active origin/destination country names directly onto the globe texture.
+    // This keeps Korea/Japan identifiable even when floating route labels are hidden or moving.
+    const drawSurfaceCountryName = (code2, label, color) => {
+      if (!code2 || !label) return;
+      const country = this.countryByCode.get(code2);
+      if (!country || !Number.isFinite(Number(country.lat)) || !Number.isFinite(Number(country.lon))) return;
+      const x = ((Number(country.lon) + 180) / 360) * width;
+      const y = ((90 - Number(country.lat)) / 180) * height;
+      ctx.save();
+      ctx.font = '800 30px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.lineWidth = 7;
+      ctx.strokeStyle = 'rgba(4,18,30,.86)';
+      ctx.strokeText(label, x, y);
+      ctx.fillStyle = color;
+      ctx.fillText(label, x, y);
+      ctx.restore();
+    };
+    if (this.route) {
+      const originLabel = this.route.originData.countryLabel || this.countryByCode.get(this.originCountry)?.name || this.originCountry;
+      const destinationLabel = this.route.destinationData.countryLabel || this.countryByCode.get(this.destinationCountry)?.name || this.destinationCountry;
+      drawSurfaceCountryName(this.originCountry, originLabel, '#bfeeff');
+      if (this.destinationCountry !== this.originCountry) drawSurfaceCountryName(this.destinationCountry, destinationLabel, '#fff0a7');
     }
 
     const gl = this.gl;
@@ -732,6 +763,16 @@ export class Globe3DView {
     if (this.hovered) this.onClick?.(this.hovered);
   }
 
+  routeLift(t) {
+    const angular = this.route?.angular ?? 1;
+    const baseAmplitude = angular < 0.30 ? 0.10 : angular < 0.55 ? 0.16 : angular < 1.0 ? 0.24 : 0.32;
+    // The arc must always remain in front of the camera. On a regional close-up the
+    // previous 0.34 lift could exceed camera distance and explode across the screen.
+    const cameraSafeAmplitude = Math.max(0.035, this.distance - 1.10);
+    const amplitude = Math.min(baseAmplitude, cameraSafeAmplitude);
+    return 1.025 + Math.sin(Math.PI * t) * amplitude;
+  }
+
   drawOverlay(time) {
     const ctx = this.ctx;
     const w = this.width;
@@ -764,19 +805,19 @@ export class Globe3DView {
       if (interactive) this.visibleProjectedPoints.push({ ...projected, data });
     };
 
-    const drawRouteLabel = (projected, text, accent) => {
+    const drawRouteLabel = (projected, text, accent, placement = 'above') => {
       if (!projected?.front || !text) return;
       ctx.save();
-      ctx.font = `${11 * scale}px system-ui, sans-serif`;
+      ctx.font = `700 ${10 * scale}px system-ui, sans-serif`;
       const padX = 8 * scale;
-      const boxH = 24 * scale;
+      const boxH = 23 * scale;
       const textW = ctx.measureText(text).width;
       const boxW = textW + padX * 2;
-      let x = projected.x + 10 * scale;
-      let y = projected.y - 34 * scale;
+      let x = projected.x - boxW / 2;
+      let y = placement === 'below' ? projected.y + 15 * scale : projected.y - 38 * scale;
       x = clamp(x, 6 * scale, w - boxW - 6 * scale);
-      y = clamp(y, 6 * scale, h - boxH - 6 * scale);
-      ctx.fillStyle = 'rgba(8,25,40,.86)';
+      y = clamp(y, 8 * scale, h - boxH - 8 * scale);
+      ctx.fillStyle = 'rgba(8,25,40,.88)';
       ctx.strokeStyle = accent;
       ctx.lineWidth = 1 * scale;
       ctx.beginPath();
@@ -798,24 +839,21 @@ export class Globe3DView {
       if (!projected?.front) return;
       ctx.save();
       const title = `${flagEmoji(code2)} ${label}`;
-      ctx.font = `800 ${13 * scale}px system-ui, sans-serif`;
-      const titleW = ctx.measureText(title).width;
-      ctx.font = `${9 * scale}px system-ui, sans-serif`;
-      const subW = sublabel ? ctx.measureText(sublabel).width : 0;
+      ctx.font = `800 ${12 * scale}px system-ui, sans-serif`;
       const padX = 10 * scale;
-      const boxW = Math.max(titleW, subW) + padX * 2;
-      const boxH = (sublabel ? 42 : 31) * scale;
-      let x = side < 0 ? projected.x - boxW - 18 * scale : projected.x + 18 * scale;
+      const boxW = ctx.measureText(title).width + padX * 2;
+      const boxH = 30 * scale;
+      let x = side < 0 ? projected.x - boxW - 20 * scale : projected.x + 20 * scale;
       let y = projected.y - boxH / 2;
       x = clamp(x, 8 * scale, w - boxW - 8 * scale);
-      y = clamp(y, 46 * scale, h - boxH - 12 * scale);
+      y = clamp(y, 48 * scale, h - boxH - 12 * scale);
       ctx.strokeStyle = color;
-      ctx.lineWidth = 1.6 * scale;
-      ctx.fillStyle = 'rgba(6,24,39,.93)';
-      ctx.shadowColor = 'rgba(0,0,0,.32)';
-      ctx.shadowBlur = 10 * scale;
+      ctx.lineWidth = 1.5 * scale;
+      ctx.fillStyle = 'rgba(6,24,39,.94)';
+      ctx.shadowColor = 'rgba(0,0,0,.28)';
+      ctx.shadowBlur = 8 * scale;
       ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(x, y, boxW, boxH, 10 * scale);
+      if (ctx.roundRect) ctx.roundRect(x, y, boxW, boxH, 9 * scale);
       else ctx.rect(x, y, boxW, boxH);
       ctx.fill(); ctx.stroke();
       ctx.shadowBlur = 0;
@@ -826,29 +864,53 @@ export class Globe3DView {
       ctx.lineWidth = 1 * scale;
       ctx.stroke();
       ctx.fillStyle = '#f6fbff';
-      ctx.font = `800 ${13 * scale}px system-ui, sans-serif`;
-      ctx.textBaseline = 'top';
-      ctx.fillText(title, x + padX, y + 6 * scale);
-      if (sublabel) {
-        ctx.fillStyle = '#bcd3df';
-        ctx.font = `${9 * scale}px system-ui, sans-serif`;
-        ctx.fillText(sublabel, x + padX, y + 24 * scale);
-      }
+      ctx.textBaseline = 'middle';
+      ctx.fillText(title, x + padX, y + boxH / 2);
       ctx.restore();
     };
 
-    for (const place of this.places) {
+    const routeOriginCode = this.route?.originData?.countryCode;
+    const routeDestinationCode = this.route?.destinationData?.countryCode;
+    const nearRouteEndpoint = (place) => {
+      if (!this.route) return false;
+      const close = (a, b) => Math.abs(Number(a.lat) - Number(b.lat)) < 0.28 && Math.abs(Number(a.lon) - Number(b.lon)) < 0.28;
+      return close(place, this.route.originData) || close(place, this.route.destinationData);
+    };
+    const markerCandidates = this.places
+      .filter((place) => {
+        const selected = place.countryCode === this.selectedCountry;
+        const routeOrigin = place.countryCode && place.countryCode === routeOriginCode;
+        if (place.isSearchedPoint) return true;
+        if (place.type === 'landmark') return selected;
+        if (place.type === 'city' || place.type === 'capital') return selected || routeOrigin;
+        return false;
+      })
+      .sort((a, b) => {
+        const priority = (place) => {
+          if (place.isSearchedPoint) return 0;
+          if (place.countryCode === routeDestinationCode && place.type === 'landmark') return 1;
+          if (place.countryCode === this.selectedCountry && place.type === 'landmark') return 2;
+          if (place.countryCode === this.selectedCountry && place.type === 'city') return 3;
+          if (place.countryCode === routeOriginCode && place.type === 'city') return 4;
+          if (place.type === 'capital') return 5;
+          return 9;
+        };
+        return priority(a) - priority(b);
+      });
+
+    let selectedShown = 0;
+    let originShown = 0;
+    for (const place of markerCandidates) {
       const selected = place.countryCode === this.selectedCountry;
-      const originCountry = this.route?.originData?.countryCode;
-      const routeOrigin = place.countryCode && place.countryCode === originCountry;
-      // Keep the globe readable: selected-country landmarks are the primary exploration layer.
-      // Other capitals/cities appear only when they are directly relevant to the current route/search.
-      if (place.type === 'capital' && !selected && !routeOrigin && !place.isSearchedPoint) continue;
-      if (place.type === 'city' && !selected && !routeOrigin && !place.isSearchedPoint) continue;
-      if (place.type === 'landmark' && !selected && !place.isSearchedPoint) continue;
+      const routeOrigin = place.countryCode === routeOriginCode && !selected;
+      if (nearRouteEndpoint(place)) continue;
+      if (selected && selectedShown >= 8) continue;
+      if (routeOrigin && originShown >= 3) continue;
       const color = place.type === 'landmark' ? '#ffc24b' : place.type === 'capital' ? '#b3ee72' : '#6fd8ff';
-      const size = place.type === 'landmark' ? 4.8 : place.type === 'capital' ? 3.0 : 3.5;
+      const size = place.type === 'landmark' ? 4.6 : place.type === 'capital' ? 3.0 : 3.4;
       drawMarker(place, color, size);
+      if (selected) selectedShown += 1;
+      if (routeOrigin) originShown += 1;
     }
 
     if (this.route) {
@@ -862,42 +924,52 @@ export class Globe3DView {
       if (this.route.destinationData.countryCode !== this.route.originData.countryCode) {
         drawCountryContextLabel(this.route.destinationData.countryCode, destinationCountryLabel, this.route.destinationData.displayLabel || this.route.destinationData.name || '', '#ffbf4c', 1);
       }
-      const routePoints = [];
+      const routeSegments = [];
+      let currentSegment = [];
       const steps = 80;
       for (let i = 0; i <= steps; i++) {
         const tt = i / steps;
-        const lift = 1.035 + Math.sin(Math.PI * tt) * 0.34;
+        const lift = this.routeLift(tt);
         const point = slerp(this.route.origin, this.route.destination, tt);
         const projected = this.projectObjectVector(point, lift);
-        if (projected) routePoints.push(projected);
+        if (projected?.front) {
+          currentSegment.push(projected);
+        } else if (currentSegment.length) {
+          routeSegments.push(currentSegment);
+          currentSegment = [];
+        }
       }
-      if (routePoints.length > 1) {
+      if (currentSegment.length) routeSegments.push(currentSegment);
+      if (routeSegments.some((segment) => segment.length > 1)) {
         ctx.save();
-        ctx.beginPath();
-        routePoints.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
         ctx.strokeStyle = 'rgba(99,211,255,.95)';
         ctx.lineWidth = 3.2 * scale;
         ctx.shadowColor = '#5dd4ff';
         ctx.shadowBlur = 13 * scale;
-        ctx.stroke();
+        for (const segment of routeSegments) {
+          if (segment.length < 2) continue;
+          ctx.beginPath();
+          segment.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+          ctx.stroke();
+        }
         ctx.restore();
       }
       if (originProjection?.front) {
         drawMarker(this.route.originData, '#45a5ff', 6.5, false);
-        drawRouteLabel(originProjection, this.route.originData.displayLabel || this.route.originData.nameKo || this.route.originData.name || 'Start', '#45a5ff');
+        drawRouteLabel(originProjection, this.route.originData.displayLabel || this.route.originData.nameKo || this.route.originData.name || 'Start', '#45a5ff', 'below');
       }
       if (destinationProjection?.front) {
         drawMarker(this.route.destinationData, '#ff6f61', 7, false);
-        drawRouteLabel(destinationProjection, this.route.destinationData.displayLabel || this.route.destinationData.name || 'Destination', '#ff6f61');
+        if (this.route.destinationData.kind !== 'country') drawRouteLabel(destinationProjection, this.route.destinationData.displayLabel || this.route.destinationData.name || 'Destination', '#ff6f61', 'below');
       }
 
       const elapsed = clamp((time - this.flightStart) / this.flightDuration, 0, 1);
       let flightT = ease(elapsed);
       if (this.tripType === 'roundtrip') flightT = flightT < .5 ? flightT * 2 : 2 - flightT * 2;
-      const lift = 1.035 + Math.sin(Math.PI * flightT) * 0.34;
+      const lift = this.routeLift(flightT);
       const plane3 = slerp(this.route.origin, this.route.destination, flightT);
       const plane2 = this.projectObjectVector(plane3, lift);
-      if (plane2) {
+      if (plane2?.front) {
         ctx.save();
         ctx.translate(plane2.x, plane2.y);
         ctx.font = `${24 * scale}px sans-serif`;

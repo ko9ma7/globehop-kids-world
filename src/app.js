@@ -15,10 +15,12 @@ const $ = (s, root = document) => root.querySelector(s);
 const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 const escapeHtml = (value = '') => String(value).replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
 
+const requestedViewMode = new URLSearchParams(location.search).get('view');
+
 const state = {
   locale: getStored('locale', navigator.language?.startsWith('ko') ? 'ko' : 'en'),
   theme: getStored('theme', 'system'),
-  viewMode: getStored('viewMode', 'globe'),
+  viewMode: ['map', 'globe'].includes(requestedViewMode) ? requestedViewMode : getStored('viewMode', 'globe'),
   tripType: getStored('tripType', 'oneway'),
   originPreset: getStored('originPreset', APP.defaultOriginId),
   origin: null,
@@ -42,6 +44,7 @@ const state = {
 let t = translator(state.locale);
 let globe2D;
 let globe3D;
+let globeData = null;
 
 function icon(name, size = 20) {
   const paths = {
@@ -197,7 +200,7 @@ function renderAppShell() {
       </section>
     </main>
 
-    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="Regional camera + cache fix">V4.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
+    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="Stable 2D/3D focus fix">V5.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
 
     <dialog id="sourceDialog" class="source-dialog">
       <button class="dialog-close icon-button" type="button" data-dialog-close aria-label="Close">${icon('close')}</button>
@@ -369,6 +372,31 @@ function syncRouteDisplayData() {
     const countryLabel = displayCountryName(state.country.code2, state.locale, state.country.name || state.country.nativeName || state.country.code2);
     state.destination.countryLabel = countryLabel;
     state.destination.displayLabel = state.destination.kind === 'country' ? localizedCapitalName(state.country) : state.destination.name;
+  }
+}
+
+function ensureGlobe3D() {
+  if (globe3D) return globe3D;
+  if (!globeData) return null;
+  try {
+    globe3D = new Globe3DView($('#globe3DHost'), {
+      onHover: showMapTooltip,
+      onLeave: hideMapTooltip,
+      onClick: travelToInteractiveItem
+    });
+    globe3D.setData(globeData);
+    globe3D.setHelpText(t('globeInteractionHint'));
+    if (state.country?.code2) globe3D.setSelectedCountry(state.country.code2);
+    if (state.origin && state.destination) globe3D.setRoute(state.origin, state.destination, state.tripType, { focus: true });
+    return globe3D;
+  } catch (error) {
+    console.warn('3D globe is unavailable; falling back to the 2D map.', error);
+    globe3D = null;
+    state.viewMode = 'map';
+    const globeButton = $('#viewSelector button[data-view="globe"]');
+    if (globeButton) { globeButton.disabled = true; globeButton.title = t('webglUnavailable'); }
+    updateViewControls();
+    return null;
   }
 }
 
@@ -891,6 +919,7 @@ async function selectResult(result, { skipUrl = false } = {}) {
         isSearchedPoint: true
       });
       globe2D?.setPlaces(state.mapPoints);
+      if (globeData) globeData.places = state.mapPoints;
       globe3D?.setPlaces(state.mapPoints);
     }
   }
@@ -919,6 +948,7 @@ async function selectResult(result, { skipUrl = false } = {}) {
       });
     }
     globe2D?.setPlaces(state.mapPoints);
+    if (globeData) globeData.places = state.mapPoints;
     globe3D?.setPlaces(state.mapPoints);
   }
   state.stats = null;
@@ -995,16 +1025,18 @@ function wireEvents() {
   });
   $('#mapCameraControls').addEventListener('click', (event) => {
     const button = event.target.closest('button[data-camera]');
-    if (!button || !globe3D) return;
+    if (!button) return;
+    const active3D = globe3D || ensureGlobe3D();
+    if (!active3D) return;
     const mode = button.dataset.camera;
-    if (mode === 'route') globe3D.resetView();
-    if (mode === 'origin') globe3D.focusOrigin();
-    if (mode === 'destination') globe3D.focusDestination();
-    if (mode === 'world') globe3D.worldView();
+    if (mode === 'route') active3D.resetView();
+    if (mode === 'origin') active3D.focusOrigin();
+    if (mode === 'destination') active3D.focusDestination();
+    if (mode === 'world') active3D.worldView();
   });
   $('#resetMapButton').addEventListener('click', () => {
     hideMapTooltip();
-    if (state.viewMode === 'globe') globe3D?.resetView();
+    if (state.viewMode === 'globe') (globe3D || ensureGlobe3D())?.resetView();
     else globe2D?.resetView();
   });
   $('#tripSelector').addEventListener('click', (e) => {
@@ -1026,8 +1058,13 @@ function wireEvents() {
     updateViewControls();
     if (state.destination) {
       syncRouteDisplayData();
-      if (state.viewMode === 'globe') { globe3D?.resize(); globe3D?.setRoute(state.origin, state.destination, state.tripType, { focus: true }); }
-      else globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      if (state.viewMode === 'globe') {
+        const active3D = globe3D || ensureGlobe3D();
+        active3D?.resize();
+        active3D?.setRoute(state.origin, state.destination, state.tripType, { focus: true });
+      } else {
+        globe2D?.setRoute(state.origin, state.destination, 'plane', state.tripType);
+      }
     }
   });
   $('#favoriteButton').addEventListener('click', () => {
@@ -1092,23 +1129,10 @@ async function init() {
     onCountryClick: (country) => travelToInteractiveItem({ kind: 'country', data: country }),
     onPlaceClick: (place) => travelToInteractiveItem({ kind: 'place', data: place })
   });
-  try {
-    globe3D = new Globe3DView($('#globe3DHost'), {
-      onHover: showMapTooltip,
-      onLeave: hideMapTooltip,
-      onClick: travelToInteractiveItem
-    });
-  } catch (error) {
-    console.warn('3D globe is unavailable; falling back to the 2D map.', error);
-    globe3D = null;
-    state.viewMode = 'map';
-    const globeButton = $('#viewSelector button[data-view="globe"]');
-    if (globeButton) { globeButton.disabled = true; globeButton.title = t('webglUnavailable'); }
-    updateViewControls();
-  }
+  globeData = { geometries: geoms, countries: index, places: state.mapPoints };
+  if (state.viewMode === 'globe') ensureGlobe3D();
   state.originCountry = await getCountry(initialOrigin.countryCode);
   globe2D.setData({ geometries: geoms, countries: index, places: state.mapPoints });
-  globe3D?.setData({ geometries: geoms, countries: index, places: state.mapPoints });
   await loadInitialSelection();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     let reloadingForWorker = false;
