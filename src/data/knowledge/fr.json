@@ -1,0 +1,41 @@
+{
+  "code2": "FR",
+  "specialties": [
+    "Cheese",
+    "Wine grapes",
+    "Lavender products"
+  ],
+  "animals": [
+    "Alpine ibex",
+    "Greater flamingo"
+  ],
+  "plants": [
+    "Lavender",
+    "Plane tree"
+  ],
+  "facts": [
+    "France has coastlines on the Atlantic and Mediterranean.",
+    "The Alps rise along the southeast.",
+    "The TGV is a well-known high-speed rail system."
+  ],
+  "ko": {
+    "specialties": [
+      "치즈",
+      "포도",
+      "라벤더 제품"
+    ],
+    "animals": [
+      "알파인아이벡스",
+      "큰홍학"
+    ],
+    "plants": [
+      "라벤더",
+      "플라타너스"
+    ],
+    "facts": [
+      "프랑스는 대서양과 지중해에 모두 해안이 있습니다.",
+      "남동쪽에는 알프스산맥이 이어집니다.",
+      "TGV는 프랑스의 대표적인 고속철도입니다."
+    ]
+  }
+}

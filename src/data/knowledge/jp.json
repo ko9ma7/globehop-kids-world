@@ -1,0 +1,41 @@
+{
+  "code2": "JP",
+  "specialties": [
+    "Matcha",
+    "Seafood",
+    "Ceramics"
+  ],
+  "animals": [
+    "Japanese macaque",
+    "Red-crowned crane"
+  ],
+  "plants": [
+    "Cherry blossom",
+    "Japanese cedar"
+  ],
+  "facts": [
+    "Japan is an island country made of thousands of islands.",
+    "Shinkansen trains connect many major cities.",
+    "Mount Fuji is the country’s highest mountain."
+  ],
+  "ko": {
+    "specialties": [
+      "말차",
+      "해산물",
+      "도자기"
+    ],
+    "animals": [
+      "일본원숭이",
+      "두루미"
+    ],
+    "plants": [
+      "벚꽃",
+      "삼나무"
+    ],
+    "facts": [
+      "일본은 수천 개의 섬으로 이루어진 섬나라입니다.",
+      "신칸센이 주요 도시를 빠르게 연결합니다.",
+      "후지산은 일본에서 가장 높은 산입니다."
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "code2": "US",
+  "specialties": [
+    "Corn",
+    "Technology products",
+    "Cranberries"
+  ],
+  "animals": [
+    "Bald eagle",
+    "American bison"
+  ],
+  "plants": [
+    "Giant sequoia",
+    "Saguaro cactus"
+  ],
+  "facts": [
+    "The United States spans several time zones.",
+    "The Mississippi-Missouri system is one of the world’s major river systems.",
+    "National parks protect many different landscapes."
+  ],
+  "ko": {
+    "specialties": [
+      "옥수수",
+      "기술제품",
+      "크랜베리"
+    ],
+    "animals": [
+      "흰머리수리",
+      "아메리카들소"
+    ],
+    "plants": [
+      "자이언트세쿼이아",
+      "사와로선인장"
+    ],
+    "facts": [
+      "미국은 여러 시간대에 걸쳐 있는 큰 나라입니다.",
+      "미시시피-미주리강 수계는 세계적인 대형 하천 수계입니다.",
+      "국립공원이 다양한 자연환경을 보호하고 있습니다."
+    ]
+  }
+}

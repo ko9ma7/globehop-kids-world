@@ -1,0 +1,41 @@
+{
+  "code2": "DE",
+  "specialties": [
+    "Bread",
+    "Engineering products",
+    "Christmas markets"
+  ],
+  "animals": [
+    "Red deer",
+    "European hare"
+  ],
+  "plants": [
+    "Oak",
+    "Cornflower"
+  ],
+  "facts": [
+    "Germany has many navigable rivers, including the Rhine and Elbe.",
+    "It shares land borders with nine countries.",
+    "Intercity trains connect a dense network of cities."
+  ],
+  "ko": {
+    "specialties": [
+      "빵",
+      "기계·공업제품",
+      "크리스마스 마켓"
+    ],
+    "animals": [
+      "붉은사슴",
+      "유럽산토끼"
+    ],
+    "plants": [
+      "참나무",
+      "수레국화"
+    ],
+    "facts": [
+      "독일에는 라인강과 엘베강 같은 큰 강이 있습니다.",
+      "육지 국경을 맞댄 나라가 아홉 곳입니다.",
+      "도시 사이를 잇는 철도망이 촘촘합니다."
+    ]
+  }
+}

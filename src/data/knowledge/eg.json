@@ -1,0 +1,41 @@
+{
+  "code2": "EG",
+  "specialties": [
+    "Dates",
+    "Cotton",
+    "Papyrus crafts"
+  ],
+  "animals": [
+    "Dromedary camel",
+    "Nile crocodile"
+  ],
+  "plants": [
+    "Date palm",
+    "Papyrus"
+  ],
+  "facts": [
+    "Many people live close to the Nile River and its delta.",
+    "The Sahara covers much of the country.",
+    "Ancient pyramids near Giza are world-famous monuments."
+  ],
+  "ko": {
+    "specialties": [
+      "대추야자",
+      "면화",
+      "파피루스 공예"
+    ],
+    "animals": [
+      "단봉낙타",
+      "나일악어"
+    ],
+    "plants": [
+      "대추야자나무",
+      "파피루스"
+    ],
+    "facts": [
+      "많은 사람들이 나일강과 삼각주 가까이에 삽니다.",
+      "국토의 큰 부분을 사하라사막이 차지합니다.",
+      "기자 주변의 고대 피라미드는 세계적으로 유명합니다."
+    ]
+  }
+}

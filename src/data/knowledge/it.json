@@ -1,0 +1,41 @@
+{
+  "code2": "IT",
+  "specialties": [
+    "Olive oil",
+    "Cheese",
+    "Leather goods"
+  ],
+  "animals": [
+    "Italian wolf",
+    "Alpine marmot"
+  ],
+  "plants": [
+    "Olive tree",
+    "Stone pine"
+  ],
+  "facts": [
+    "Italy’s mainland has a boot-like shape.",
+    "The Alps border the north and the Apennines run down the peninsula.",
+    "Many ancient Roman sites are preserved."
+  ],
+  "ko": {
+    "specialties": [
+      "올리브오일",
+      "치즈",
+      "가죽제품"
+    ],
+    "animals": [
+      "이탈리아늑대",
+      "알프스마멋"
+    ],
+    "plants": [
+      "올리브나무",
+      "이탈리아소나무"
+    ],
+    "facts": [
+      "이탈리아 본토는 장화처럼 보이는 모양으로 유명합니다.",
+      "북쪽에는 알프스, 반도 안쪽에는 아펜니노산맥이 이어집니다.",
+      "고대 로마 유적이 많이 남아 있습니다."
+    ]
+  }
+}

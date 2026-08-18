@@ -1,0 +1,41 @@
+{
+  "code2": "TH",
+  "specialties": [
+    "Tropical fruit",
+    "Jasmine rice",
+    "Silk"
+  ],
+  "animals": [
+    "Asian elephant",
+    "Gibbon"
+  ],
+  "plants": [
+    "Ratchaphruek",
+    "Orchid"
+  ],
+  "facts": [
+    "Thailand has tropical weather in most regions.",
+    "Bangkok is built around the Chao Phraya River.",
+    "Floating markets are part of local trading traditions."
+  ],
+  "ko": {
+    "specialties": [
+      "열대과일",
+      "재스민쌀",
+      "실크"
+    ],
+    "animals": [
+      "아시아코끼리",
+      "긴팔원숭이"
+    ],
+    "plants": [
+      "라차프륵",
+      "난초"
+    ],
+    "facts": [
+      "태국의 많은 지역은 열대 기후입니다.",
+      "방콕은 차오프라야강 주변으로 발달했습니다.",
+      "수상시장은 물길을 이용한 전통 상업 문화의 한 모습입니다."
+    ]
+  }
+}

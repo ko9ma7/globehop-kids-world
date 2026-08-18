@@ -1,0 +1,41 @@
+{
+  "code2": "AU",
+  "specialties": [
+    "Wool",
+    "Macadamia nuts",
+    "Opals"
+  ],
+  "animals": [
+    "Kangaroo",
+    "Koala"
+  ],
+  "plants": [
+    "Eucalyptus",
+    "Golden wattle"
+  ],
+  "facts": [
+    "Australia is both a country and a continent.",
+    "Much of the interior is dry.",
+    "The Great Barrier Reef lies off the northeast coast."
+  ],
+  "ko": {
+    "specialties": [
+      "양모",
+      "마카다미아",
+      "오팔"
+    ],
+    "animals": [
+      "캥거루",
+      "코알라"
+    ],
+    "plants": [
+      "유칼립투스",
+      "골든와틀"
+    ],
+    "facts": [
+      "호주는 나라 이름이면서 대륙 이름이기도 합니다.",
+      "내륙의 넓은 지역은 건조합니다.",
+      "북동쪽 바다에는 그레이트배리어리프가 있습니다."
+    ]
+  }
+}

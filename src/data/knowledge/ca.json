@@ -1,0 +1,41 @@
+{
+  "code2": "CA",
+  "specialties": [
+    "Maple syrup",
+    "Wheat",
+    "Lobster"
+  ],
+  "animals": [
+    "Beaver",
+    "Moose"
+  ],
+  "plants": [
+    "Sugar maple",
+    "Black spruce"
+  ],
+  "facts": [
+    "Canada has a very long coastline.",
+    "A large share of the country is covered by forests and lakes.",
+    "English and French are federal official languages."
+  ],
+  "ko": {
+    "specialties": [
+      "메이플시럽",
+      "밀",
+      "바닷가재"
+    ],
+    "animals": [
+      "비버",
+      "무스"
+    ],
+    "plants": [
+      "설탕단풍나무",
+      "검은가문비"
+    ],
+    "facts": [
+      "캐나다는 매우 긴 해안선을 가진 나라입니다.",
+      "국토의 넓은 부분에 숲과 호수가 있습니다.",
+      "연방 차원의 공용어는 영어와 프랑스어입니다."
+    ]
+  }
+}

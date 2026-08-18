@@ -1,0 +1,41 @@
+{
+  "code2": "KR",
+  "specialties": [
+    "Kimchi",
+    "Ginseng",
+    "Seaweed"
+  ],
+  "animals": [
+    "Korean magpie",
+    "Water deer"
+  ],
+  "plants": [
+    "Mugunghwa",
+    "Korean pine"
+  ],
+  "facts": [
+    "Korea has a high-speed rail network called KTX.",
+    "Hangul was created in the 15th century.",
+    "The country has four distinct seasons."
+  ],
+  "ko": {
+    "specialties": [
+      "김치",
+      "인삼",
+      "김"
+    ],
+    "animals": [
+      "까치",
+      "고라니"
+    ],
+    "plants": [
+      "무궁화",
+      "소나무"
+    ],
+    "facts": [
+      "KTX라는 고속철도가 주요 도시를 빠르게 이어 줍니다.",
+      "한글은 15세기에 만들어진 문자입니다.",
+      "봄·여름·가을·겨울의 사계절이 뚜렷합니다."
+    ]
+  }
+}

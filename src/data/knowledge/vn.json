@@ -1,0 +1,41 @@
+{
+  "code2": "VN",
+  "specialties": [
+    "Coffee",
+    "Rice",
+    "Fish sauce"
+  ],
+  "animals": [
+    "Saola",
+    "Asian elephant"
+  ],
+  "plants": [
+    "Lotus",
+    "Bamboo"
+  ],
+  "facts": [
+    "Vietnam is long and narrow from north to south.",
+    "The Mekong Delta is an important rice-growing region.",
+    "Motorbikes are a common way to travel in cities."
+  ],
+  "ko": {
+    "specialties": [
+      "커피",
+      "쌀",
+      "피시소스"
+    ],
+    "animals": [
+      "사올라",
+      "아시아코끼리"
+    ],
+    "plants": [
+      "연꽃",
+      "대나무"
+    ],
+    "facts": [
+      "베트남은 남북으로 길게 뻗은 나라입니다.",
+      "메콩강 삼각주는 중요한 쌀 생산 지역입니다.",
+      "도시에서는 오토바이가 흔한 이동수단입니다."
+    ]
+  }
+}
