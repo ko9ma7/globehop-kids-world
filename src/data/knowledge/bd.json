@@ -15,8 +15,10 @@
   ],
   "landmarks": [
     "Sundarbans",
-    "Dhaka",
-    "Cox’s Bazar"
+    "Sixty Dome Mosque",
+    "Ahsan Manzil",
+    "Cox's Bazar",
+    "National Martyrs Memorial"
   ],
   "overview": "Bangladesh is a densely populated river-delta country shaped by the Ganges, Brahmaputra, and Meghna river systems.",
   "greeting": "Hello: Nomoshkar / Assalamu alaikum",
@@ -44,8 +46,10 @@
     ],
     "landmarks": [
       "순다르반스",
-      "다카",
-      "콕스바자르"
+      "식스티 돔 모스크",
+      "아산 만질",
+      "콕스바자르",
+      "국립 순교자 기념비"
     ],
     "overview": "방글라데시는 갠지스·브라마푸트라·메그나강 수계가 만든 거대한 삼각주에 자리한 인구 밀도가 높은 나라예요.",
     "greeting": "안녕하세요: 노모슈카르 / 아살라무 알라이쿰",
@@ -56,6 +60,100 @@
       "국토의 많은 부분이 큰 강 삼각주에 있어요.",
       "순다르반스는 유명한 맹그로브 숲이에요.",
       "벵골어가 주요 언어예요."
+    ],
+    "foods": [
+      "힐사 생선요리",
+      "비리아니",
+      "피타",
+      "달"
+    ],
+    "festivals": [
+      "포헬라 보이샤크",
+      "두르가 푸자"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Sundarbans",
+        "nameKo": "순다르반스",
+        "wikiTitle": "Sundarbans",
+        "descriptionKo": "거대한 맹그로브 숲과 벵골호랑이 서식지로 유명해요.",
+        "lat": 21.9497,
+        "lon": 89.1833
+      },
+      {
+        "name": "Sixty Dome Mosque",
+        "nameKo": "식스티 돔 모스크",
+        "wikiTitle": "Sixty Dome Mosque",
+        "descriptionKo": "바게르하트의 역사적인 모스크 도시를 대표하는 건축물이에요.",
+        "lat": 22.6744,
+        "lon": 89.7411
+      },
+      {
+        "name": "Ahsan Manzil",
+        "nameKo": "아산 만질",
+        "wikiTitle": "Ahsan Manzil",
+        "descriptionKo": "다카의 분홍색 외관으로 유명한 역사 궁전이에요.",
+        "lat": 23.7086,
+        "lon": 90.406
+      },
+      {
+        "name": "Cox's Bazar",
+        "nameKo": "콕스바자르",
+        "wikiTitle": "Cox's Bazar",
+        "descriptionKo": "방글라데시 남동부의 매우 긴 모래 해변으로 유명해요.",
+        "lat": 21.4272,
+        "lon": 92.0058
+      },
+      {
+        "name": "National Martyrs Memorial",
+        "nameKo": "국립 순교자 기념비",
+        "wikiTitle": "National Martyrs’ Memorial",
+        "descriptionKo": "방글라데시 독립 전쟁 희생자를 기리는 기념비예요.",
+        "lat": 23.9113,
+        "lon": 90.2681
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Sundarbans",
+      "nameKo": "순다르반스",
+      "wikiTitle": "Sundarbans",
+      "descriptionKo": "거대한 맹그로브 숲과 벵골호랑이 서식지로 유명해요.",
+      "lat": 21.9497,
+      "lon": 89.1833
+    },
+    {
+      "name": "Sixty Dome Mosque",
+      "nameKo": "식스티 돔 모스크",
+      "wikiTitle": "Sixty Dome Mosque",
+      "descriptionKo": "바게르하트의 역사적인 모스크 도시를 대표하는 건축물이에요.",
+      "lat": 22.6744,
+      "lon": 89.7411
+    },
+    {
+      "name": "Ahsan Manzil",
+      "nameKo": "아산 만질",
+      "wikiTitle": "Ahsan Manzil",
+      "descriptionKo": "다카의 분홍색 외관으로 유명한 역사 궁전이에요.",
+      "lat": 23.7086,
+      "lon": 90.406
+    },
+    {
+      "name": "Cox's Bazar",
+      "nameKo": "콕스바자르",
+      "wikiTitle": "Cox's Bazar",
+      "descriptionKo": "방글라데시 남동부의 매우 긴 모래 해변으로 유명해요.",
+      "lat": 21.4272,
+      "lon": 92.0058
+    },
+    {
+      "name": "National Martyrs Memorial",
+      "nameKo": "국립 순교자 기념비",
+      "wikiTitle": "National Martyrs’ Memorial",
+      "descriptionKo": "방글라데시 독립 전쟁 희생자를 기리는 기념비예요.",
+      "lat": 23.9113,
+      "lon": 90.2681
+    }
+  ]
 }

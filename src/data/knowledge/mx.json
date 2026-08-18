@@ -14,8 +14,10 @@
     "Nopal cactus"
   ],
   "landmarks": [
-    "Chichén Itzá",
-    "Mexico City",
+    "Chichen Itza",
+    "Teotihuacan",
+    "Palacio de Bellas Artes",
+    "Cancún",
     "Copper Canyon"
   ],
   "overview": "Mexico connects North and Central America and has deserts, mountains, tropical coasts, ancient cities, and modern megacities.",
@@ -44,7 +46,9 @@
     ],
     "landmarks": [
       "치첸이트사",
-      "멕시코시티",
+      "테오티우아칸",
+      "멕시코시티 예술궁전",
+      "칸쿤",
       "코퍼캐니언"
     ],
     "overview": "멕시코는 북아메리카와 중앙아메리카를 잇는 나라로 사막, 산, 열대 해안, 고대 유적과 대도시가 함께 있어요.",
@@ -56,6 +60,101 @@
       "옥수수는 수천 년 동안 중요한 작물이었어요.",
       "스페인어 외에도 여러 원주민 언어가 쓰여요.",
       "태평양과 대서양 쪽 모두에 해안이 있어요."
+    ],
+    "foods": [
+      "타코",
+      "과카몰레",
+      "몰레",
+      "타말레"
+    ],
+    "festivals": [
+      "죽은 자의 날",
+      "겔라게차",
+      "독립기념일"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Chichen Itza",
+        "nameKo": "치첸이트사",
+        "wikiTitle": "Chichen Itza",
+        "descriptionKo": "마야 문명의 피라미드와 유적이 남아 있는 고대 도시예요.",
+        "lat": 20.6843,
+        "lon": -88.5678
+      },
+      {
+        "name": "Teotihuacan",
+        "nameKo": "테오티우아칸",
+        "wikiTitle": "Teotihuacan",
+        "descriptionKo": "태양의 피라미드와 달의 피라미드로 유명한 고대 도시예요.",
+        "lat": 19.6925,
+        "lon": -98.8438
+      },
+      {
+        "name": "Palacio de Bellas Artes",
+        "nameKo": "멕시코시티 예술궁전",
+        "wikiTitle": "Palacio de Bellas Artes",
+        "descriptionKo": "멕시코시티의 대표적인 공연·예술 건축물이에요.",
+        "lat": 19.4352,
+        "lon": -99.1412
+      },
+      {
+        "name": "Cancún",
+        "nameKo": "칸쿤",
+        "wikiTitle": "Cancún",
+        "descriptionKo": "카리브해의 푸른 바다와 리조트로 유명한 휴양 도시예요.",
+        "lat": 21.1619,
+        "lon": -86.8515
+      },
+      {
+        "name": "Copper Canyon",
+        "nameKo": "코퍼캐니언",
+        "wikiTitle": "Copper Canyon",
+        "descriptionKo": "멕시코 북부의 거대한 협곡 지대예요.",
+        "lat": 27.5,
+        "lon": -107.75
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Chichen Itza",
+      "nameKo": "치첸이트사",
+      "wikiTitle": "Chichen Itza",
+      "descriptionKo": "마야 문명의 피라미드와 유적이 남아 있는 고대 도시예요.",
+      "lat": 20.6843,
+      "lon": -88.5678
+    },
+    {
+      "name": "Teotihuacan",
+      "nameKo": "테오티우아칸",
+      "wikiTitle": "Teotihuacan",
+      "descriptionKo": "태양의 피라미드와 달의 피라미드로 유명한 고대 도시예요.",
+      "lat": 19.6925,
+      "lon": -98.8438
+    },
+    {
+      "name": "Palacio de Bellas Artes",
+      "nameKo": "멕시코시티 예술궁전",
+      "wikiTitle": "Palacio de Bellas Artes",
+      "descriptionKo": "멕시코시티의 대표적인 공연·예술 건축물이에요.",
+      "lat": 19.4352,
+      "lon": -99.1412
+    },
+    {
+      "name": "Cancún",
+      "nameKo": "칸쿤",
+      "wikiTitle": "Cancún",
+      "descriptionKo": "카리브해의 푸른 바다와 리조트로 유명한 휴양 도시예요.",
+      "lat": 21.1619,
+      "lon": -86.8515
+    },
+    {
+      "name": "Copper Canyon",
+      "nameKo": "코퍼캐니언",
+      "wikiTitle": "Copper Canyon",
+      "descriptionKo": "멕시코 북부의 거대한 협곡 지대예요.",
+      "lat": 27.5,
+      "lon": -107.75
+    }
+  ]
 }

@@ -45,7 +45,62 @@
     "landmarks": [
       "시드니 오페라하우스",
       "그레이트배리어리프",
-      "울루루"
+      "울루루",
+      "트웰브 아포슬스",
+      "데인트리 열대우림"
+    ],
+    "foods": [
+      "미트파이",
+      "바비큐",
+      "라밍턴",
+      "베지마이트"
+    ],
+    "festivals": [
+      "시드니 새해 불꽃놀이",
+      "비비드 시드니",
+      "멜버른 컵"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Sydney Opera House",
+        "nameKo": "시드니 오페라하우스",
+        "wikiTitle": "Sydney Opera House",
+        "descriptionKo": "돛처럼 생긴 지붕으로 유명한 시드니의 공연장이에요.",
+        "lat": -33.8568,
+        "lon": 151.2153
+      },
+      {
+        "name": "Great Barrier Reef",
+        "nameKo": "그레이트배리어리프",
+        "wikiTitle": "Great Barrier Reef",
+        "descriptionKo": "세계 최대 규모의 산호초 생태계예요.",
+        "lat": -18.2871,
+        "lon": 147.6992
+      },
+      {
+        "name": "Uluru",
+        "nameKo": "울루루",
+        "wikiTitle": "Uluru",
+        "descriptionKo": "호주 중앙부의 거대한 붉은 사암 바위예요.",
+        "lat": -25.3444,
+        "lon": 131.0369
+      },
+      {
+        "name": "Twelve Apostles",
+        "nameKo": "트웰브 아포슬스",
+        "wikiTitle": "The Twelve Apostles (Victoria)",
+        "descriptionKo": "그레이트오션로드 해안의 석회암 기둥 지형이에요.",
+        "lat": -38.6659,
+        "lon": 143.104
+      },
+      {
+        "name": "Daintree Rainforest",
+        "nameKo": "데인트리 열대우림",
+        "wikiTitle": "Daintree Rainforest",
+        "descriptionKo": "퀸즐랜드 북부의 오래된 열대우림 지역이에요.",
+        "lat": -16.17,
+        "lon": 145.418
+      }
     ]
   },
   "overview": "Australia is both a country and a continent, with deserts, reefs, and unique wildlife.",
@@ -56,6 +111,50 @@
   "landmarks": [
     "Sydney Opera House",
     "Great Barrier Reef",
-    "Uluru"
+    "Uluru",
+    "Twelve Apostles",
+    "Daintree Rainforest"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Sydney Opera House",
+      "nameKo": "시드니 오페라하우스",
+      "wikiTitle": "Sydney Opera House",
+      "descriptionKo": "돛처럼 생긴 지붕으로 유명한 시드니의 공연장이에요.",
+      "lat": -33.8568,
+      "lon": 151.2153
+    },
+    {
+      "name": "Great Barrier Reef",
+      "nameKo": "그레이트배리어리프",
+      "wikiTitle": "Great Barrier Reef",
+      "descriptionKo": "세계 최대 규모의 산호초 생태계예요.",
+      "lat": -18.2871,
+      "lon": 147.6992
+    },
+    {
+      "name": "Uluru",
+      "nameKo": "울루루",
+      "wikiTitle": "Uluru",
+      "descriptionKo": "호주 중앙부의 거대한 붉은 사암 바위예요.",
+      "lat": -25.3444,
+      "lon": 131.0369
+    },
+    {
+      "name": "Twelve Apostles",
+      "nameKo": "트웰브 아포슬스",
+      "wikiTitle": "The Twelve Apostles (Victoria)",
+      "descriptionKo": "그레이트오션로드 해안의 석회암 기둥 지형이에요.",
+      "lat": -38.6659,
+      "lon": 143.104
+    },
+    {
+      "name": "Daintree Rainforest",
+      "nameKo": "데인트리 열대우림",
+      "wikiTitle": "Daintree Rainforest",
+      "descriptionKo": "퀸즐랜드 북부의 오래된 열대우림 지역이에요.",
+      "lat": -16.17,
+      "lon": 145.418
+    }
   ]
 }

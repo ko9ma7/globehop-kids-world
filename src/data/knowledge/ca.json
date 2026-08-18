@@ -45,7 +45,62 @@
     "landmarks": [
       "나이아가라 폭포",
       "밴프 국립공원",
-      "CN타워"
+      "CN타워",
+      "올드 퀘벡",
+      "레이크 루이스"
+    ],
+    "foods": [
+      "푸틴",
+      "메이플시럽",
+      "연어",
+      "버터타르트"
+    ],
+    "festivals": [
+      "캘거리 스탬피드",
+      "퀘벡 겨울축제",
+      "캐나다데이"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Niagara Falls",
+        "nameKo": "나이아가라 폭포",
+        "wikiTitle": "Niagara Falls",
+        "descriptionKo": "캐나다와 미국 국경에 있는 거대한 폭포예요.",
+        "lat": 43.0896,
+        "lon": -79.0849
+      },
+      {
+        "name": "Banff National Park",
+        "nameKo": "밴프 국립공원",
+        "wikiTitle": "Banff National Park",
+        "descriptionKo": "로키산맥의 호수와 산 풍경으로 유명한 국립공원이에요.",
+        "lat": 51.4968,
+        "lon": -115.9281
+      },
+      {
+        "name": "CN Tower",
+        "nameKo": "CN타워",
+        "wikiTitle": "CN Tower",
+        "descriptionKo": "토론토 스카이라인을 대표하는 높은 전망탑이에요.",
+        "lat": 43.6426,
+        "lon": -79.3871
+      },
+      {
+        "name": "Old Quebec",
+        "nameKo": "올드 퀘벡",
+        "wikiTitle": "Old Quebec",
+        "descriptionKo": "성벽과 유럽풍 건축이 남아 있는 역사 지구예요.",
+        "lat": 46.8139,
+        "lon": -71.208
+      },
+      {
+        "name": "Lake Louise",
+        "nameKo": "레이크 루이스",
+        "wikiTitle": "Lake Louise (Alberta)",
+        "descriptionKo": "청록빛 물과 로키산맥 풍경으로 유명한 호수예요.",
+        "lat": 51.4254,
+        "lon": -116.1773
+      }
     ]
   },
   "overview": "Canada is known for forests, lakes, snowy winters, and two federal official languages.",
@@ -56,6 +111,50 @@
   "landmarks": [
     "Niagara Falls",
     "Banff National Park",
-    "CN Tower"
+    "CN Tower",
+    "Old Quebec",
+    "Lake Louise"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Niagara Falls",
+      "nameKo": "나이아가라 폭포",
+      "wikiTitle": "Niagara Falls",
+      "descriptionKo": "캐나다와 미국 국경에 있는 거대한 폭포예요.",
+      "lat": 43.0896,
+      "lon": -79.0849
+    },
+    {
+      "name": "Banff National Park",
+      "nameKo": "밴프 국립공원",
+      "wikiTitle": "Banff National Park",
+      "descriptionKo": "로키산맥의 호수와 산 풍경으로 유명한 국립공원이에요.",
+      "lat": 51.4968,
+      "lon": -115.9281
+    },
+    {
+      "name": "CN Tower",
+      "nameKo": "CN타워",
+      "wikiTitle": "CN Tower",
+      "descriptionKo": "토론토 스카이라인을 대표하는 높은 전망탑이에요.",
+      "lat": 43.6426,
+      "lon": -79.3871
+    },
+    {
+      "name": "Old Quebec",
+      "nameKo": "올드 퀘벡",
+      "wikiTitle": "Old Quebec",
+      "descriptionKo": "성벽과 유럽풍 건축이 남아 있는 역사 지구예요.",
+      "lat": 46.8139,
+      "lon": -71.208
+    },
+    {
+      "name": "Lake Louise",
+      "nameKo": "레이크 루이스",
+      "wikiTitle": "Lake Louise (Alberta)",
+      "descriptionKo": "청록빛 물과 로키산맥 풍경으로 유명한 호수예요.",
+      "lat": 51.4254,
+      "lon": -116.1773
+    }
   ]
 }

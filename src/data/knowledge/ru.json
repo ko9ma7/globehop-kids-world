@@ -15,8 +15,10 @@
   ],
   "landmarks": [
     "Red Square",
+    "Saint Basil's Cathedral",
+    "Hermitage Museum",
     "Lake Baikal",
-    "Trans-Siberian Railway"
+    "Peterhof Palace"
   ],
   "overview": "Russia stretches across eastern Europe and northern Asia and is the world’s largest country by land area.",
   "greeting": "Hello: Zdravstvuyte (Здравствуйте)",
@@ -44,8 +46,10 @@
     ],
     "landmarks": [
       "붉은광장",
+      "성 바실리 대성당",
+      "에르미타시 미술관",
       "바이칼호",
-      "시베리아 횡단철도"
+      "페테르고프 궁전"
     ],
     "overview": "러시아는 동유럽과 북아시아에 걸쳐 있으며 육지 면적으로 세계에서 가장 큰 나라예요.",
     "greeting": "안녕하세요: 즈드라스트부이체 (Здравствуйте)",
@@ -56,6 +60,101 @@
       "러시아는 여러 시간대에 걸쳐 있어요.",
       "바이칼호는 세계에서 가장 깊은 담수호예요.",
       "시베리아 횡단철도는 나라의 넓은 지역을 가로질러요."
+    ],
+    "foods": [
+      "보르시",
+      "펠메니",
+      "블리니",
+      "비프 스트로가노프"
+    ],
+    "festivals": [
+      "마슬레니차",
+      "백야축제",
+      "승전기념일"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Red Square",
+        "nameKo": "붉은광장",
+        "wikiTitle": "Red Square",
+        "descriptionKo": "모스크바 중심에 있는 러시아 대표 광장이에요.",
+        "lat": 55.7539,
+        "lon": 37.6208
+      },
+      {
+        "name": "Saint Basil's Cathedral",
+        "nameKo": "성 바실리 대성당",
+        "wikiTitle": "Saint Basil's Cathedral",
+        "descriptionKo": "알록달록한 양파 모양 돔으로 유명한 모스크바의 성당이에요.",
+        "lat": 55.7525,
+        "lon": 37.6231
+      },
+      {
+        "name": "Hermitage Museum",
+        "nameKo": "에르미타시 미술관",
+        "wikiTitle": "Hermitage Museum",
+        "descriptionKo": "상트페테르부르크의 거대한 예술·문화 박물관이에요.",
+        "lat": 59.9398,
+        "lon": 30.3146
+      },
+      {
+        "name": "Lake Baikal",
+        "nameKo": "바이칼호",
+        "wikiTitle": "Lake Baikal",
+        "descriptionKo": "세계에서 가장 깊은 담수호로 알려져 있어요.",
+        "lat": 53.5,
+        "lon": 108.0
+      },
+      {
+        "name": "Peterhof Palace",
+        "nameKo": "페테르고프 궁전",
+        "wikiTitle": "Peterhof Palace",
+        "descriptionKo": "분수와 정원으로 유명한 상트페테르부르크 근교의 궁전이에요.",
+        "lat": 59.8845,
+        "lon": 29.908
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Red Square",
+      "nameKo": "붉은광장",
+      "wikiTitle": "Red Square",
+      "descriptionKo": "모스크바 중심에 있는 러시아 대표 광장이에요.",
+      "lat": 55.7539,
+      "lon": 37.6208
+    },
+    {
+      "name": "Saint Basil's Cathedral",
+      "nameKo": "성 바실리 대성당",
+      "wikiTitle": "Saint Basil's Cathedral",
+      "descriptionKo": "알록달록한 양파 모양 돔으로 유명한 모스크바의 성당이에요.",
+      "lat": 55.7525,
+      "lon": 37.6231
+    },
+    {
+      "name": "Hermitage Museum",
+      "nameKo": "에르미타시 미술관",
+      "wikiTitle": "Hermitage Museum",
+      "descriptionKo": "상트페테르부르크의 거대한 예술·문화 박물관이에요.",
+      "lat": 59.9398,
+      "lon": 30.3146
+    },
+    {
+      "name": "Lake Baikal",
+      "nameKo": "바이칼호",
+      "wikiTitle": "Lake Baikal",
+      "descriptionKo": "세계에서 가장 깊은 담수호로 알려져 있어요.",
+      "lat": 53.5,
+      "lon": 108.0
+    },
+    {
+      "name": "Peterhof Palace",
+      "nameKo": "페테르고프 궁전",
+      "wikiTitle": "Peterhof Palace",
+      "descriptionKo": "분수와 정원으로 유명한 상트페테르부르크 근교의 궁전이에요.",
+      "lat": 59.8845,
+      "lon": 29.908
+    }
+  ]
 }

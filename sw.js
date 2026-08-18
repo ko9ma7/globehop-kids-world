@@ -1,8 +1,8 @@
-const VERSION = 'globehop-v3-3d';
+const VERSION = 'globehop-v4-3d-camera-media';
 const CORE = [
   './', './index.html', './src/styles.css', './src/app.js',
   './src/modules/config.js', './src/modules/i18n.js', './src/modules/storage.js',
-  './src/modules/geo.js', './src/modules/dataService.js', './src/modules/globe.js', './src/modules/globe3d.js',
+  './src/modules/geo.js', './src/modules/dataService.js', './src/modules/globe.js', './src/modules/globe3d.js', './src/modules/wikiMedia.js',
   './src/data/countries/index.json', './src/data/world-geometries.json',
   './src/data/places/index.json', './src/data/origins/index.json',
   './favicon.svg', './manifest.webmanifest'

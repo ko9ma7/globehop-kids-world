@@ -44,8 +44,64 @@
     "travelTips": "여러 도시를 다닐 때 기차가 유용해요.",
     "landmarks": [
       "콜로세움",
-      "베네치아 운하",
-      "피사의 사탑"
+      "피사의 사탑",
+      "베네치아",
+      "피렌체 대성당",
+      "폼페이"
+    ],
+    "foods": [
+      "피자",
+      "파스타",
+      "젤라토",
+      "리소토",
+      "티라미수"
+    ],
+    "festivals": [
+      "베네치아 카니발",
+      "시에나 팔리오",
+      "베로나 오페라 축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Colosseum",
+        "nameKo": "콜로세움",
+        "wikiTitle": "Colosseum",
+        "descriptionKo": "고대 로마 시대의 거대한 원형 경기장이에요.",
+        "lat": 41.8902,
+        "lon": 12.4922
+      },
+      {
+        "name": "Leaning Tower of Pisa",
+        "nameKo": "피사의 사탑",
+        "wikiTitle": "Leaning Tower of Pisa",
+        "descriptionKo": "기울어진 모습으로 세계적으로 유명한 종탑이에요.",
+        "lat": 43.723,
+        "lon": 10.3966
+      },
+      {
+        "name": "Venice",
+        "nameKo": "베네치아",
+        "wikiTitle": "Venice",
+        "descriptionKo": "운하와 곤돌라, 섬으로 이루어진 독특한 도시예요.",
+        "lat": 45.4408,
+        "lon": 12.3155
+      },
+      {
+        "name": "Florence Cathedral",
+        "nameKo": "피렌체 대성당",
+        "wikiTitle": "Florence Cathedral",
+        "descriptionKo": "거대한 붉은 돔으로 유명한 르네상스 도시의 대표 건축물이에요.",
+        "lat": 43.7731,
+        "lon": 11.256
+      },
+      {
+        "name": "Pompeii",
+        "nameKo": "폼페이",
+        "wikiTitle": "Pompeii",
+        "descriptionKo": "베수비오 화산 폭발로 묻혔다가 발굴된 고대 로마 도시예요.",
+        "lat": 40.7508,
+        "lon": 14.4869
+      }
     ]
   },
   "overview": "Italy is famous for Roman history, art, pasta, mountains, and Mediterranean coasts.",
@@ -55,7 +111,51 @@
   "travelTips": "Trains are useful for visiting many cities.",
   "landmarks": [
     "Colosseum",
-    "Venice canals",
-    "Leaning Tower of Pisa"
+    "Leaning Tower of Pisa",
+    "Venice",
+    "Florence Cathedral",
+    "Pompeii"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Colosseum",
+      "nameKo": "콜로세움",
+      "wikiTitle": "Colosseum",
+      "descriptionKo": "고대 로마 시대의 거대한 원형 경기장이에요.",
+      "lat": 41.8902,
+      "lon": 12.4922
+    },
+    {
+      "name": "Leaning Tower of Pisa",
+      "nameKo": "피사의 사탑",
+      "wikiTitle": "Leaning Tower of Pisa",
+      "descriptionKo": "기울어진 모습으로 세계적으로 유명한 종탑이에요.",
+      "lat": 43.723,
+      "lon": 10.3966
+    },
+    {
+      "name": "Venice",
+      "nameKo": "베네치아",
+      "wikiTitle": "Venice",
+      "descriptionKo": "운하와 곤돌라, 섬으로 이루어진 독특한 도시예요.",
+      "lat": 45.4408,
+      "lon": 12.3155
+    },
+    {
+      "name": "Florence Cathedral",
+      "nameKo": "피렌체 대성당",
+      "wikiTitle": "Florence Cathedral",
+      "descriptionKo": "거대한 붉은 돔으로 유명한 르네상스 도시의 대표 건축물이에요.",
+      "lat": 43.7731,
+      "lon": 11.256
+    },
+    {
+      "name": "Pompeii",
+      "nameKo": "폼페이",
+      "wikiTitle": "Pompeii",
+      "descriptionKo": "베수비오 화산 폭발로 묻혔다가 발굴된 고대 로마 도시예요.",
+      "lat": 40.7508,
+      "lon": 14.4869
+    }
   ]
 }

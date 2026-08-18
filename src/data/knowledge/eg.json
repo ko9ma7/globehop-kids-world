@@ -43,16 +43,63 @@
     "bestSeason": "늦가을부터 초봄까지의 비교적 선선한 시기가 여행하기 좋아요.",
     "travelTips": "야외 활동 때는 햇빛을 가릴 준비와 물이 중요해요.",
     "landmarks": [
-      "기자 피라미드",
-      "나일강",
-      "왕가의 계곡"
+      "기자 대피라미드",
+      "기자 스핑크스",
+      "아부심벨 신전",
+      "왕가의 계곡",
+      "나일강"
     ],
-    "gallery": [
+    "foods": [
+      "코샤리",
+      "풀 메담메스",
+      "팔라펠",
+      "바클라바"
+    ],
+    "festivals": [
+      "샴 엘 네심",
+      "라마단 야시장",
+      "아부심벨 태양 축제"
+    ],
+    "famousPlaces": [
       {
-        "title": "기자 피라미드",
-        "caption": "카이로 근처의 고대 피라미드",
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/640px-Kheops-Pyramid.jpg",
-        "alt": "기자 피라미드"
+        "name": "Great Pyramid of Giza",
+        "nameKo": "기자 대피라미드",
+        "wikiTitle": "Great Pyramid of Giza",
+        "descriptionKo": "고대 이집트의 거대한 피라미드로 세계적으로 유명해요.",
+        "lat": 29.9792,
+        "lon": 31.1342
+      },
+      {
+        "name": "Great Sphinx of Giza",
+        "nameKo": "기자 스핑크스",
+        "wikiTitle": "Great Sphinx of Giza",
+        "descriptionKo": "사자의 몸과 사람의 얼굴을 가진 거대한 석상이에요.",
+        "lat": 29.9753,
+        "lon": 31.1376
+      },
+      {
+        "name": "Abu Simbel temples",
+        "nameKo": "아부심벨 신전",
+        "wikiTitle": "Abu Simbel",
+        "descriptionKo": "거대한 파라오 석상으로 유명한 나일강 남쪽의 신전이에요.",
+        "lat": 22.3372,
+        "lon": 31.6258
+      },
+      {
+        "name": "Valley of the Kings",
+        "nameKo": "왕가의 계곡",
+        "wikiTitle": "Valley of the Kings",
+        "descriptionKo": "고대 이집트 파라오들의 무덤이 모여 있는 지역이에요.",
+        "lat": 25.7402,
+        "lon": 32.6014
+      },
+      {
+        "name": "Nile",
+        "nameKo": "나일강",
+        "wikiTitle": "Nile",
+        "descriptionKo": "이집트의 도시와 농업을 오랫동안 지탱해 온 거대한 강이에요.",
+        "lat": 30.0444,
+        "lon": 31.2357
       }
     ]
   },
@@ -62,16 +109,52 @@
   "bestSeason": "Cooler months from late autumn to early spring are easier for travel.",
   "travelTips": "Sun protection and water are important during outdoor visits.",
   "landmarks": [
-    "Pyramids of Giza",
-    "Nile River",
-    "Valley of the Kings"
+    "Great Pyramid of Giza",
+    "Great Sphinx of Giza",
+    "Abu Simbel temples",
+    "Valley of the Kings",
+    "Nile"
   ],
-  "gallery": [
+  "famousPlaces": [
     {
-      "title": "Pyramids of Giza",
-      "caption": "Ancient pyramids near Cairo",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/640px-Kheops-Pyramid.jpg",
-      "alt": "Pyramids of Giza"
+      "name": "Great Pyramid of Giza",
+      "nameKo": "기자 대피라미드",
+      "wikiTitle": "Great Pyramid of Giza",
+      "descriptionKo": "고대 이집트의 거대한 피라미드로 세계적으로 유명해요.",
+      "lat": 29.9792,
+      "lon": 31.1342
+    },
+    {
+      "name": "Great Sphinx of Giza",
+      "nameKo": "기자 스핑크스",
+      "wikiTitle": "Great Sphinx of Giza",
+      "descriptionKo": "사자의 몸과 사람의 얼굴을 가진 거대한 석상이에요.",
+      "lat": 29.9753,
+      "lon": 31.1376
+    },
+    {
+      "name": "Abu Simbel temples",
+      "nameKo": "아부심벨 신전",
+      "wikiTitle": "Abu Simbel",
+      "descriptionKo": "거대한 파라오 석상으로 유명한 나일강 남쪽의 신전이에요.",
+      "lat": 22.3372,
+      "lon": 31.6258
+    },
+    {
+      "name": "Valley of the Kings",
+      "nameKo": "왕가의 계곡",
+      "wikiTitle": "Valley of the Kings",
+      "descriptionKo": "고대 이집트 파라오들의 무덤이 모여 있는 지역이에요.",
+      "lat": 25.7402,
+      "lon": 32.6014
+    },
+    {
+      "name": "Nile",
+      "nameKo": "나일강",
+      "wikiTitle": "Nile",
+      "descriptionKo": "이집트의 도시와 농업을 오랫동안 지탱해 온 거대한 강이에요.",
+      "lat": 30.0444,
+      "lon": 31.2357
     }
   ]
 }

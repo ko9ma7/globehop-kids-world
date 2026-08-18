@@ -85,7 +85,7 @@ export class GlobeView {
     const frag = document.createDocumentFragment();
     for (const place of places) {
       const p = equirectProject(place.lat, place.lon);
-      const g = svgEl('g', { class: `map-place-point map-place-${place.type || 'city'}`, transform: `translate(${p.x} ${p.y})`, tabindex: place.isCapitalPoint ? '-1' : '0', role: 'button', 'aria-label': place.name || place.nameKo || place.id });
+      const g = svgEl('g', { class: `map-place-point map-place-${place.type || 'city'}`, transform: `translate(${p.x} ${p.y})`, tabindex: place.isCapitalPoint ? '-1' : '0', role: 'button', 'aria-label': place.name || place.nameKo || place.id, 'data-country': place.countryCode || '', 'data-searched': place.isSearchedPoint ? '1' : '0' });
       g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: place.type === 'landmark' ? '5.2' : place.type === 'capital' ? '2.4' : '3.7', class: 'map-place-dot' }));
       const showHover = (event) => this.onHover?.({ kind: 'place', data: place }, { clientX: event.clientX, clientY: event.clientY });
       g.addEventListener('pointerenter', showHover);
@@ -100,8 +100,11 @@ export class GlobeView {
 
   highlightCountry(code2) {
     this.landLayer.querySelectorAll('.country-shape.is-selected').forEach((p) => p.classList.remove('is-selected'));
-    if (!code2) return;
-    this.landLayer.querySelectorAll(`[data-code="${CSS.escape(code2)}"]`).forEach((p) => p.classList.add('is-selected'));
+    if (code2) this.landLayer.querySelectorAll(`[data-code="${CSS.escape(code2)}"]`).forEach((p) => p.classList.add('is-selected'));
+    this.placeLayer.querySelectorAll('.map-place-point').forEach((point) => {
+      const relevant = !code2 || point.dataset.country === code2 || point.dataset.searched === '1';
+      point.classList.toggle('is-muted-point', !relevant);
+    });
   }
 
   setRoute(origin, destination, transport = 'plane', tripType = 'oneway', { focus = true } = {}) {

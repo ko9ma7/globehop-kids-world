@@ -334,6 +334,11 @@ export class Globe3DView {
     this.places = places;
   }
 
+  setHelpText(text) {
+    const help = this.host.querySelector('.globe3d-help');
+    if (help && text) help.textContent = text;
+  }
+
   setSelectedCountry(code2) {
     this.selectedCountry = code2 || null;
     this.redrawTexture();
@@ -352,18 +357,62 @@ export class Globe3DView {
     if (focus) this.focusRoute(origin, destination);
   }
 
-  focusRoute(origin, destination) {
-    const a = latLonToVec(origin.lat, origin.lon);
-    const b = latLonToVec(destination.lat, destination.lon);
-    const midpoint = slerp(a, b, 0.5);
-    const ll = vecToLatLon(midpoint);
-    const angular = Math.acos(clamp(dot(normalize(a), normalize(b)), -1, 1));
-    const targetDistance = clamp(2.25 + angular * 0.68, 2.35, 3.65);
-    this.animateCameraTo(-ll.lon * RAD, ll.lat * RAD, targetDistance, 1200);
+  projectAtCamera(v, yaw, pitch, distance, radius = 1.04) {
+    const rotated = rotateVec({ x: v.x * radius, y: v.y * radius, z: v.z * radius }, yaw, pitch);
+    const zView = rotated.z - distance;
+    if (zView >= -0.05) return null;
+    const aspect = Math.max(0.2, (this.width || 1000) / (this.height || 500));
+    const f = 1 / Math.tan(this.fov / 2);
+    const ndcX = (rotated.x * f / aspect) / -zView;
+    const ndcY = (rotated.y * f) / -zView;
+    return { x: ndcX, y: ndcY, front: rotated.z > 0 };
   }
 
-  focusPoint(lat, lon, { zoom = 2.35 } = {}) {
-    this.animateCameraTo(-lon * RAD, lat * RAD, zoom, 850);
+  routeCamera(origin, destination) {
+    const a = latLonToVec(origin.lat, origin.lon);
+    const b = latLonToVec(destination.lat, destination.lon);
+    const angular = Math.acos(clamp(dot(normalize(a), normalize(b)), -1, 1));
+    // Keep the great-circle corridor centred, with the destination slightly favoured.
+    // This prevents short trips (e.g. Seoul → Tokyo) from sitting on the rim of the globe.
+    const center = slerp(a, b, angular < 0.35 ? 0.55 : 0.52);
+    const ll = vecToLatLon(center);
+    const yaw = -ll.lon * RAD;
+    const pitch = ll.lat * RAD;
+
+    // Fit both endpoints inside a safe frame. The numerical fit is more reliable than
+    // a single angle→zoom formula on wide/short browser canvases.
+    let distance = angular < 0.18 ? 2.42 : angular < 0.55 ? 2.58 : 2.72 + angular * 0.42;
+    distance = clamp(distance, 2.35, 4.25);
+    for (let i = 0; i < 30; i++) {
+      const pa = this.projectAtCamera(a, yaw, pitch, distance);
+      const pb = this.projectAtCamera(b, yaw, pitch, distance);
+      const fits = pa && pb && pa.front && pb.front &&
+        Math.abs(pa.x) < 0.72 && Math.abs(pb.x) < 0.72 &&
+        Math.abs(pa.y) < 0.66 && Math.abs(pb.y) < 0.66;
+      if (fits) break;
+      distance += 0.08;
+    }
+    return { yaw, pitch, distance: clamp(distance, 2.35, 4.6), angular };
+  }
+
+  focusRoute(origin, destination) {
+    if (!origin || !destination) return;
+    const camera = this.routeCamera(origin, destination);
+    this.animateCameraTo(camera.yaw, camera.pitch, camera.distance, 1050);
+  }
+
+  focusPoint(lat, lon, { zoom = 2.52 } = {}) {
+    this.animateCameraTo(-lon * RAD, lat * RAD, zoom, 820);
+  }
+
+  focusOrigin() {
+    if (!this.route?.originData) return;
+    this.focusPoint(this.route.originData.lat, this.route.originData.lon, { zoom: 2.35 });
+  }
+
+  focusDestination() {
+    if (!this.route?.destinationData) return;
+    this.focusPoint(this.route.destinationData.lat, this.route.destinationData.lon, { zoom: 2.28 });
   }
 
   animateCameraTo(yaw, pitch, distance, duration = 900) {
@@ -389,7 +438,15 @@ export class Globe3DView {
   }
 
   resetView() {
+    if (this.route?.originData && this.route?.destinationData) {
+      this.focusRoute(this.route.originData, this.route.destinationData);
+      return;
+    }
     this.animateCameraTo(-20 * RAD, 18 * RAD, 3.15, 850);
+  }
+
+  worldView() {
+    this.animateCameraTo(-20 * RAD, 18 * RAD, 3.85, 900);
   }
 
   redrawTexture() {
@@ -635,10 +692,42 @@ export class Globe3DView {
       if (interactive) this.visibleProjectedPoints.push({ ...projected, data });
     };
 
+    const drawRouteLabel = (projected, text, accent) => {
+      if (!projected?.front || !text) return;
+      ctx.save();
+      ctx.font = `${11 * scale}px system-ui, sans-serif`;
+      const padX = 8 * scale;
+      const boxH = 24 * scale;
+      const textW = ctx.measureText(text).width;
+      const boxW = textW + padX * 2;
+      let x = projected.x + 10 * scale;
+      let y = projected.y - 34 * scale;
+      x = clamp(x, 6 * scale, w - boxW - 6 * scale);
+      y = clamp(y, 6 * scale, h - boxH - 6 * scale);
+      ctx.fillStyle = 'rgba(8,25,40,.86)';
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1 * scale;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(x, y, boxW, boxH, 8 * scale);
+      else ctx.rect(x, y, boxW, boxH);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#f4fbff';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, x + padX, y + boxH / 2);
+      ctx.restore();
+    };
+
     for (const place of this.places) {
-      if (place.type === 'capital' && this.distance > 3.35) continue;
+      const selected = place.countryCode === this.selectedCountry;
+      const originCountry = this.route?.originData?.countryCode;
+      const routeOrigin = place.countryCode && place.countryCode === originCountry;
+      // Keep the globe readable: selected-country landmarks are the primary exploration layer.
+      // Other capitals/cities appear only when they are directly relevant to the current route/search.
+      if (place.type === 'capital' && !selected && !routeOrigin && !place.isSearchedPoint) continue;
+      if (place.type === 'city' && !selected && !routeOrigin && !place.isSearchedPoint) continue;
+      if (place.type === 'landmark' && !selected && !place.isSearchedPoint) continue;
       const color = place.type === 'landmark' ? '#ffc24b' : place.type === 'capital' ? '#b3ee72' : '#6fd8ff';
-      const size = place.type === 'landmark' ? 4.8 : place.type === 'capital' ? 2.7 : 3.5;
+      const size = place.type === 'landmark' ? 4.8 : place.type === 'capital' ? 3.0 : 3.5;
       drawMarker(place, color, size);
     }
 
@@ -665,8 +754,14 @@ export class Globe3DView {
         ctx.stroke();
         ctx.restore();
       }
-      if (originProjection?.front) drawMarker(this.route.originData, '#45a5ff', 6.5, false);
-      if (destinationProjection?.front) drawMarker(this.route.destinationData, '#ff6f61', 7, false);
+      if (originProjection?.front) {
+        drawMarker(this.route.originData, '#45a5ff', 6.5, false);
+        drawRouteLabel(originProjection, this.route.originData.displayLabel || this.route.originData.nameKo || this.route.originData.name || 'Start', '#45a5ff');
+      }
+      if (destinationProjection?.front) {
+        drawMarker(this.route.destinationData, '#ff6f61', 7, false);
+        drawRouteLabel(destinationProjection, this.route.destinationData.displayLabel || this.route.destinationData.name || 'Destination', '#ff6f61');
+      }
 
       const elapsed = clamp((time - this.flightStart) / this.flightDuration, 0, 1);
       let flightT = ease(elapsed);

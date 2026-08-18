@@ -15,8 +15,10 @@
   ],
   "landmarks": [
     "Hagia Sophia",
+    "Blue Mosque",
     "Cappadocia",
-    "Pamukkale"
+    "Pamukkale",
+    "Ephesus"
   ],
   "overview": "Türkiye sits between Europe and Asia and has long coasts, high plateaus, ancient cities, and major trade routes.",
   "greeting": "Hello: Merhaba",
@@ -43,9 +45,11 @@
       "올리브나무"
     ],
     "landmarks": [
-      "아야소피아",
+      "아야 소피아",
+      "블루 모스크",
       "카파도키아",
-      "파묵칼레"
+      "파묵칼레",
+      "에페소스"
     ],
     "overview": "튀르키예는 유럽과 아시아 사이에 있으며 긴 해안선과 고원, 고대 도시와 교역로가 있는 나라예요.",
     "greeting": "안녕하세요: 메르하바 (Merhaba)",
@@ -56,6 +60,100 @@
       "이스탄불은 보스포루스해협의 양쪽에 걸쳐 있어요.",
       "카파도키아는 독특한 바위 지형으로 유명해요.",
       "여러 바다에 해안선을 가지고 있어요."
+    ],
+    "foods": [
+      "케밥",
+      "바클라바",
+      "시미트",
+      "로쿰"
+    ],
+    "festivals": [
+      "이스탄불 튤립축제",
+      "메블라나 축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Hagia Sophia",
+        "nameKo": "아야 소피아",
+        "wikiTitle": "Hagia Sophia",
+        "descriptionKo": "교회와 모스크의 역사가 겹쳐 있는 이스탄불의 대표 건축물이에요.",
+        "lat": 41.0086,
+        "lon": 28.9802
+      },
+      {
+        "name": "Blue Mosque",
+        "nameKo": "블루 모스크",
+        "wikiTitle": "Blue Mosque, Istanbul",
+        "descriptionKo": "푸른 타일과 여러 개의 첨탑으로 유명한 모스크예요.",
+        "lat": 41.0054,
+        "lon": 28.9768
+      },
+      {
+        "name": "Cappadocia",
+        "nameKo": "카파도키아",
+        "wikiTitle": "Cappadocia",
+        "descriptionKo": "독특한 바위 지형과 열기구 풍경으로 유명한 지역이에요.",
+        "lat": 38.6431,
+        "lon": 34.8289
+      },
+      {
+        "name": "Pamukkale",
+        "nameKo": "파묵칼레",
+        "wikiTitle": "Pamukkale",
+        "descriptionKo": "하얀 석회 계단과 온천수로 유명한 자연 경관이에요.",
+        "lat": 37.92,
+        "lon": 29.12
+      },
+      {
+        "name": "Ephesus",
+        "nameKo": "에페소스",
+        "wikiTitle": "Ephesus",
+        "descriptionKo": "도서관과 원형극장 유적이 남아 있는 고대 도시예요.",
+        "lat": 37.939,
+        "lon": 27.341
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Hagia Sophia",
+      "nameKo": "아야 소피아",
+      "wikiTitle": "Hagia Sophia",
+      "descriptionKo": "교회와 모스크의 역사가 겹쳐 있는 이스탄불의 대표 건축물이에요.",
+      "lat": 41.0086,
+      "lon": 28.9802
+    },
+    {
+      "name": "Blue Mosque",
+      "nameKo": "블루 모스크",
+      "wikiTitle": "Blue Mosque, Istanbul",
+      "descriptionKo": "푸른 타일과 여러 개의 첨탑으로 유명한 모스크예요.",
+      "lat": 41.0054,
+      "lon": 28.9768
+    },
+    {
+      "name": "Cappadocia",
+      "nameKo": "카파도키아",
+      "wikiTitle": "Cappadocia",
+      "descriptionKo": "독특한 바위 지형과 열기구 풍경으로 유명한 지역이에요.",
+      "lat": 38.6431,
+      "lon": 34.8289
+    },
+    {
+      "name": "Pamukkale",
+      "nameKo": "파묵칼레",
+      "wikiTitle": "Pamukkale",
+      "descriptionKo": "하얀 석회 계단과 온천수로 유명한 자연 경관이에요.",
+      "lat": 37.92,
+      "lon": 29.12
+    },
+    {
+      "name": "Ephesus",
+      "nameKo": "에페소스",
+      "wikiTitle": "Ephesus",
+      "descriptionKo": "도서관과 원형극장 유적이 남아 있는 고대 도시예요.",
+      "lat": 37.939,
+      "lon": 27.341
+    }
+  ]
 }

@@ -15,6 +15,8 @@
   ],
   "landmarks": [
     "Badshahi Mosque",
+    "Lahore Fort",
+    "Faisal Mosque",
     "Hunza Valley",
     "Mohenjo-daro"
   ],
@@ -44,7 +46,9 @@
     ],
     "landmarks": [
       "바드샤히 모스크",
-      "훈자 계곡",
+      "라호르 요새",
+      "파이살 모스크",
+      "훈자계곡",
       "모헨조다로"
     ],
     "overview": "파키스탄은 아라비아해에서 북쪽의 높은 산악지대까지 이어지는 나라예요.",
@@ -56,6 +60,100 @@
       "세계에서 두 번째로 높은 K2가 파키스탄과 중국 국경에 있어요.",
       "인더스강은 농업과 생활에 매우 중요해요.",
       "우르두어와 영어가 국가 차원에서 널리 쓰여요."
+    ],
+    "foods": [
+      "비리아니",
+      "니하리",
+      "차플리 케밥",
+      "할와푸리"
+    ],
+    "festivals": [
+      "바산트",
+      "샨두르 폴로 축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Badshahi Mosque",
+        "nameKo": "바드샤히 모스크",
+        "wikiTitle": "Badshahi Mosque",
+        "descriptionKo": "라호르에 있는 거대한 무굴 시대 모스크예요.",
+        "lat": 31.5881,
+        "lon": 74.3102
+      },
+      {
+        "name": "Lahore Fort",
+        "nameKo": "라호르 요새",
+        "wikiTitle": "Lahore Fort",
+        "descriptionKo": "무굴 제국의 건축과 역사를 보여주는 라호르의 요새예요.",
+        "lat": 31.588,
+        "lon": 74.315
+      },
+      {
+        "name": "Faisal Mosque",
+        "nameKo": "파이살 모스크",
+        "wikiTitle": "Faisal Mosque",
+        "descriptionKo": "이슬라마바드의 산 아래에 자리한 현대적인 대형 모스크예요.",
+        "lat": 33.7295,
+        "lon": 73.0372
+      },
+      {
+        "name": "Hunza Valley",
+        "nameKo": "훈자계곡",
+        "wikiTitle": "Hunza Valley",
+        "descriptionKo": "높은 산과 계곡 마을 풍경으로 유명한 북부 지역이에요.",
+        "lat": 36.3167,
+        "lon": 74.65
+      },
+      {
+        "name": "Mohenjo-daro",
+        "nameKo": "모헨조다로",
+        "wikiTitle": "Mohenjo-daro",
+        "descriptionKo": "인더스 문명의 대표적인 고대 도시 유적이에요.",
+        "lat": 27.324,
+        "lon": 68.1387
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Badshahi Mosque",
+      "nameKo": "바드샤히 모스크",
+      "wikiTitle": "Badshahi Mosque",
+      "descriptionKo": "라호르에 있는 거대한 무굴 시대 모스크예요.",
+      "lat": 31.5881,
+      "lon": 74.3102
+    },
+    {
+      "name": "Lahore Fort",
+      "nameKo": "라호르 요새",
+      "wikiTitle": "Lahore Fort",
+      "descriptionKo": "무굴 제국의 건축과 역사를 보여주는 라호르의 요새예요.",
+      "lat": 31.588,
+      "lon": 74.315
+    },
+    {
+      "name": "Faisal Mosque",
+      "nameKo": "파이살 모스크",
+      "wikiTitle": "Faisal Mosque",
+      "descriptionKo": "이슬라마바드의 산 아래에 자리한 현대적인 대형 모스크예요.",
+      "lat": 33.7295,
+      "lon": 73.0372
+    },
+    {
+      "name": "Hunza Valley",
+      "nameKo": "훈자계곡",
+      "wikiTitle": "Hunza Valley",
+      "descriptionKo": "높은 산과 계곡 마을 풍경으로 유명한 북부 지역이에요.",
+      "lat": 36.3167,
+      "lon": 74.65
+    },
+    {
+      "name": "Mohenjo-daro",
+      "nameKo": "모헨조다로",
+      "wikiTitle": "Mohenjo-daro",
+      "descriptionKo": "인더스 문명의 대표적인 고대 도시 유적이에요.",
+      "lat": 27.324,
+      "lon": 68.1387
+    }
+  ]
 }

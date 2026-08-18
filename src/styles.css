@@ -375,3 +375,159 @@ button:disabled { opacity: .55; cursor: wait; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .001ms !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* V3 route camera + richer destination media */
+.map-camera-controls {
+  position: absolute;
+  z-index: 10;
+  left: 14px;
+  top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: calc(100% - 28px);
+}
+.map-camera-controls[hidden] { display: none !important; }
+.map-camera-controls button {
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(176,220,244,.3);
+  border-radius: 10px;
+  color: #eef9ff;
+  background: rgba(7,26,42,.76);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.14);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 800;
+}
+.map-camera-controls button:hover,
+.map-camera-controls button:focus-visible {
+  background: rgba(26,78,111,.92);
+  border-color: rgba(126,215,255,.62);
+}
+
+.media-gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+.famous-place-card {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.famous-place-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--line));
+  box-shadow: var(--shadow-sm);
+}
+.famous-place-card-featured { grid-column: 1 / -1; }
+.famous-place-image {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--surface-2), color-mix(in srgb, var(--primary) 8%, var(--surface-2)));
+}
+.famous-place-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .28s ease;
+}
+.famous-place-card-featured .famous-place-image img { aspect-ratio: 16 / 9; }
+.famous-place-card:hover img { transform: scale(1.025); }
+.image-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 118px;
+  font-size: 34px;
+}
+.famous-place-copy {
+  display: block;
+  padding: 11px 12px 12px;
+}
+.famous-place-copy strong,
+.famous-place-copy small,
+.famous-place-copy em { display: block; }
+.famous-place-copy strong { font-size: 12px; }
+.famous-place-copy small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.famous-place-copy em {
+  margin-top: 8px;
+  color: var(--primary);
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 800;
+}
+.media-skeleton {
+  min-height: 150px;
+  pointer-events: none;
+  position: relative;
+}
+.media-skeleton > span {
+  display: block;
+  min-height: 112px;
+  background: linear-gradient(90deg, var(--surface-2), color-mix(in srgb,var(--surface) 70%,var(--surface-2)), var(--surface-2));
+  background-size: 200% 100%;
+  animation: mediaPulse 1.2s ease-in-out infinite;
+}
+.media-skeleton > strong { display: block; padding: 10px; font-size: 11px; }
+.media-empty { grid-column: 1 / -1; padding: 16px; border-radius: 14px; background: var(--surface-2); color: var(--muted); font-size: 11px; }
+@keyframes mediaPulse { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.story-card {
+  display: flex;
+  gap: 9px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-2) 40%, var(--surface));
+}
+.story-card > span { font-size: 19px; flex: 0 0 auto; }
+.story-card strong { display: block; font-size: 11px; }
+.story-card p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .map-camera-controls { left: 10px; top: 10px; gap: 4px; }
+  .map-camera-controls button { min-height: 32px; padding: 0 8px; font-size: 9px; }
+  .story-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 430px) {
+  .map-camera-controls { max-width: calc(100% - 20px); }
+  .map-camera-controls button span { display: none; }
+  .map-camera-controls button { width: 34px; padding: 0; }
+  .media-gallery { grid-template-columns: 1fr; }
+  .famous-place-card-featured { grid-column: auto; }
+  .famous-place-card-featured .famous-place-image img { aspect-ratio: 4 / 3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-skeleton > span { animation: none; }
+}
+.media-source-note { margin: 9px 0 0; color: var(--muted); font-size: 9px; line-height: 1.45; }
+.map-place-point.is-muted-point { opacity: .12; pointer-events: none; }
+.map-place-capital.is-muted-point { display: none; }
+.map-tooltip p { margin: 7px 0 0; color: #d7e8f2; font-size: 9px; line-height: 1.45; }

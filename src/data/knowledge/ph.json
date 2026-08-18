@@ -15,8 +15,10 @@
   ],
   "landmarks": [
     "Chocolate Hills",
-    "Palawan",
-    "Intramuros"
+    "Banaue Rice Terraces",
+    "Puerto Princesa Subterranean River National Park",
+    "Mayon",
+    "Boracay"
   ],
   "overview": "The Philippines is an island country in Southeast Asia with thousands of islands, tropical seas, mountains, and volcanoes.",
   "greeting": "Hello: Kumusta",
@@ -44,8 +46,10 @@
     ],
     "landmarks": [
       "초콜릿 힐",
-      "팔라완",
-      "인트라무로스"
+      "바나웨 라이스 테라스",
+      "푸에르토프린세사 지하강",
+      "마욘산",
+      "보라카이"
     ],
     "overview": "필리핀은 동남아시아의 섬나라로 수천 개의 섬과 열대 바다, 산과 화산이 있어요.",
     "greeting": "안녕하세요: 쿠무스타 (Kumusta)",
@@ -56,6 +60,101 @@
       "필리핀에는 7천 개가 넘는 섬이 있어요.",
       "필리피노어와 영어가 공용어예요.",
       "필리핀수리는 세계에서 큰 수리류 가운데 하나예요."
+    ],
+    "foods": [
+      "아도보",
+      "시니강",
+      "레촌",
+      "할로할로"
+    ],
+    "festivals": [
+      "시눌로그",
+      "아티아티한",
+      "파히야스"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Chocolate Hills",
+        "nameKo": "초콜릿 힐",
+        "wikiTitle": "Chocolate Hills",
+        "descriptionKo": "보홀섬에 둥근 언덕이 수백 개 이어지는 독특한 지형이에요.",
+        "lat": 9.9167,
+        "lon": 124.1667
+      },
+      {
+        "name": "Banaue Rice Terraces",
+        "nameKo": "바나웨 라이스 테라스",
+        "wikiTitle": "Banaue Rice Terraces",
+        "descriptionKo": "산비탈을 따라 층층이 만든 논 풍경으로 유명해요.",
+        "lat": 16.934,
+        "lon": 121.136
+      },
+      {
+        "name": "Puerto Princesa Subterranean River National Park",
+        "nameKo": "푸에르토프린세사 지하강",
+        "wikiTitle": "Puerto Princesa Subterranean River National Park",
+        "descriptionKo": "석회암 동굴 속을 흐르는 지하강으로 유명한 국립공원이에요.",
+        "lat": 10.1667,
+        "lon": 118.9167
+      },
+      {
+        "name": "Mayon",
+        "nameKo": "마욘산",
+        "wikiTitle": "Mayon",
+        "descriptionKo": "대칭적인 원뿔 모양으로 유명한 활화산이에요.",
+        "lat": 13.257,
+        "lon": 123.6856
+      },
+      {
+        "name": "Boracay",
+        "nameKo": "보라카이",
+        "wikiTitle": "Boracay",
+        "descriptionKo": "하얀 모래 해변으로 유명한 작은 섬이에요.",
+        "lat": 11.9674,
+        "lon": 121.9248
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Chocolate Hills",
+      "nameKo": "초콜릿 힐",
+      "wikiTitle": "Chocolate Hills",
+      "descriptionKo": "보홀섬에 둥근 언덕이 수백 개 이어지는 독특한 지형이에요.",
+      "lat": 9.9167,
+      "lon": 124.1667
+    },
+    {
+      "name": "Banaue Rice Terraces",
+      "nameKo": "바나웨 라이스 테라스",
+      "wikiTitle": "Banaue Rice Terraces",
+      "descriptionKo": "산비탈을 따라 층층이 만든 논 풍경으로 유명해요.",
+      "lat": 16.934,
+      "lon": 121.136
+    },
+    {
+      "name": "Puerto Princesa Subterranean River National Park",
+      "nameKo": "푸에르토프린세사 지하강",
+      "wikiTitle": "Puerto Princesa Subterranean River National Park",
+      "descriptionKo": "석회암 동굴 속을 흐르는 지하강으로 유명한 국립공원이에요.",
+      "lat": 10.1667,
+      "lon": 118.9167
+    },
+    {
+      "name": "Mayon",
+      "nameKo": "마욘산",
+      "wikiTitle": "Mayon",
+      "descriptionKo": "대칭적인 원뿔 모양으로 유명한 활화산이에요.",
+      "lat": 13.257,
+      "lon": 123.6856
+    },
+    {
+      "name": "Boracay",
+      "nameKo": "보라카이",
+      "wikiTitle": "Boracay",
+      "descriptionKo": "하얀 모래 해변으로 유명한 작은 섬이에요.",
+      "lat": 11.9674,
+      "lon": 121.9248
+    }
+  ]
 }

@@ -15,8 +15,10 @@
   ],
   "landmarks": [
     "Christ the Redeemer",
+    "Iguazu Falls",
+    "Sugarloaf Mountain",
     "Amazon rainforest",
-    "Iguazu Falls"
+    "Copacabana, Rio de Janeiro"
   ],
   "overview": "Brazil is the largest country in South America, with the Amazon rainforest, long coasts, huge rivers, and very large cities.",
   "greeting": "Hello: Olá",
@@ -44,8 +46,10 @@
     ],
     "landmarks": [
       "구세주 그리스도상",
+      "이구아수 폭포",
+      "슈거로프산",
       "아마존 열대우림",
-      "이과수 폭포"
+      "코파카바나 해변"
     ],
     "overview": "브라질은 남아메리카에서 가장 큰 나라로 아마존 열대우림, 긴 해안선, 큰 강과 대도시가 있어요.",
     "greeting": "안녕하세요: 올라 (Olá)",
@@ -56,6 +60,101 @@
       "아마존 열대우림의 큰 부분이 브라질에 있어요.",
       "브라질의 공용어는 포르투갈어예요.",
       "아마존강은 엄청난 양의 물을 대서양으로 흘려보내요."
+    ],
+    "foods": [
+      "슈하스코",
+      "페이조아다",
+      "파스텔",
+      "아사이"
+    ],
+    "festivals": [
+      "리우 카니발",
+      "페스타 주니나",
+      "레베이용"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Christ the Redeemer",
+        "nameKo": "구세주 그리스도상",
+        "wikiTitle": "Christ the Redeemer (statue)",
+        "descriptionKo": "리우데자네이루 코르코바두산 위에 서 있는 거대한 예수상이에요.",
+        "lat": -22.9519,
+        "lon": -43.2105
+      },
+      {
+        "name": "Iguazu Falls",
+        "nameKo": "이구아수 폭포",
+        "wikiTitle": "Iguazu Falls",
+        "descriptionKo": "브라질과 아르헨티나 국경의 거대한 폭포군이에요.",
+        "lat": -25.6953,
+        "lon": -54.4367
+      },
+      {
+        "name": "Sugarloaf Mountain",
+        "nameKo": "슈거로프산",
+        "wikiTitle": "Sugarloaf Mountain",
+        "descriptionKo": "리우의 바다와 도시를 내려다보는 독특한 바위산이에요.",
+        "lat": -22.9493,
+        "lon": -43.1546
+      },
+      {
+        "name": "Amazon rainforest",
+        "nameKo": "아마존 열대우림",
+        "wikiTitle": "Amazon rainforest",
+        "descriptionKo": "세계에서 가장 넓은 열대우림 생태계 가운데 하나예요.",
+        "lat": -3.4653,
+        "lon": -62.2159
+      },
+      {
+        "name": "Copacabana, Rio de Janeiro",
+        "nameKo": "코파카바나 해변",
+        "wikiTitle": "Copacabana, Rio de Janeiro",
+        "descriptionKo": "리우를 대표하는 긴 도시 해변이에요.",
+        "lat": -22.9711,
+        "lon": -43.1822
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Christ the Redeemer",
+      "nameKo": "구세주 그리스도상",
+      "wikiTitle": "Christ the Redeemer (statue)",
+      "descriptionKo": "리우데자네이루 코르코바두산 위에 서 있는 거대한 예수상이에요.",
+      "lat": -22.9519,
+      "lon": -43.2105
+    },
+    {
+      "name": "Iguazu Falls",
+      "nameKo": "이구아수 폭포",
+      "wikiTitle": "Iguazu Falls",
+      "descriptionKo": "브라질과 아르헨티나 국경의 거대한 폭포군이에요.",
+      "lat": -25.6953,
+      "lon": -54.4367
+    },
+    {
+      "name": "Sugarloaf Mountain",
+      "nameKo": "슈거로프산",
+      "wikiTitle": "Sugarloaf Mountain",
+      "descriptionKo": "리우의 바다와 도시를 내려다보는 독특한 바위산이에요.",
+      "lat": -22.9493,
+      "lon": -43.1546
+    },
+    {
+      "name": "Amazon rainforest",
+      "nameKo": "아마존 열대우림",
+      "wikiTitle": "Amazon rainforest",
+      "descriptionKo": "세계에서 가장 넓은 열대우림 생태계 가운데 하나예요.",
+      "lat": -3.4653,
+      "lon": -62.2159
+    },
+    {
+      "name": "Copacabana, Rio de Janeiro",
+      "nameKo": "코파카바나 해변",
+      "wikiTitle": "Copacabana, Rio de Janeiro",
+      "descriptionKo": "리우를 대표하는 긴 도시 해변이에요.",
+      "lat": -22.9711,
+      "lon": -43.1822
+    }
+  ]
 }

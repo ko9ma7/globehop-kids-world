@@ -14,9 +14,11 @@
     "Iroko"
   ],
   "landmarks": [
-    "Lagos",
     "Zuma Rock",
-    "Yankari National Park"
+    "Olumo Rock",
+    "Yankari National Park",
+    "Lekki Conservation Centre",
+    "National Arts Theatre"
   ],
   "overview": "Nigeria is a large West African country with a young population, many languages, busy cities, savannas, and tropical forests.",
   "greeting": "Hello: Hello / Sannu / Bawo",
@@ -43,9 +45,11 @@
       "이로코"
     ],
     "landmarks": [
-      "라고스",
-      "주마 록",
-      "얀카리 국립공원"
+      "주마록",
+      "올루모록",
+      "양카리 국립공원",
+      "레키 보전센터",
+      "국립예술극장"
     ],
     "overview": "나이지리아는 서아프리카의 큰 나라로, 많은 언어와 큰 도시, 사바나와 열대숲이 함께 있어요.",
     "greeting": "안녕하세요: Hello / Sannu / Bawo",
@@ -56,6 +60,100 @@
       "나이지리아에는 수백 개의 언어가 있어요.",
       "라고스는 아프리카에서 매우 큰 도시권 가운데 하나예요.",
       "니제르강과 베누에강이 로코자 근처에서 만나요."
+    ],
+    "foods": [
+      "졸로프라이스",
+      "수야",
+      "에구시 수프",
+      "퍼프퍼프"
+    ],
+    "festivals": [
+      "칼라바르 카니발",
+      "아르궁구 낚시축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Zuma Rock",
+        "nameKo": "주마록",
+        "wikiTitle": "Zuma Rock",
+        "descriptionKo": "아부자 근교의 거대한 바위산으로 유명해요.",
+        "lat": 9.1317,
+        "lon": 7.2317
+      },
+      {
+        "name": "Olumo Rock",
+        "nameKo": "올루모록",
+        "wikiTitle": "Olumo Rock",
+        "descriptionKo": "아베오쿠타 시내에 있는 역사적·문화적 바위 지형이에요.",
+        "lat": 7.1606,
+        "lon": 3.3464
+      },
+      {
+        "name": "Yankari National Park",
+        "nameKo": "양카리 국립공원",
+        "wikiTitle": "Yankari National Park",
+        "descriptionKo": "코끼리와 다양한 야생동물을 볼 수 있는 보호 지역이에요.",
+        "lat": 9.8333,
+        "lon": 10.5
+      },
+      {
+        "name": "Lekki Conservation Centre",
+        "nameKo": "레키 보전센터",
+        "wikiTitle": "Lekki Conservation Centre",
+        "descriptionKo": "라고스의 습지와 숲 생태계를 보호하는 자연 공간이에요.",
+        "lat": 6.4416,
+        "lon": 3.535
+      },
+      {
+        "name": "National Arts Theatre",
+        "nameKo": "국립예술극장",
+        "wikiTitle": "National Arts Theatre, Nigeria",
+        "descriptionKo": "라고스의 대표적인 문화 공연 건축물이에요.",
+        "lat": 6.4763,
+        "lon": 3.3693
+      }
     ]
-  }
+  },
+  "famousPlaces": [
+    {
+      "name": "Zuma Rock",
+      "nameKo": "주마록",
+      "wikiTitle": "Zuma Rock",
+      "descriptionKo": "아부자 근교의 거대한 바위산으로 유명해요.",
+      "lat": 9.1317,
+      "lon": 7.2317
+    },
+    {
+      "name": "Olumo Rock",
+      "nameKo": "올루모록",
+      "wikiTitle": "Olumo Rock",
+      "descriptionKo": "아베오쿠타 시내에 있는 역사적·문화적 바위 지형이에요.",
+      "lat": 7.1606,
+      "lon": 3.3464
+    },
+    {
+      "name": "Yankari National Park",
+      "nameKo": "양카리 국립공원",
+      "wikiTitle": "Yankari National Park",
+      "descriptionKo": "코끼리와 다양한 야생동물을 볼 수 있는 보호 지역이에요.",
+      "lat": 9.8333,
+      "lon": 10.5
+    },
+    {
+      "name": "Lekki Conservation Centre",
+      "nameKo": "레키 보전센터",
+      "wikiTitle": "Lekki Conservation Centre",
+      "descriptionKo": "라고스의 습지와 숲 생태계를 보호하는 자연 공간이에요.",
+      "lat": 6.4416,
+      "lon": 3.535
+    },
+    {
+      "name": "National Arts Theatre",
+      "nameKo": "국립예술극장",
+      "wikiTitle": "National Arts Theatre, Nigeria",
+      "descriptionKo": "라고스의 대표적인 문화 공연 건축물이에요.",
+      "lat": 6.4763,
+      "lon": 3.3693
+    }
+  ]
 }

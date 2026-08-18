@@ -9,6 +9,7 @@ import {
 } from './modules/dataService.js';
 import { GlobeView } from './modules/globe.js';
 import { Globe3DView } from './modules/globe3d.js';
+import { resolveWikipediaImages } from './modules/wikiMedia.js';
 
 const $ = (s, root = document) => root.querySelector(s);
 const $$ = (s, root = document) => [...root.querySelectorAll(s)];
@@ -34,7 +35,8 @@ const state = {
   searchTimer: null,
   searchAbort: null,
   searchResults: [],
-  selectedResultIndex: -1
+  selectedResultIndex: -1,
+  mediaRenderToken: 0
 };
 
 let t = translator(state.locale);
@@ -115,6 +117,12 @@ function renderAppShell() {
             <div class="map-label map-label-destination" id="mapDestinationLabel"></div>
             <div class="map-tooltip" id="mapTooltip" role="status" hidden></div>
             <button class="map-reset-button" id="resetMapButton" type="button">🌍 <span data-i18n="worldView"></span></button>
+            <div class="map-camera-controls" id="mapCameraControls" hidden>
+              <button type="button" data-camera="route">✈️ <span data-i18n="routeFocus"></span></button>
+              <button type="button" data-camera="origin">🔵 <span data-i18n="originFocus"></span></button>
+              <button type="button" data-camera="destination">🔴 <span data-i18n="destinationFocus"></span></button>
+              <button type="button" data-camera="world">🌍 <span data-i18n="worldFocus"></span></button>
+            </div>
             <div class="map-interaction-hint" id="mapInteractionHint"></div>
           </div>
 
@@ -166,7 +174,7 @@ function renderAppShell() {
 
           <section class="media-section" aria-labelledby="mediaTitle">
             <div class="section-heading"><h3 id="mediaTitle" data-i18n="photos"></h3><span class="data-badge" data-i18n="studyNote"></span></div>
-            <div id="mediaGallery" class="media-gallery"></div>
+            <div id="mediaGallery" class="media-gallery"></div><p class="media-source-note" data-i18n="imageSourceNote"></p>
           </section>
 
           <section class="facts-section" aria-labelledby="factsTitle">
@@ -198,6 +206,8 @@ function renderAppShell() {
       <div class="source-links">
         <a href="https://open-meteo.com/en/docs/geocoding-api" target="_blank" rel="noreferrer">Open-Meteo Geocoding</a>
         <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/889392" target="_blank" rel="noreferrer">World Bank Indicators API</a>
+        <a href="https://www.mediawiki.org/wiki/API:Page_info_in_search_results" target="_blank" rel="noreferrer">Wikipedia/Wikimedia Page Images</a>
+        <a href="https://project-osrm.org/docs/v5.24.0/api/" target="_blank" rel="noreferrer">OSRM Route API</a>
       </div>
       <button class="primary-button" type="button" data-dialog-close data-i18n="close"></button>
     </dialog>
@@ -245,6 +255,7 @@ function applyTranslations() {
   renderOriginSelect();
   renderThemeButton();
   updateViewControls();
+  globe3D?.setHelpText(t('globeInteractionHint'));
   renderCurrentSelection();
   renderRecent();
 }
@@ -282,6 +293,10 @@ function updateViewControls() {
   const surface3D = $('#globe3DHost');
   if (surface2D) surface2D.hidden = state.viewMode !== 'map';
   if (surface3D) surface3D.hidden = state.viewMode !== 'globe';
+  const cameraControls = $('#mapCameraControls');
+  const resetButton = $('#resetMapButton');
+  if (cameraControls) cameraControls.hidden = state.viewMode !== 'globe';
+  if (resetButton) resetButton.hidden = state.viewMode === 'globe';
   const hint = $('#mapInteractionHint');
   if (hint) hint.textContent = state.viewMode === 'globe' ? t('globeInteractionHint') : t('mapInteractionHint');
   hideMapTooltip();
@@ -364,9 +379,11 @@ function showMapTooltip(item, position) {
   }
   const population = item.data.population ? `<span>👥 ${escapeHtml(formatCompact(item.data.population))}</span>` : '';
   const area = item.data.areaKm2 ? `<span>📐 ${escapeHtml(formatNumber(Math.round(item.data.areaKm2)))} km²</span>` : '';
+  const description = state.locale === 'ko' ? (item.data.descriptionKo || '') : (item.data.description || '');
   tooltip.innerHTML = `
     <strong>${escapeHtml(mapItemName(item))}</strong>
     <small>${escapeHtml(mapItemSecondary(item))}</small>
+    ${description ? `<p>${escapeHtml(description)}</p>` : ''}
     <div class="map-tooltip-meta">${distanceText}${population}${area}</div>
     <em>${escapeHtml(t('clickToTravel'))}</em>
   `;
@@ -467,24 +484,85 @@ function renderFacts() {
   $('#statsNote').textContent = s?.failed ? t('onlineDataError') : '';
 }
 
-function mediaCard(item, large = false) {
-  const cls = large ? 'media-card media-card-large' : 'media-card';
-  return `<figure class="${cls}"><img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt || item.title || '')}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').classList.add('is-broken')"><figcaption><strong>${escapeHtml(item.title || '')}</strong>${item.caption ? `<small>${escapeHtml(item.caption)}</small>` : ''}</figcaption></figure>`;
+function famousPlacesForCurrentCountry() {
+  const localized = state.locale === 'ko' && state.knowledge?.ko ? state.knowledge.ko : state.knowledge;
+  const base = localized?.famousPlaces || state.knowledge?.famousPlaces || [];
+  if (base.length) return base;
+  if (!state.country) return [];
+  const countryName = displayCountryName(state.country.code2, state.locale, state.country.name);
+  const items = [{
+    name: state.country.name,
+    nameKo: countryName,
+    wikiTitle: state.country.name,
+    descriptionKo: `${countryName} ${t('overview')}`,
+    lat: state.country.lat,
+    lon: state.country.lon
+  }];
+  if (state.country.capital) items.push({
+    name: state.country.capital,
+    nameKo: state.country.capital,
+    wikiTitle: state.country.capital,
+    descriptionKo: `${t('capital')} · ${state.country.capital}`,
+    lat: state.country.capitalLat,
+    lon: state.country.capitalLon
+  });
+  return items;
 }
 
-function renderMedia() {
+function famousPlaceDisplayName(place) {
+  return state.locale === 'ko' ? (place.nameKo || place.name) : (place.name || place.nameKo);
+}
+
+function famousPlaceDescription(place) {
+  if (state.locale === 'ko') return place.descriptionKo || place.description || '';
+  return place.description || '';
+}
+
+function travelToFamousPlace(place) {
+  if (!place || !state.country) return;
+  const lat = Number(place.lat);
+  const lon = Number(place.lon);
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+  selectResult({
+    kind: 'place',
+    id: `famous-${state.country.code2}-${place.wikiTitle || place.name}`,
+    name: place.name,
+    nameKo: place.nameKo,
+    type: 'landmark',
+    countryCode: state.country.code2,
+    lat,
+    lon,
+    timezone: null
+  });
+}
+
+function renderFamousPlaceCard(place, index) {
+  const image = place.image?.src;
+  const title = famousPlaceDisplayName(place);
+  const description = famousPlaceDescription(place);
+  const featured = index === 0 ? ' famous-place-card-featured' : '';
+  return `<button class="famous-place-card${featured}" type="button" data-famous-index="${index}" aria-label="${escapeHtml(title)}">
+    <span class="famous-place-image">${image ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(title)}" loading="lazy" referrerpolicy="no-referrer">` : '<span class="image-fallback" aria-hidden="true">🗺️</span>'}</span>
+    <span class="famous-place-copy"><strong>${escapeHtml(title)}</strong>${description ? `<small>${escapeHtml(description)}</small>` : ''}<em>${escapeHtml(t('clickToTravel'))}</em></span>
+  </button>`;
+}
+
+async function renderMedia() {
   const gallery = $('#mediaGallery');
   if (!gallery || !state.country) return;
-  const code2 = state.country.code2.toLowerCase();
-  const items = [{
-    src: `https://flagcdn.com/w320/${code2}.png`,
-    title: t('flag'),
-    alt: `${displayCountryName(state.country.code2, state.locale, state.country.name)} flag`,
-    caption: displayCountryName(state.country.code2, state.locale, state.country.name)
-  }];
-  const data = state.locale === 'ko' && state.knowledge?.ko ? state.knowledge.ko : state.knowledge;
-  if (Array.isArray(data?.gallery)) items.push(...data.gallery.slice(0, 3));
-  gallery.innerHTML = items.map((item, index) => mediaCard(item, index === 0)).join('');
+  const token = ++state.mediaRenderToken;
+  const places = famousPlacesForCurrentCountry().slice(0, 8);
+  if (!places.length) {
+    gallery.innerHTML = `<div class="media-empty">${escapeHtml(t('knowledgeFallback'))}</div>`;
+    return;
+  }
+  gallery.innerHTML = places.slice(0, Math.min(6, places.length)).map((place, index) => `<div class="famous-place-card media-skeleton${index === 0 ? ' famous-place-card-featured' : ''}"><span></span><strong>${escapeHtml(famousPlaceDisplayName(place))}</strong></div>`).join('');
+  const resolved = await resolveWikipediaImages(places, { size: 900, limit: 8 }).catch(() => places.map((item) => ({ ...item, image: null })));
+  if (token !== state.mediaRenderToken || !gallery.isConnected) return;
+  gallery.innerHTML = resolved.map(renderFamousPlaceCard).join('');
+  $$('.famous-place-card[data-famous-index]', gallery).forEach((button) => {
+    button.addEventListener('click', () => travelToFamousPlace(resolved[Number(button.dataset.famousIndex)]));
+  });
 }
 
 function chipBlock(emoji, label, items) {
@@ -509,13 +587,20 @@ function renderKnowledge() {
   const data = state.locale === 'ko' && k.ko ? k.ko : k;
   root.innerHTML = `
     <div class="overview-card"><strong>${escapeHtml(t('overview'))}</strong><p>${escapeHtml(data.overview || fallbackOverview)}</p></div>
+    <div class="story-grid">
+      ${data.geography ? `<article class="story-card"><span>🗺️</span><div><strong>${escapeHtml(t('geography'))}</strong><p>${escapeHtml(data.geography)}</p></div></article>` : ''}
+      ${data.history ? `<article class="story-card"><span>🏺</span><div><strong>${escapeHtml(t('history'))}</strong><p>${escapeHtml(data.history)}</p></div></article>` : ''}
+      ${data.culture ? `<article class="story-card"><span>🎎</span><div><strong>${escapeHtml(t('culture'))}</strong><p>${escapeHtml(data.culture)}</p></div></article>` : ''}
+      ${data.etiquette ? `<article class="story-card"><span>🙏</span><div><strong>${escapeHtml(t('etiquette'))}</strong><p>${escapeHtml(data.etiquette)}</p></div></article>` : ''}
+    </div>
     <div class="mini-info-grid">
       ${infoMini(t('greeting'), data.greeting)}
       ${infoMini(t('climate'), data.climate)}
       ${infoMini(t('bestSeason'), data.bestSeason)}
       ${infoMini(t('travelTips'), data.travelTips)}
     </div>
-    ${chipBlock('🍚', t('specialties'), data.specialties)}
+    ${chipBlock('🍽️', t('foods'), data.foods || data.specialties)}
+    ${chipBlock('🎉', t('festivals'), data.festivals)}
     ${chipBlock('🐾', t('animals'), data.animals)}
     ${chipBlock('🌿', t('plants'), data.plants)}
     ${chipBlock('🗺️', t('landmarks'), data.landmarks)}
@@ -772,6 +857,32 @@ async function selectResult(result, { skipUrl = false } = {}) {
     }
   }
   state.knowledge = await loadKnowledge(code2);
+  const famousPlaces = state.knowledge?.famousPlaces || state.knowledge?.ko?.famousPlaces || [];
+  if (Array.isArray(famousPlaces) && famousPlaces.length) {
+    for (let i = 0; i < famousPlaces.length; i++) {
+      const place = famousPlaces[i];
+      const lat = Number(place.lat);
+      const lon = Number(place.lon);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
+      const id = `famous-${code2.toLowerCase()}-${i}`;
+      if (state.mapPoints.some((point) => point.id === id)) continue;
+      state.mapPoints.push({
+        id,
+        name: place.name,
+        nameKo: place.nameKo,
+        type: 'landmark',
+        countryCode: code2,
+        lat,
+        lon,
+        timezone: null,
+        wikiTitle: place.wikiTitle,
+        descriptionKo: place.descriptionKo,
+        isFamousPoint: true
+      });
+    }
+    globe2D?.setPlaces(state.mapPoints);
+    globe3D?.setPlaces(state.mapPoints);
+  }
   state.stats = null;
   state.roadRoute = null;
   globe2D?.highlightCountry(code2);
@@ -843,6 +954,15 @@ function wireEvents() {
   $('#replayButton').addEventListener('click', () => {
     globe2D?.replay();
     globe3D?.replay();
+  });
+  $('#mapCameraControls').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-camera]');
+    if (!button || !globe3D) return;
+    const mode = button.dataset.camera;
+    if (mode === 'route') globe3D.resetView();
+    if (mode === 'origin') globe3D.focusOrigin();
+    if (mode === 'destination') globe3D.focusDestination();
+    if (mode === 'world') globe3D.worldView();
   });
   $('#resetMapButton').addEventListener('click', () => {
     hideMapTooltip();

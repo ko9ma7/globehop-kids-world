@@ -35,7 +35,10 @@
     "facts": [
       "프랑스는 대서양과 지중해에 모두 해안이 있습니다.",
       "남동쪽에는 알프스산맥이 이어집니다.",
-      "TGV는 프랑스의 대표적인 고속철도입니다."
+      "TGV는 프랑스의 대표적인 고속철도입니다.",
+      "파리뿐 아니라 알프스·대서양·지중해 해안까지 매우 다양한 풍경이 있어요.",
+      "TGV 고속열차가 여러 도시를 빠르게 이어 줘요.",
+      "프랑스에는 지역마다 치즈와 빵, 전통 요리가 다양해요."
     ],
     "overview": "프랑스는 서유럽의 큰 나라로 미술, 음식, 패션, 고속철도로 유명해요.",
     "greeting": "안녕하세요: 봉주르 (Bonjour)",
@@ -45,14 +48,73 @@
     "landmarks": [
       "에펠탑",
       "루브르 박물관",
-      "몽생미셸"
+      "몽생미셸",
+      "베르사유 궁전",
+      "개선문",
+      "코트다쥐르"
     ],
-    "gallery": [
+    "foods": [
+      "바게트",
+      "크루아상",
+      "치즈",
+      "크레프",
+      "라타투이",
+      "마카롱"
+    ],
+    "festivals": [
+      "프랑스 혁명 기념일",
+      "니스 카니발",
+      "칸 영화제",
+      "빛의 축제"
+    ],
+    "famousPlaces": [
       {
-        "title": "에펠탑",
-        "caption": "파리를 대표하는 랜드마크",
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/640px-Tour_Eiffel_Wikimedia_Commons.jpg",
-        "alt": "에펠탑"
+        "name": "Eiffel Tower",
+        "nameKo": "에펠탑",
+        "wikiTitle": "Eiffel Tower",
+        "descriptionKo": "파리와 프랑스를 상징하는 철제 탑이에요.",
+        "lat": 48.8584,
+        "lon": 2.2945
+      },
+      {
+        "name": "Louvre Museum",
+        "nameKo": "루브르 박물관",
+        "wikiTitle": "Louvre",
+        "descriptionKo": "세계적으로 유명한 미술품과 고대 유물을 소장한 박물관이에요.",
+        "lat": 48.8606,
+        "lon": 2.3376
+      },
+      {
+        "name": "Mont Saint-Michel",
+        "nameKo": "몽생미셸",
+        "wikiTitle": "Mont-Saint-Michel",
+        "descriptionKo": "바닷물이 들어오면 섬처럼 보이는 수도원 마을이에요.",
+        "lat": 48.636,
+        "lon": -1.5115
+      },
+      {
+        "name": "Palace of Versailles",
+        "nameKo": "베르사유 궁전",
+        "wikiTitle": "Palace of Versailles",
+        "descriptionKo": "화려한 궁전과 정원으로 유명한 프랑스 왕실 유산이에요.",
+        "lat": 48.8049,
+        "lon": 2.1204
+      },
+      {
+        "name": "Arc de Triomphe",
+        "nameKo": "개선문",
+        "wikiTitle": "Arc de Triomphe",
+        "descriptionKo": "샹젤리제 거리 끝에 서 있는 파리의 대표 기념물이에요.",
+        "lat": 48.8738,
+        "lon": 2.295
+      },
+      {
+        "name": "French Riviera",
+        "nameKo": "코트다쥐르",
+        "wikiTitle": "French Riviera",
+        "descriptionKo": "니스와 칸 등 지중해 연안 휴양 도시가 이어지는 지역이에요.",
+        "lat": 43.7102,
+        "lon": 7.262
       }
     ]
   },
@@ -64,14 +126,59 @@
   "landmarks": [
     "Eiffel Tower",
     "Louvre Museum",
-    "Mont Saint-Michel"
+    "Mont Saint-Michel",
+    "Palace of Versailles",
+    "Arc de Triomphe",
+    "French Riviera"
   ],
-  "gallery": [
+  "famousPlaces": [
     {
-      "title": "Eiffel Tower",
-      "caption": "One of the most famous landmarks in Paris",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/640px-Tour_Eiffel_Wikimedia_Commons.jpg",
-      "alt": "Eiffel Tower"
+      "name": "Eiffel Tower",
+      "nameKo": "에펠탑",
+      "wikiTitle": "Eiffel Tower",
+      "descriptionKo": "파리와 프랑스를 상징하는 철제 탑이에요.",
+      "lat": 48.8584,
+      "lon": 2.2945
+    },
+    {
+      "name": "Louvre Museum",
+      "nameKo": "루브르 박물관",
+      "wikiTitle": "Louvre",
+      "descriptionKo": "세계적으로 유명한 미술품과 고대 유물을 소장한 박물관이에요.",
+      "lat": 48.8606,
+      "lon": 2.3376
+    },
+    {
+      "name": "Mont Saint-Michel",
+      "nameKo": "몽생미셸",
+      "wikiTitle": "Mont-Saint-Michel",
+      "descriptionKo": "바닷물이 들어오면 섬처럼 보이는 수도원 마을이에요.",
+      "lat": 48.636,
+      "lon": -1.5115
+    },
+    {
+      "name": "Palace of Versailles",
+      "nameKo": "베르사유 궁전",
+      "wikiTitle": "Palace of Versailles",
+      "descriptionKo": "화려한 궁전과 정원으로 유명한 프랑스 왕실 유산이에요.",
+      "lat": 48.8049,
+      "lon": 2.1204
+    },
+    {
+      "name": "Arc de Triomphe",
+      "nameKo": "개선문",
+      "wikiTitle": "Arc de Triomphe",
+      "descriptionKo": "샹젤리제 거리 끝에 서 있는 파리의 대표 기념물이에요.",
+      "lat": 48.8738,
+      "lon": 2.295
+    },
+    {
+      "name": "French Riviera",
+      "nameKo": "코트다쥐르",
+      "wikiTitle": "French Riviera",
+      "descriptionKo": "니스와 칸 등 지중해 연안 휴양 도시가 이어지는 지역이에요.",
+      "lat": 43.7102,
+      "lon": 7.262
     }
   ]
 }

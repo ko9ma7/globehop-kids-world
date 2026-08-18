@@ -43,9 +43,64 @@
     "bestSeason": "비교적 선선한 건기가 가족 여행에 인기가 많아요.",
     "travelTips": "지역에 따라 배, 기차, 도시철도를 모두 이용할 수 있어요.",
     "landmarks": [
-      "왕궁",
-      "치앙마이 사원들",
-      "푸껫 해변"
+      "방콕 왕궁",
+      "왓 아룬",
+      "아유타야 역사공원",
+      "피피섬",
+      "도이수텝"
+    ],
+    "foods": [
+      "팟타이",
+      "똠얌꿍",
+      "그린커리",
+      "망고스티키라이스"
+    ],
+    "festivals": [
+      "송끄란",
+      "러이끄라통",
+      "이펭"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Grand Palace",
+        "nameKo": "방콕 왕궁",
+        "wikiTitle": "Grand Palace",
+        "descriptionKo": "방콕의 대표적인 왕실 건축물과 사원 단지예요.",
+        "lat": 13.75,
+        "lon": 100.4913
+      },
+      {
+        "name": "Wat Arun",
+        "nameKo": "왓 아룬",
+        "wikiTitle": "Wat Arun",
+        "descriptionKo": "짜오프라야강가에 있는 높은 탑으로 유명한 사원이에요.",
+        "lat": 13.7437,
+        "lon": 100.4889
+      },
+      {
+        "name": "Ayutthaya Historical Park",
+        "nameKo": "아유타야 역사공원",
+        "wikiTitle": "Ayutthaya Historical Park",
+        "descriptionKo": "옛 왕국의 사원과 탑 유적이 남아 있는 지역이에요.",
+        "lat": 14.3559,
+        "lon": 100.5683
+      },
+      {
+        "name": "Phi Phi Islands",
+        "nameKo": "피피섬",
+        "wikiTitle": "Phi Phi Islands",
+        "descriptionKo": "푸른 바다와 석회암 절벽으로 유명한 남부 섬들이에요.",
+        "lat": 7.7407,
+        "lon": 98.7784
+      },
+      {
+        "name": "Doi Suthep",
+        "nameKo": "도이수텝",
+        "wikiTitle": "Wat Phra That Doi Suthep",
+        "descriptionKo": "치앙마이 시내를 내려다보는 산 위의 유명한 사원이에요.",
+        "lat": 18.8049,
+        "lon": 98.9215
+      }
     ]
   },
   "overview": "Thailand is known for tropical weather, temples, islands, and colorful food culture.",
@@ -55,7 +110,51 @@
   "travelTips": "Boats, trains, and city rail are all useful in different regions.",
   "landmarks": [
     "Grand Palace",
-    "Chiang Mai temples",
-    "Phuket beaches"
+    "Wat Arun",
+    "Ayutthaya Historical Park",
+    "Phi Phi Islands",
+    "Doi Suthep"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Grand Palace",
+      "nameKo": "방콕 왕궁",
+      "wikiTitle": "Grand Palace",
+      "descriptionKo": "방콕의 대표적인 왕실 건축물과 사원 단지예요.",
+      "lat": 13.75,
+      "lon": 100.4913
+    },
+    {
+      "name": "Wat Arun",
+      "nameKo": "왓 아룬",
+      "wikiTitle": "Wat Arun",
+      "descriptionKo": "짜오프라야강가에 있는 높은 탑으로 유명한 사원이에요.",
+      "lat": 13.7437,
+      "lon": 100.4889
+    },
+    {
+      "name": "Ayutthaya Historical Park",
+      "nameKo": "아유타야 역사공원",
+      "wikiTitle": "Ayutthaya Historical Park",
+      "descriptionKo": "옛 왕국의 사원과 탑 유적이 남아 있는 지역이에요.",
+      "lat": 14.3559,
+      "lon": 100.5683
+    },
+    {
+      "name": "Phi Phi Islands",
+      "nameKo": "피피섬",
+      "wikiTitle": "Phi Phi Islands",
+      "descriptionKo": "푸른 바다와 석회암 절벽으로 유명한 남부 섬들이에요.",
+      "lat": 7.7407,
+      "lon": 98.7784
+    },
+    {
+      "name": "Doi Suthep",
+      "nameKo": "도이수텝",
+      "wikiTitle": "Wat Phra That Doi Suthep",
+      "descriptionKo": "치앙마이 시내를 내려다보는 산 위의 유명한 사원이에요.",
+      "lat": 18.8049,
+      "lon": 98.9215
+    }
   ]
 }

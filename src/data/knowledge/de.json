@@ -45,14 +45,62 @@
     "landmarks": [
       "브란덴부르크문",
       "노이슈반슈타인성",
-      "쾰른 대성당"
+      "쾰른 대성당",
+      "라이히스타크",
+      "슈바르츠발트"
     ],
-    "gallery": [
+    "foods": [
+      "브레첼",
+      "브라트부르스트",
+      "슈니첼",
+      "감자요리",
+      "블랙포레스트 케이크"
+    ],
+    "festivals": [
+      "옥토버페스트",
+      "쾰른 카니발",
+      "크리스마스 마켓"
+    ],
+    "famousPlaces": [
       {
-        "title": "브란덴부르크문",
-        "caption": "베를린의 상징적인 문",
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/640px-Brandenburger_Tor_abends.jpg",
-        "alt": "브란덴부르크문"
+        "name": "Brandenburg Gate",
+        "nameKo": "브란덴부르크문",
+        "wikiTitle": "Brandenburg Gate",
+        "descriptionKo": "베를린의 역사를 상징하는 신고전주의 문이에요.",
+        "lat": 52.5163,
+        "lon": 13.3777
+      },
+      {
+        "name": "Neuschwanstein Castle",
+        "nameKo": "노이슈반슈타인성",
+        "wikiTitle": "Neuschwanstein Castle",
+        "descriptionKo": "알프스 산자락의 동화 같은 모습으로 유명한 성이에요.",
+        "lat": 47.5576,
+        "lon": 10.7498
+      },
+      {
+        "name": "Cologne Cathedral",
+        "nameKo": "쾰른 대성당",
+        "wikiTitle": "Cologne Cathedral",
+        "descriptionKo": "높은 쌍둥이 첨탑으로 유명한 고딕 양식 대성당이에요.",
+        "lat": 50.9413,
+        "lon": 6.9583
+      },
+      {
+        "name": "Reichstag building",
+        "nameKo": "라이히스타크",
+        "wikiTitle": "Reichstag building",
+        "descriptionKo": "독일 연방의회가 사용하는 베를린의 역사적인 건물이에요.",
+        "lat": 52.5186,
+        "lon": 13.3762
+      },
+      {
+        "name": "Black Forest",
+        "nameKo": "슈바르츠발트",
+        "wikiTitle": "Black Forest",
+        "descriptionKo": "독일 남서부의 울창한 숲과 작은 마을로 유명한 지역이에요.",
+        "lat": 48.3,
+        "lon": 8.15
       }
     ]
   },
@@ -64,14 +112,50 @@
   "landmarks": [
     "Brandenburg Gate",
     "Neuschwanstein Castle",
-    "Cologne Cathedral"
+    "Cologne Cathedral",
+    "Reichstag building",
+    "Black Forest"
   ],
-  "gallery": [
+  "famousPlaces": [
     {
-      "title": "Brandenburg Gate",
-      "caption": "A famous gateway in Berlin",
-      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/640px-Brandenburger_Tor_abends.jpg",
-      "alt": "Brandenburg Gate"
+      "name": "Brandenburg Gate",
+      "nameKo": "브란덴부르크문",
+      "wikiTitle": "Brandenburg Gate",
+      "descriptionKo": "베를린의 역사를 상징하는 신고전주의 문이에요.",
+      "lat": 52.5163,
+      "lon": 13.3777
+    },
+    {
+      "name": "Neuschwanstein Castle",
+      "nameKo": "노이슈반슈타인성",
+      "wikiTitle": "Neuschwanstein Castle",
+      "descriptionKo": "알프스 산자락의 동화 같은 모습으로 유명한 성이에요.",
+      "lat": 47.5576,
+      "lon": 10.7498
+    },
+    {
+      "name": "Cologne Cathedral",
+      "nameKo": "쾰른 대성당",
+      "wikiTitle": "Cologne Cathedral",
+      "descriptionKo": "높은 쌍둥이 첨탑으로 유명한 고딕 양식 대성당이에요.",
+      "lat": 50.9413,
+      "lon": 6.9583
+    },
+    {
+      "name": "Reichstag building",
+      "nameKo": "라이히스타크",
+      "wikiTitle": "Reichstag building",
+      "descriptionKo": "독일 연방의회가 사용하는 베를린의 역사적인 건물이에요.",
+      "lat": 52.5186,
+      "lon": 13.3762
+    },
+    {
+      "name": "Black Forest",
+      "nameKo": "슈바르츠발트",
+      "wikiTitle": "Black Forest",
+      "descriptionKo": "독일 남서부의 울창한 숲과 작은 마을로 유명한 지역이에요.",
+      "lat": 48.3,
+      "lon": 8.15
     }
   ]
 }

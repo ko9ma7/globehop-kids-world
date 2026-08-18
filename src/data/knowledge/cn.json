@@ -45,7 +45,64 @@
     "landmarks": [
       "만리장성",
       "자금성",
-      "양쯔강"
+      "병마용",
+      "장자제 국가삼림공원",
+      "와이탄"
+    ],
+    "foods": [
+      "딤섬",
+      "베이징덕",
+      "훠궈",
+      "마파두부",
+      "샤오롱바오"
+    ],
+    "festivals": [
+      "춘절",
+      "중추절",
+      "단오절",
+      "등불축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Great Wall of China",
+        "nameKo": "만리장성",
+        "wikiTitle": "Great Wall of China",
+        "descriptionKo": "중국 북부의 여러 지역에 걸쳐 이어지는 거대한 방어 시설이에요.",
+        "lat": 40.4319,
+        "lon": 116.5704
+      },
+      {
+        "name": "Forbidden City",
+        "nameKo": "자금성",
+        "wikiTitle": "Forbidden City",
+        "descriptionKo": "베이징 중심에 있는 명·청 시대의 황궁이에요.",
+        "lat": 39.9163,
+        "lon": 116.3972
+      },
+      {
+        "name": "Terracotta Army",
+        "nameKo": "병마용",
+        "wikiTitle": "Terracotta Army",
+        "descriptionKo": "진시황릉 주변에서 발견된 수많은 도자기 병사 유적이에요.",
+        "lat": 34.3841,
+        "lon": 109.2785
+      },
+      {
+        "name": "Zhangjiajie National Forest Park",
+        "nameKo": "장자제 국가삼림공원",
+        "wikiTitle": "Zhangjiajie National Forest Park",
+        "descriptionKo": "기둥처럼 솟은 사암 봉우리 풍경으로 유명해요.",
+        "lat": 29.3256,
+        "lon": 110.4347
+      },
+      {
+        "name": "The Bund",
+        "nameKo": "와이탄",
+        "wikiTitle": "The Bund",
+        "descriptionKo": "상하이 황푸강을 따라 역사적인 건물이 이어지는 거리예요.",
+        "lat": 31.24,
+        "lon": 121.49
+      }
     ]
   },
   "overview": "China is a very large country with long rivers, big cities, deserts, mountains, and ancient history.",
@@ -54,8 +111,52 @@
   "bestSeason": "Spring and autumn are comfortable in many cities.",
   "travelTips": "High-speed rail is one of the easiest ways to travel between major cities.",
   "landmarks": [
-    "Great Wall",
+    "Great Wall of China",
     "Forbidden City",
-    "Yangtze River"
+    "Terracotta Army",
+    "Zhangjiajie National Forest Park",
+    "The Bund"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Great Wall of China",
+      "nameKo": "만리장성",
+      "wikiTitle": "Great Wall of China",
+      "descriptionKo": "중국 북부의 여러 지역에 걸쳐 이어지는 거대한 방어 시설이에요.",
+      "lat": 40.4319,
+      "lon": 116.5704
+    },
+    {
+      "name": "Forbidden City",
+      "nameKo": "자금성",
+      "wikiTitle": "Forbidden City",
+      "descriptionKo": "베이징 중심에 있는 명·청 시대의 황궁이에요.",
+      "lat": 39.9163,
+      "lon": 116.3972
+    },
+    {
+      "name": "Terracotta Army",
+      "nameKo": "병마용",
+      "wikiTitle": "Terracotta Army",
+      "descriptionKo": "진시황릉 주변에서 발견된 수많은 도자기 병사 유적이에요.",
+      "lat": 34.3841,
+      "lon": 109.2785
+    },
+    {
+      "name": "Zhangjiajie National Forest Park",
+      "nameKo": "장자제 국가삼림공원",
+      "wikiTitle": "Zhangjiajie National Forest Park",
+      "descriptionKo": "기둥처럼 솟은 사암 봉우리 풍경으로 유명해요.",
+      "lat": 29.3256,
+      "lon": 110.4347
+    },
+    {
+      "name": "The Bund",
+      "nameKo": "와이탄",
+      "wikiTitle": "The Bund",
+      "descriptionKo": "상하이 황푸강을 따라 역사적인 건물이 이어지는 거리예요.",
+      "lat": 31.24,
+      "lon": 121.49
+    }
   ]
 }
