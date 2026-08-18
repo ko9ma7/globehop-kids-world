@@ -40,6 +40,10 @@ export async function loadPlaces() {
   return fetchJson(dataUrl('places/index.json'));
 }
 
+export async function loadOrigins() {
+  return fetchJson(dataUrl('origins/index.json'));
+}
+
 export async function getCountry(code2) {
   const index = await loadCountryIndex();
   const base = index.find((x) => x.code2 === code2?.toUpperCase());
@@ -95,6 +99,27 @@ export async function loadKnowledge(code2) {
     return await fetchJson(dataUrl(`knowledge/${code2.toLowerCase()}.json`));
   } catch {
     return null;
+  }
+}
+
+
+export async function fetchRoadRoute(origin, destination, { timeoutMs = 6000 } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const coordinates = `${origin.lon},${origin.lat};${destination.lon},${destination.lat}`;
+    const params = new URLSearchParams({ overview: 'false', steps: 'false' });
+    const url = `${APP.osrmEndpoint}/route/v1/driving/${coordinates}?${params}`;
+    const res = await fetch(url, { signal: controller.signal, headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error(`OSRM HTTP ${res.status}`);
+    const json = await res.json();
+    const route = json?.routes?.[0];
+    if (json?.code !== 'Ok' || !route) return null;
+    return { distanceKm: route.distance / 1000, hours: route.duration / 3600, source: 'osrm' };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
   }
 }
 

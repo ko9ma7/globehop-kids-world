@@ -1,0 +1,61 @@
+{
+  "code2": "RU",
+  "specialties": [
+    "Timber",
+    "Wheat",
+    "Minerals"
+  ],
+  "animals": [
+    "Amur tiger",
+    "Brown bear"
+  ],
+  "plants": [
+    "Birch",
+    "Siberian larch"
+  ],
+  "landmarks": [
+    "Red Square",
+    "Lake Baikal",
+    "Trans-Siberian Railway"
+  ],
+  "overview": "Russia stretches across eastern Europe and northern Asia and is the world’s largest country by land area.",
+  "greeting": "Hello: Zdravstvuyte (Здравствуйте)",
+  "climate": "Many regions have long cold winters, but the climate varies widely across the country.",
+  "bestSeason": "Summer is generally easier for outdoor travel in many regions.",
+  "travelTips": "Distances are enormous, so journeys between regions can take a long time.",
+  "facts": [
+    "Russia spans many time zones.",
+    "Lake Baikal is the world’s deepest freshwater lake.",
+    "The Trans-Siberian Railway crosses a huge part of the country."
+  ],
+  "ko": {
+    "specialties": [
+      "목재",
+      "밀",
+      "광물"
+    ],
+    "animals": [
+      "아무르호랑이",
+      "불곰"
+    ],
+    "plants": [
+      "자작나무",
+      "시베리아낙엽송"
+    ],
+    "landmarks": [
+      "붉은광장",
+      "바이칼호",
+      "시베리아 횡단철도"
+    ],
+    "overview": "러시아는 동유럽과 북아시아에 걸쳐 있으며 육지 면적으로 세계에서 가장 큰 나라예요.",
+    "greeting": "안녕하세요: 즈드라스트부이체 (Здравствуйте)",
+    "climate": "많은 지역에서 겨울이 길고 춥지만 국토가 넓어 지역별 차이가 커요.",
+    "bestSeason": "많은 지역에서 여름이 야외 여행하기 편해요.",
+    "travelTips": "거리가 매우 길어서 지역 사이 이동에 오랜 시간이 걸릴 수 있어요.",
+    "facts": [
+      "러시아는 여러 시간대에 걸쳐 있어요.",
+      "바이칼호는 세계에서 가장 깊은 담수호예요.",
+      "시베리아 횡단철도는 나라의 넓은 지역을 가로질러요."
+    ]
+  }
+}

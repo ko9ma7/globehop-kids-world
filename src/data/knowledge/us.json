@@ -36,6 +36,42 @@
       "미국은 여러 시간대에 걸쳐 있는 큰 나라입니다.",
       "미시시피-미주리강 수계는 세계적인 대형 하천 수계입니다.",
       "국립공원이 다양한 자연환경을 보호하고 있습니다."
+    ],
+    "overview": "미국은 다양한 기후와 여러 시간대, 유명 도시와 국립공원을 가진 큰 나라예요.",
+    "greeting": "안녕하세요: 헬로 (Hello)",
+    "climate": "알래스카의 추운 기후부터 하와이와 플로리다의 열대 기후까지 다양해요.",
+    "bestSeason": "많은 도시에서 봄과 가을이 비교적 쾌적해요.",
+    "travelTips": "거리가 멀어서 도시 사이 이동은 국내선 비행기를 많이 이용해요.",
+    "landmarks": [
+      "자유의 여신상",
+      "그랜드캐니언",
+      "금문교"
+    ],
+    "gallery": [
+      {
+        "title": "자유의 여신상",
+        "caption": "뉴욕의 대표적인 상징",
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Statue_of_Liberty_7.jpg/512px-Statue_of_Liberty_7.jpg",
+        "alt": "자유의 여신상"
+      }
     ]
-  }
+  },
+  "overview": "The United States is a large country with many climates, famous cities, national parks, and several time zones.",
+  "greeting": "Hello: Hello",
+  "climate": "The climate ranges from arctic in Alaska to tropical in Hawaii and Florida.",
+  "bestSeason": "Spring and autumn are often comfortable in many cities.",
+  "travelTips": "Distances are big, so domestic flights are common between faraway cities.",
+  "landmarks": [
+    "Statue of Liberty",
+    "Grand Canyon",
+    "Golden Gate Bridge"
+  ],
+  "gallery": [
+    {
+      "title": "Statue of Liberty",
+      "caption": "A famous monument in New York",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Statue_of_Liberty_7.jpg/512px-Statue_of_Liberty_7.jpg",
+      "alt": "Statue of Liberty"
+    }
+  ]
 }

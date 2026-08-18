@@ -36,6 +36,26 @@
       "캐나다는 매우 긴 해안선을 가진 나라입니다.",
       "국토의 넓은 부분에 숲과 호수가 있습니다.",
       "연방 차원의 공용어는 영어와 프랑스어입니다."
+    ],
+    "overview": "캐나다는 숲과 호수, 눈 오는 겨울, 두 개의 연방 공용어로 잘 알려져 있어요.",
+    "greeting": "안녕하세요: 헬로 / 봉주르",
+    "climate": "많은 지역은 겨울이 춥고, 일부 해안 지역은 비교적 온화해요.",
+    "bestSeason": "여름은 야외 여행에 인기가 많아요.",
+    "travelTips": "거리가 길 수 있어서 지역별로 여행 계획을 세우는 게 좋아요.",
+    "landmarks": [
+      "나이아가라 폭포",
+      "밴프 국립공원",
+      "CN타워"
     ]
-  }
+  },
+  "overview": "Canada is known for forests, lakes, snowy winters, and two federal official languages.",
+  "greeting": "Hello: Hello / Bonjour",
+  "climate": "Canada has cold winters in many areas and milder coasts in some regions.",
+  "bestSeason": "Summer is popular for outdoor travel.",
+  "travelTips": "Distances can be large, so plan travel by region.",
+  "landmarks": [
+    "Niagara Falls",
+    "Banff National Park",
+    "CN Tower"
+  ]
 }

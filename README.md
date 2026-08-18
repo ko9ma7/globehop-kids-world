@@ -1,63 +1,107 @@
 # GlobeHop 🌍✈️
 
-A kid-friendly world explorer for GitHub Pages. Search countries, cities and featured landmarks; watch a plane, ship or train travel across a simplified globe; then compare distance, time difference and country facts.
+아이들이 나라·도시·명소를 검색하고, 출발지에서 목적지까지의 거리·시차·예상 이동시간을 보며 세계를 공부하는 GitHub Pages용 정적 웹서비스입니다.
 
-![GlobeHop social preview](./public/repo-social-preview.png)
+이 프로젝트는 **평면 세계지도 + 지구본 느낌 애니메이션**, **비행기 경로**, **편도/왕복**, **육상 이동 거리**, **국가 기본 통계**, **아이용 학습 카드**, **다국어 UI**, **출발지 설정**, **이미지 갤러리**, **PWA**, **GitHub Actions 배포**를 하나의 완성 프로젝트로 제공합니다.
 
-## Preview
+## 핵심 기능
 
-The first screen is a working explorer rather than a marketing placeholder. It includes:
+- 국가·도시·명소 검색
+- 232개 국가 기본 검색 데이터
+- 대표 도시/명소 오프라인 검색 데이터
+- Open-Meteo Geocoding 기반 온라인 지명 검색 보조
+- 2D 세계지도 / 지구본 느낌 전환
+- 비행기 이동 애니메이션
+- 편도 / 왕복 애니메이션
+- 직선거리 계산
+- 가능한 경우 OSRM 실제 도로망 기반 육상 거리·시간 조회
+- 도로 라우팅 실패 시 지역/국경 기반 안전한 추정값 fallback
+- 예상 비행시간
+- 현지시간 / 시차
+- 나라별 수도·인구·면적·GDP·GNI·통화·언어·지역·국가번호
+- World Bank API 기반 최신 통계 보강
+- 나라별 음식·특산물·동물·식물·랜드마크·인사말·기후·추천 시기·여행 팁·재미있는 사실
+- 국기 및 국가별 이미지 갤러리
+- 즐겨찾기 / 최근 탐험 LocalStorage 저장
+- Light / Dark / System 테마
+- PWA manifest / service worker
+- SEO / Open Graph / Twitter Card
+- 커스텀 404
+- GitHub Actions 자동 Pages 배포
 
-- a searchable world index
-- a simplified SVG globe with country highlighting
-- animated origin → destination travel paths
-- transport switching (plane / ship / train)
-- country and location facts
-- recent explorations and favorites
-- multilingual UI and dark mode
+## 지원 언어
 
-## Features
+UI는 다음 언어를 지원합니다.
 
-- **232-country bundled search index** split into region files for maintainability
-- **52 featured cities/landmarks** that still search when external APIs are unavailable
-- optional **Open-Meteo Geocoding** lookup for broader city/place search
-- optional **World Bank Indicators API** enrichment for recent population, GDP and GNI
-- browser **Geolocation** origin with a clear privacy note and Seoul sample fallback
-- Haversine distance and time-zone difference calculation
-- kid-oriented culture/nature knowledge packs, stored one JSON file per country
-- Korean, English, Japanese and Simplified Chinese UI
-- `Intl.DisplayNames` country localization
-- light / dark / system theme persisted in `localStorage`
-- recent trips and favorites persisted in `localStorage`
-- responsive layouts for 320 / 375 / 430 / 768 / 1024 / 1440+ px
-- keyboard-search navigation, semantic controls, focus-visible and reduced-motion support
-- PWA manifest and service worker
-- favicon/app icons, Apple Touch Icon, OG image and GitHub repository social preview
-- SEO metadata, JSON-LD, `robots.txt`, `sitemap.xml`
-- custom 404 page
-- GitHub Actions Pages deployment
+- 한국어
+- English
+- 日本語
+- 中文
+- हिन्दी
+- Deutsch
+- Français
+- Español
+- Português
+- العربية
+- Bahasa Indonesia
 
-> The animated route is an educational visualization. It is not a real airline, railway or shipping itinerary.
+국가명은 브라우저의 `Intl.DisplayNames`를 이용해 가능한 범위에서 자동 현지화합니다. 국가별 학습 콘텐츠는 현재 영어/한국어 중심이며 JSON 파일에 언어 블록을 추가하는 방식으로 확장할 수 있습니다.
 
-## Tech Stack
+## 기본 출발지
 
-- HTML5
-- CSS3
-- JavaScript ES modules
-- SVG
-- browser Web APIs (Geolocation, Intl, LocalStorage, Service Worker)
-- zero runtime npm dependencies
-- custom Node build/dev scripts
-- GitHub Pages + GitHub Actions
+다음 대표 도시를 기본 출발지로 제공합니다.
 
-The project deliberately avoids a heavy map/UI framework because the intended map is simplified and child-friendly, not a detailed navigation map.
+- 서울
+- 뉴델리
+- 베를린
+- 파리
+- 도쿄
+- 베이징
+- 자카르타
+- 방콕
+- 뉴욕
+- 상파울루
+- 카이로
+- 두바이
 
-## Project Structure
+브라우저 Geolocation 권한을 허용하면 **내 위치**를 출발지로 사용할 수 있습니다.
+
+> 내 위치를 선택하면 도로 거리 계산을 위해 좌표가 공개 위치/라우팅 API로 전송될 수 있습니다. GlobeHop 자체 서버는 없으며 프로젝트 자체가 위치 좌표를 서버에 저장하지 않습니다.
+
+## 이동 경로 정책
+
+배·기차·비행기가 같은 선을 따라 움직이는 문제를 피하기 위해 **지도에서 움직이는 교통수단은 비행기 하나만 사용**합니다.
+
+대신 아래 정보를 구분해서 제공합니다.
+
+- 직선거리: Haversine 계산
+- 비행시간: 거리 기반 교육용 예상값
+- 육상거리/시간: OSRM 경로가 반환되면 실제 도로망 기반 결과 사용
+- OSRM이 실패하거나 현실적인 육상 연결이 어려우면 추정값 또는 `계산 어려움` 표시
+
+비행기 곡선은 실제 항공편의 운항 경로가 아니라 아이들이 위치 관계를 이해하기 위한 교육용 시각화입니다.
+
+## 프로젝트 구조
 
 ```text
-/
+kids-world-explorer/
+├─ .github/
+│  └─ workflows/
+│     └─ deploy.yml
+├─ docs/
+│  ├─ ARCHITECTURE.md
+│  ├─ DATA_GUIDE.md
+│  ├─ PROJECT_STRUCTURE.md
+│  └─ ROUTING_AND_PRIVACY.md
 ├─ public/
 │  ├─ icons/
+│  │  ├─ apple-touch-icon.png
+│  │  ├─ favicon-16.png
+│  │  ├─ favicon-32.png
+│  │  ├─ icon-192.png
+│  │  ├─ icon-512.png
+│  │  └─ icon-512-maskable.png
+│  ├─ .nojekyll
 │  ├─ 404.html
 │  ├─ favicon.svg
 │  ├─ manifest.webmanifest
@@ -65,13 +109,25 @@ The project deliberately avoids a heavy map/UI framework because the intended ma
 │  ├─ repo-social-preview.png
 │  ├─ robots.txt
 │  ├─ sitemap.xml
-│  ├─ sw.js
-│  └─ .nojekyll
+│  └─ sw.js
+├─ scripts/
+│  ├─ build.mjs
+│  └─ dev-server.mjs
 ├─ src/
 │  ├─ data/
 │  │  ├─ countries/
+│  │  │  ├─ index.json
+│  │  │  └─ regions/
 │  │  ├─ knowledge/
+│  │  │  ├─ index.json
+│  │  │  ├─ kr.json
+│  │  │  ├─ jp.json
+│  │  │  ├─ in.json
+│  │  │  └─ ...
+│  │  ├─ origins/
+│  │  │  └─ index.json
 │  │  ├─ places/
+│  │  │  └─ index.json
 │  │  └─ world-geometries.json
 │  ├─ modules/
 │  │  ├─ config.js
@@ -82,137 +138,113 @@ The project deliberately avoids a heavy map/UI framework because the intended ma
 │  │  └─ storage.js
 │  ├─ app.js
 │  └─ styles.css
-├─ docs/
-│  ├─ ARCHITECTURE.md
-│  └─ DATA_GUIDE.md
-├─ scripts/
-│  ├─ build.mjs
-│  └─ dev-server.mjs
-├─ .github/workflows/deploy.yml
 ├─ index.html
+├─ LICENSE
+├─ NOTICE.md
 ├─ package.json
 ├─ package-lock.json
 └─ README.md
 ```
 
-## Local Development
+## 역할별 파일
+
+### `src/data/countries/`
+국가 기본 데이터입니다. 전 세계 검색용 index와 대륙별 상세 파일로 나눴습니다.
+
+### `src/data/origins/`
+출발지 프리셋 데이터입니다. 출발 도시를 추가하려면 UI 코드를 고치지 않고 이 JSON을 확장하면 됩니다.
+
+### `src/data/places/`
+오프라인에서도 검색할 대표 도시·랜드마크입니다.
+
+### `src/data/knowledge/`
+나라별 아이용 학습 콘텐츠입니다. **한 나라 = 한 JSON** 방식이므로 데이터가 많아져도 분리 관리할 수 있습니다.
+
+### `src/modules/dataService.js`
+정적 JSON, Open-Meteo, World Bank, OSRM 요청을 담당합니다.
+
+### `src/modules/geo.js`
+거리, 시차, 예상 비행시간, 육상 이동 fallback 계산을 담당합니다.
+
+### `src/modules/globe.js`
+평면 지도/지구본 효과와 비행기 경로 애니메이션을 담당합니다.
+
+### `src/modules/i18n.js`
+다국어 UI 사전입니다.
+
+## 실행 방법
+
+Node.js 20 이상 권장입니다.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open:
+브라우저에서:
 
 ```text
 http://localhost:5173/
 ```
 
-There are no runtime npm dependencies; `npm install` primarily creates/validates the lockfile and keeps the GitHub Action workflow conventional.
-
-## Build
+## 빌드
 
 ```bash
 npm run build
 ```
 
-Output is written to `dist/`.
+배포 파일은 `dist/`에 생성됩니다.
 
-To inject a production canonical/OG/sitemap URL locally:
+GitHub Pages 실제 URL을 canonical/OG/sitemap에 넣어 빌드하려면:
 
 ```bash
 SITE_URL="https://USERNAME.github.io/REPOSITORY/" npm run build
 ```
 
-## GitHub Pages Deployment
+## GitHub Pages 배포
 
-1. Create a GitHub repository and upload this project.
-2. Push it to the `main` branch.
-3. In GitHub, open **Settings → Pages**.
-4. Under **Build and deployment**, select **GitHub Actions** as the source.
-5. Push another commit or run **Actions → Deploy GlobeHop to GitHub Pages → Run workflow**.
-6. The workflow resolves whether this is a project page or a user page, injects the correct public URL, builds `dist/`, uploads the Pages artifact and deploys it.
+1. GitHub에 새 Repository를 만듭니다.
+2. 이 프로젝트 전체를 업로드합니다.
+3. 기본 브랜치를 `main`으로 사용합니다.
+4. GitHub Repository에서 **Settings → Pages**를 엽니다.
+5. Build and deployment Source를 **GitHub Actions**로 설정합니다.
+6. `main`에 push하면 `.github/workflows/deploy.yml`이 자동 실행됩니다.
 
-The normal flow is:
-
-```text
-git push → GitHub Actions → npm ci → npm run build → Pages artifact → deploy-pages
-```
-
-All app assets are referenced relatively, so project subpaths such as:
+배포 흐름:
 
 ```text
-https://USERNAME.github.io/REPOSITORY/
+git push
+→ npm ci
+→ npm run build
+→ dist 생성
+→ GitHub Pages artifact 업로드
+→ deploy-pages
 ```
 
-work without a Vite `base` setting.
+## 데이터 확장
 
-## Configuration
+자세한 방법은 다음 문서를 참고하세요.
 
-Main settings live in:
+- `docs/DATA_GUIDE.md`
+- `docs/PROJECT_STRUCTURE.md`
+- `docs/ROUTING_AND_PRIVACY.md`
 
-```text
-src/modules/config.js
-```
+## 주요 외부 서비스
 
-You can change:
+- Open-Meteo Geocoding: 도시/지명 검색 보조
+- World Bank Indicators API: 인구/GDP/GNI 최신값 보강
+- OSRM: 가능한 경우 자동차 도로 경로 거리/시간 조회
 
-- app name/default locale
-- supported locales
-- sample origin
-- geocoding endpoint
-- World Bank indicator codes
-- recent-history size
+외부 API가 실패해도 국가 기본 검색과 내장 학습 데이터는 계속 동작합니다.
 
-See [`docs/DATA_GUIDE.md`](./docs/DATA_GUIDE.md) for adding countries, places, knowledge packs and languages.
+## 이미지
 
-## Data Sources
-
-- Bundled stable country reference data: generated from `countryinfo` 0.1.2 (MIT); see `NOTICE.md`.
-- Place search enrichment: Open-Meteo Geocoding API.
-- Current population/GDP/GNI enrichment: World Bank Indicators API v2.
-
-For commercial use, review the current Open-Meteo licensing/plan requirements before deployment. If you need a paid API key, **do not put private keys directly into this GitHub Pages source**. Use a serverless proxy or a provider-supported public client credential strategy.
-
-## Custom Domain
-
-GitHub Pages supports a custom domain without changing the app's relative asset paths.
-
-1. Configure the domain under **Settings → Pages → Custom domain**.
-2. Add the required DNS records at your DNS provider.
-3. Enable **Enforce HTTPS** after GitHub issues the certificate.
-4. If you prefer a repository-managed `CNAME`, create `public/CNAME` containing only the domain, for example:
-
-```text
-world.example.com
-```
-
-On the next build, it will be copied into `dist/`.
-
-## Social Preview
-
-- Website OG image: `public/og-image.png` (1200×630)
-- GitHub repository social preview: `public/repo-social-preview.png` (1280×640)
-
-Upload `repo-social-preview.png` in **Repository Settings → Social preview**.
-
-## PWA
-
-The included manifest provides installable app metadata and icons. The service worker caches the core UI and locally loaded data. External API calls remain network-first and fail gracefully.
-
-## Extending the project
-
-Good next expansions include:
-
-- richer country knowledge packs for all ISO countries
-- `ja` / `zh` localized knowledge content per country
-- continent-based place shards once the place index becomes large
-- river, mountain, ocean and biome data layers
-- quiz mode and collectible passport stamps
-- text-to-speech pronunciation of country/capital names
-- teacher/parent-curated lesson playlists
-- offline downloadable continent packs
+- 국기는 FlagCDN 이미지를 우선 사용하고 로드 실패 시 UI fallback을 표시합니다.
+- 일부 국가 지식팩은 Wikimedia Commons 기반 대표 이미지 URL을 포함합니다.
+- 대규모 운영에서는 `public/content/<country-code>/`에 직접 관리하는 최적화 이미지를 두는 방식을 권장합니다.
 
 ## License
 
-Project code: MIT License. See `LICENSE` and `NOTICE.md` for bundled data notes and external API attribution.
+코드: MIT License
+
+정적 데이터 및 외부 이미지/API는 각 원출처의 라이선스/이용조건을 별도로 확인해야 합니다. `NOTICE.md`를 함께 확인하세요.

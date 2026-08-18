@@ -1,9 +1,23 @@
-# Data and attribution notes
+# Notices and external services
 
-GlobeHop is designed so that stable geography data can be bundled locally while volatile statistics can be refreshed from public APIs.
+GlobeHop is an educational static web project. The application code is released under the MIT License.
 
-- The bundled country reference snapshot was generated from the `countryinfo` Python package (v0.1.2, MIT License), which provides country codes, capitals, coordinates, area, population snapshots, languages, currencies, borders, time zones and simplified GeoJSON for many countries.
-- The curated `src/data/places/index.json` and `src/data/knowledge/*.json` files are project-authored starter data intended for educational use and extension.
-- Optional live city/place lookup uses Open-Meteo's Geocoding API. Review Open-Meteo's current terms and commercial-use requirements before commercial deployment.
-- Optional live GDP, GNI and population updates use the World Bank Indicators API v2.
-- Animated travel paths are illustrative learning graphics. They are not real airline, railway or shipping routes and should not be used for navigation.
+## Bundled country reference data
+
+The country reference snapshot was prepared from open country metadata available to the project authoring environment. Values such as population can age, so the app may replace selected statistics with current World Bank API results when online.
+
+## Open-Meteo Geocoding
+
+Used as an optional online city/place search helper. Review Open-Meteo's current licensing and commercial-use terms before production use.
+
+## World Bank Indicators API
+
+Used as optional online enrichment for population, GDP and GNI-related indicators. World Bank API terms and dataset licenses apply.
+
+## OSRM
+
+The app can request an OSRM driving route to obtain road-network distance and duration. The public OSRM endpoint is treated as a best-effort helper, not a guaranteed production backend. For a high-traffic service, use an appropriately hosted/contracted routing service.
+
+## Images
+
+Country flags can be loaded from FlagCDN. Selected educational content packs may reference Wikimedia Commons images. External image licenses and attribution requirements remain the responsibility of the deployer. For a controlled production deployment, replace remote image URLs with licensed local assets under `public/content/`.

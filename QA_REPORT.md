@@ -1,20 +1,56 @@
 # GlobeHop QA Report
 
-## Passed checks
+검수일: 2026-08-18
 
-- `npm install --package-lock-only` completed with zero reported vulnerabilities.
-- `npm run build` completed successfully.
-- JavaScript syntax check passed for all `src/*.js`, `src/modules/*.js`, and build/dev scripts.
-- All bundled JSON/manifest/package files parse successfully.
-- 232 country index entries resolve to a regional data shard.
-- 12 curated knowledge-pack index entries resolve to existing country JSON files.
-- All relative assets referenced directly by `index.html` exist.
-- Production build contains `.nojekyll`, custom `404.html`, manifest, favicon/app icons, OG image, social preview, service worker and data files.
-- Production build was tested with a project-pages URL (`https://example.github.io/globehop/`) and contains no unreplaced `__SITE_URL__` tokens.
-- `dist/` is approximately 0.56 MB before HTTP compression, keeping the initial static project lightweight.
+## Build
+
+- `npm run build`: PASS
+- 출력 폴더: `dist/`
+- `__SITE_URL__` 미치환 placeholder: 없음
+
+## Syntax
+
+- `src/app.js`: PASS
+- `src/modules/*.js`: PASS
+- `scripts/*.mjs`: PASS
+
+## Data
+
+- 국가 검색 index: 232개
+- 대표 도시/명소: 52개
+- 출발지 preset: 12개
+- 확장 knowledge pack: 23개
+- JSON / manifest parse: PASS
+- knowledge index → 실제 파일 연결: PASS
+
+## GitHub Pages
+
+- 상대경로 asset 구조: 적용
+- `.nojekyll`: 적용
+- custom 404: 적용
+- GitHub Actions workflow: 포함
+- favicon / PWA icons / manifest: 포함
+- Open Graph / Twitter Card: 포함
+- robots / sitemap: 포함
+
+## 기능 검토
+
+- 국가/지명 검색
+- Open-Meteo 온라인 검색 fallback
+- 출발지 preset
+- 브라우저 내 위치
+- 2D 지도 / 지구본 느낌 전환
+- 비행기 편도/왕복 애니메이션
+- 직선거리
+- 예상 비행시간
+- OSRM 육상 도로거리 시도 + fallback
+- 시차 / 현지시간
+- World Bank 통계 보강
+- 나라별 학습 카드
+- 이미지 gallery fallback
+- LocalStorage 즐겨찾기/최근탐험/설정
+- 반응형 CSS
 
 ## Browser automation note
 
-A Playwright/Chromium visual pass was attempted. This execution environment blocks both local HTTP and `file://` navigation inside Chromium with `ERR_BLOCKED_BY_ADMINISTRATOR`, so an actual rendered-browser screenshot could not be collected here. This is an environment policy restriction rather than a build error; the local Node server itself returned HTTP 200 through `curl`.
-
-The project therefore received static build/path/accessibility/responsive-code checks in this environment. The repository includes no browser-specific build dependency, so it can be opened with `npm run dev` in a normal local browser for final visual inspection.
+이 작업 컨테이너의 Chromium headless 프로세스가 DBus/환경 제약으로 종료되지 않아 자동 스크린샷 검수는 완료하지 못했습니다. HTTP 서버는 정상 200 응답을 확인했고, 대신 build/syntax/data/asset 정적 검증을 수행했습니다.

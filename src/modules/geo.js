@@ -1,5 +1,6 @@
 const R = 6371;
 const rad = (d) => (d * Math.PI) / 180;
+const ISLAND_OR_REMOTE = new Set(['AU','NZ','JP','ID','PH','IS','GB','IE','MG','TW','LK','SG']);
 
 export function haversineKm(a, b) {
   const dLat = rad(b.lat - a.lat);
@@ -63,11 +64,51 @@ export function quadraticPoint(route, t) {
   };
 }
 
-export function chooseTransport(originCountry, destinationCountry, distanceKm) {
-  if (originCountry && destinationCountry && originCountry.code2 === destinationCountry.code2 && distanceKm < 1200) return 'train';
-  if (originCountry && destinationCountry && originCountry.borders?.includes(destinationCountry.code3) && distanceKm < 1800) return 'train';
-  if (distanceKm < 1300) return 'ship';
-  return 'plane';
+export function estimateFlightTimeHours(distanceKm) {
+  if (!Number.isFinite(distanceKm) || distanceKm <= 0) return null;
+  const cruiseHours = distanceKm / 820;
+  return cruiseHours + (distanceKm > 2500 ? 1.5 : 1.1);
+}
+
+function bordersEachOther(originCountry, destinationCountry) {
+  if (!originCountry || !destinationCountry) return false;
+  const destCode3 = destinationCountry.code3;
+  const originCode3 = originCountry.code3;
+  return originCountry.borders?.includes(destCode3) || destinationCountry.borders?.includes(originCode3);
+}
+
+export function estimateLandRoute(originCountry, destinationCountry, airDistanceKm) {
+  if (!originCountry || !destinationCountry || !Number.isFinite(airDistanceKm)) {
+    return { available: false, reason: 'unknown' };
+  }
+
+  if (originCountry.code2 === destinationCountry.code2) {
+    const distance = Math.round(airDistanceKm * 1.18);
+    return { available: true, distanceKm: distance, hours: distance / 72, kind: 'same-country' };
+  }
+
+  const eitherRemote = ISLAND_OR_REMOTE.has(originCountry.code2) || ISLAND_OR_REMOTE.has(destinationCountry.code2);
+  if (eitherRemote && originCountry.code2 !== destinationCountry.code2) {
+    return { available: false, reason: 'sea-crossing' };
+  }
+
+  if (bordersEachOther(originCountry, destinationCountry)) {
+    const distance = Math.round(airDistanceKm * 1.28);
+    return { available: true, distanceKm: distance, hours: distance / 68, kind: 'neighbor' };
+  }
+
+  if (originCountry.region === destinationCountry.region && originCountry.region !== 'Oceania') {
+    const distance = Math.round(airDistanceKm * 1.48);
+    return { available: true, distanceKm: distance, hours: distance / 70, kind: 'same-region' };
+  }
+
+  const connectedRegions = new Set(['Asia', 'Europe', 'Africa']);
+  if (connectedRegions.has(originCountry.region) && connectedRegions.has(destinationCountry.region)) {
+    const distance = Math.round(airDistanceKm * 1.88);
+    return { available: true, distanceKm: distance, hours: distance / 68, kind: 'eurasia-africa' };
+  }
+
+  return { available: false, reason: 'not-practical' };
 }
 
 export function timezoneOffsetMinutes(timeZone, date = new Date()) {

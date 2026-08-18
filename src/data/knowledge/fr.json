@@ -36,6 +36,42 @@
       "프랑스는 대서양과 지중해에 모두 해안이 있습니다.",
       "남동쪽에는 알프스산맥이 이어집니다.",
       "TGV는 프랑스의 대표적인 고속철도입니다."
+    ],
+    "overview": "프랑스는 서유럽의 큰 나라로 미술, 음식, 패션, 고속철도로 유명해요.",
+    "greeting": "안녕하세요: 봉주르 (Bonjour)",
+    "climate": "대부분 온화한 편이고, 남쪽 지중해 연안은 더 따뜻해요.",
+    "bestSeason": "늦봄과 초가을은 가족 여행에 편안한 시기예요.",
+    "travelTips": "큰 도시에서는 지하철과 기차 노선을 따라 이동하기 쉬워요.",
+    "landmarks": [
+      "에펠탑",
+      "루브르 박물관",
+      "몽생미셸"
+    ],
+    "gallery": [
+      {
+        "title": "에펠탑",
+        "caption": "파리를 대표하는 랜드마크",
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/640px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "에펠탑"
+      }
     ]
-  }
+  },
+  "overview": "France is a major country in Western Europe known for art, food, fashion, and fast trains.",
+  "greeting": "Hello: Bonjour",
+  "climate": "Much of France has mild seasons, while the south is warmer near the Mediterranean.",
+  "bestSeason": "Late spring and early autumn are comfortable for families.",
+  "travelTips": "Metro and train maps are easy to follow in big cities.",
+  "landmarks": [
+    "Eiffel Tower",
+    "Louvre Museum",
+    "Mont Saint-Michel"
+  ],
+  "gallery": [
+    {
+      "title": "Eiffel Tower",
+      "caption": "One of the most famous landmarks in Paris",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/640px-Tour_Eiffel_Wikimedia_Commons.jpg",
+      "alt": "Eiffel Tower"
+    }
+  ]
 }

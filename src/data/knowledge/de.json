@@ -36,6 +36,42 @@
       "독일에는 라인강과 엘베강 같은 큰 강이 있습니다.",
       "육지 국경을 맞댄 나라가 아홉 곳입니다.",
       "도시 사이를 잇는 철도망이 촘촘합니다."
+    ],
+    "overview": "독일은 유럽 한가운데 있는 나라로 성, 숲, 강, 과학 기술로 잘 알려져 있어요.",
+    "greeting": "안녕하세요: 할로 (Hallo)",
+    "climate": "사계절이 비교적 뚜렷하고, 전반적으로 서늘하거나 온화한 날씨예요.",
+    "bestSeason": "늦봄부터 초가을까지 야외 활동하기 좋은 편이에요.",
+    "travelTips": "지역 열차와 ICE 고속열차로 많은 도시를 이동할 수 있어요.",
+    "landmarks": [
+      "브란덴부르크문",
+      "노이슈반슈타인성",
+      "쾰른 대성당"
+    ],
+    "gallery": [
+      {
+        "title": "브란덴부르크문",
+        "caption": "베를린의 상징적인 문",
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/640px-Brandenburger_Tor_abends.jpg",
+        "alt": "브란덴부르크문"
+      }
     ]
-  }
+  },
+  "overview": "Germany sits in central Europe and is known for castles, forests, rivers, science, and engineering.",
+  "greeting": "Hello: Hallo",
+  "climate": "Germany has four seasons and cool to mild weather in much of the year.",
+  "bestSeason": "Late spring to early autumn is popular for outdoor travel.",
+  "travelTips": "Regional trains and long-distance ICE trains connect many cities.",
+  "landmarks": [
+    "Brandenburg Gate",
+    "Neuschwanstein Castle",
+    "Cologne Cathedral"
+  ],
+  "gallery": [
+    {
+      "title": "Brandenburg Gate",
+      "caption": "A famous gateway in Berlin",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/640px-Brandenburger_Tor_abends.jpg",
+      "alt": "Brandenburg Gate"
+    }
+  ]
 }

@@ -36,6 +36,42 @@
       "일본은 수천 개의 섬으로 이루어진 섬나라입니다.",
       "신칸센이 주요 도시를 빠르게 연결합니다.",
       "후지산은 일본에서 가장 높은 산입니다."
+    ],
+    "overview": "일본은 동아시아의 섬나라로, 큰 도시와 화산, 숲, 해안 지역이 함께 있는 나라예요.",
+    "greeting": "안녕하세요: 곤니치와 (こんにちは)",
+    "climate": "눈이 많이 오는 홋카이도부터 따뜻한 오키나와까지 지역별 날씨 차이가 커요.",
+    "bestSeason": "봄과 가을은 날씨가 온화해 많이 찾는 시기예요.",
+    "travelTips": "기차가 정시성이 높고, 교통카드를 쓰면 도시 이동이 편해요.",
+    "landmarks": [
+      "후지산",
+      "도쿄타워",
+      "후시미 이나리 신사"
+    ],
+    "gallery": [
+      {
+        "title": "후지산",
+        "caption": "일본을 대표하는 산",
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Mount_Fuji_from_Hotel_Mt_Fuji_2021_January.jpg/640px-Mount_Fuji_from_Hotel_Mt_Fuji_2021_January.jpg",
+        "alt": "후지산"
+      }
     ]
-  }
+  },
+  "overview": "Japan is an island country in East Asia with busy cities, volcanoes, forests, and many coastal communities.",
+  "greeting": "Hello: Konnichiwa (こんにちは)",
+  "climate": "From snowy Hokkaido to warm Okinawa, the weather changes a lot by region.",
+  "bestSeason": "Spring and autumn are popular for mild weather.",
+  "travelTips": "Trains are punctual, and IC cards make city travel easier.",
+  "landmarks": [
+    "Mount Fuji",
+    "Tokyo Tower",
+    "Fushimi Inari Shrine"
+  ],
+  "gallery": [
+    {
+      "title": "Mount Fuji",
+      "caption": "A famous mountain in Japan",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Mount_Fuji_from_Hotel_Mt_Fuji_2021_January.jpg/640px-Mount_Fuji_from_Hotel_Mt_Fuji_2021_January.jpg",
+      "alt": "Mount Fuji"
+    }
+  ]
 }
