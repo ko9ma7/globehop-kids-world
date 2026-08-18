@@ -1,4 +1,4 @@
-const VERSION = 'globehop-v5-stable-map-20260818';
+const VERSION = 'globehop-v6-front-hemisphere-20260818';
 const CORE = [
   './', './index.html', './src/styles.css', './src/app.js',
   './src/modules/config.js', './src/modules/i18n.js', './src/modules/storage.js',

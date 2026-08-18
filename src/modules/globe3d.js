@@ -129,7 +129,10 @@ function buildSphere(latSegments = 64, lonSegments = 128) {
     for (let ix = 0; ix < lonSegments; ix++) {
       const a = iy * row + ix;
       const b = a + row;
-      indices.push(a, b, a + 1, b, b + 1, a + 1);
+      // Outward-facing CCW winding. The previous order pointed the triangle
+      // normals inward; with BACK-face culling enabled that removed the near
+      // hemisphere and exposed the opposite side of the globe.
+      indices.push(a, a + 1, b, b, a + 1, b + 1);
     }
   }
   return {
@@ -999,6 +1002,8 @@ export class Globe3DView {
       gl.viewport(0, 0, this.width, this.height);
       gl.enable(gl.DEPTH_TEST);
       gl.enable(gl.CULL_FACE);
+      gl.frontFace(gl.CCW);
+      gl.cullFace(gl.BACK);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
       gl.useProgram(this.program);

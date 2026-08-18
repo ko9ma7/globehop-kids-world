@@ -200,7 +200,7 @@ function renderAppShell() {
       </section>
     </main>
 
-    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="Stable 2D/3D focus fix">V5.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
+    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="3D front-hemisphere winding fix">V6.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
 
     <dialog id="sourceDialog" class="source-dialog">
       <button class="dialog-close icon-button" type="button" data-dialog-close aria-label="Close">${icon('close')}</button>
