@@ -32,7 +32,12 @@ export class GlobeView {
     this.onPlaceClick = onPlaceClick;
     this.defaultViewBox = { x: 0, y: 0, width: 1000, height: 500 };
     this.currentViewBox = { ...this.defaultViewBox };
+    this.activePointers = new Map();
+    this.lastPanPoint = null;
+    this.lastPinchDistance = null;
+    this.suppressClickUntil = 0;
     this.renderShell();
+    this.bindMapInteractions();
   }
 
   renderShell() {
@@ -64,6 +69,129 @@ export class GlobeView {
     this.svg.appendChild(this.markerLayer);
   }
 
+  clampViewBox(box) {
+    const minWidth = 120;
+    const width = Math.max(minWidth, Math.min(1000, box.width));
+    const height = width / 2;
+    const x = Math.max(0, Math.min(1000 - width, box.x));
+    const y = Math.max(0, Math.min(500 - height, box.y));
+    return { x, y, width, height };
+  }
+
+  applyViewBox(box) {
+    this.currentViewBox = this.clampViewBox(box);
+    this.svg.setAttribute('viewBox', `${this.currentViewBox.x} ${this.currentViewBox.y} ${this.currentViewBox.width} ${this.currentViewBox.height}`);
+    this.svg.classList.toggle('is-zoomed', this.currentViewBox.width < 960);
+    this.refreshFixedSizeGraphics();
+  }
+
+  mapPointFromClient(clientX, clientY) {
+    const rect = this.svg.getBoundingClientRect();
+    if (!rect.width || !rect.height) return null;
+    const nx = (clientX - rect.left) / rect.width;
+    const ny = (clientY - rect.top) / rect.height;
+    return {
+      x: this.currentViewBox.x + nx * this.currentViewBox.width,
+      y: this.currentViewBox.y + ny * this.currentViewBox.height
+    };
+  }
+
+  zoomAt(factor = 1.18, clientX = null, clientY = null) {
+    if (!Number.isFinite(factor) || factor <= 0) return;
+    const rect = this.svg.getBoundingClientRect();
+    const cx = clientX ?? (rect.left + rect.width / 2);
+    const cy = clientY ?? (rect.top + rect.height / 2);
+    const anchor = this.mapPointFromClient(cx, cy) || {
+      x: this.currentViewBox.x + this.currentViewBox.width / 2,
+      y: this.currentViewBox.y + this.currentViewBox.height / 2
+    };
+    const newWidth = Math.max(120, Math.min(1000, this.currentViewBox.width / factor));
+    const ratio = newWidth / this.currentViewBox.width;
+    const newHeight = newWidth / 2;
+    const next = {
+      x: anchor.x - (anchor.x - this.currentViewBox.x) * ratio,
+      y: anchor.y - (anchor.y - this.currentViewBox.y) * ratio,
+      width: newWidth,
+      height: newHeight
+    };
+    this.applyViewBox(next);
+  }
+
+  zoomBy(factor = 1.18) {
+    this.zoomAt(factor);
+  }
+
+  panByCss(dx, dy) {
+    const rect = this.svg.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const mapDx = dx * this.currentViewBox.width / rect.width;
+    const mapDy = dy * this.currentViewBox.height / rect.height;
+    this.applyViewBox({
+      ...this.currentViewBox,
+      x: this.currentViewBox.x - mapDx,
+      y: this.currentViewBox.y - mapDy
+    });
+  }
+
+  bindMapInteractions() {
+    const target = this.svg;
+    target.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const factor = Math.max(0.82, Math.min(1.24, Math.exp(-event.deltaY * 0.0014)));
+      this.zoomAt(factor, event.clientX, event.clientY);
+    }, { passive: false });
+
+    target.addEventListener('pointerdown', (event) => {
+      target.setPointerCapture?.(event.pointerId);
+      this.activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      this.lastPanPoint = { x: event.clientX, y: event.clientY };
+      if (this.activePointers.size === 2) {
+        const points = [...this.activePointers.values()];
+        this.lastPinchDistance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+      }
+    });
+
+    target.addEventListener('pointermove', (event) => {
+      if (!this.activePointers.has(event.pointerId)) return;
+      this.activePointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (this.activePointers.size >= 2) {
+        const points = [...this.activePointers.values()].slice(0, 2);
+        const pinch = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+        const midpoint = { x: (points[0].x + points[1].x) / 2, y: (points[0].y + points[1].y) / 2 };
+        if (this.lastPinchDistance && pinch > 4) {
+          const factor = Math.max(0.86, Math.min(1.16, pinch / this.lastPinchDistance));
+          this.zoomAt(factor, midpoint.x, midpoint.y);
+          this.suppressClickUntil = performance.now() + 220;
+        }
+        this.lastPinchDistance = pinch;
+        return;
+      }
+      if (this.lastPanPoint) {
+        const dx = event.clientX - this.lastPanPoint.x;
+        const dy = event.clientY - this.lastPanPoint.y;
+        if (Math.abs(dx) + Math.abs(dy) > 1) {
+          this.panByCss(dx, dy);
+          this.suppressClickUntil = performance.now() + 180;
+        }
+      }
+      this.lastPanPoint = { x: event.clientX, y: event.clientY };
+    });
+
+    const endPointer = (event) => {
+      this.activePointers.delete(event.pointerId);
+      if (this.activePointers.size < 2) this.lastPinchDistance = null;
+      if (this.activePointers.size === 1) {
+        const point = [...this.activePointers.values()][0];
+        this.lastPanPoint = { ...point };
+      } else if (!this.activePointers.size) {
+        this.lastPanPoint = null;
+      }
+    };
+    target.addEventListener('pointerup', endPointer);
+    target.addEventListener('pointercancel', endPointer);
+    target.addEventListener('lostpointercapture', endPointer);
+  }
+
   setData({ geometries = [], countries = [], places = [] }) {
     this.countries = new Map(countries.map((c) => [c.code2, c]));
     this.setGeometries(geometries);
@@ -82,7 +210,7 @@ export class GlobeView {
       path.addEventListener('pointerenter', showHover);
       path.addEventListener('pointermove', showHover);
       path.addEventListener('pointerleave', () => this.onLeave?.());
-      path.addEventListener('click', () => this.onCountryClick?.(meta));
+      path.addEventListener('click', () => { if (performance.now() < this.suppressClickUntil) return; this.onCountryClick?.(meta); });
       path.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.onCountryClick?.(meta); } });
       frag.appendChild(path);
     });
@@ -116,7 +244,7 @@ export class GlobeView {
       g.addEventListener('pointerenter', showHover);
       g.addEventListener('pointermove', showHover);
       g.addEventListener('pointerleave', () => this.onLeave?.());
-      g.addEventListener('click', (event) => { event.stopPropagation(); this.onPlaceClick?.(place); });
+      g.addEventListener('click', (event) => { event.stopPropagation(); if (performance.now() < this.suppressClickUntil) return; this.onPlaceClick?.(place); });
       g.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.onPlaceClick?.(place); } });
       frag.appendChild(g);
     }
@@ -239,6 +367,7 @@ export class GlobeView {
   }
 
   animateViewBox(target, duration = 800) {
+    target = this.clampViewBox(target);
     const from = { ...this.currentViewBox };
     const start = performance.now();
     const tick = (now) => {
@@ -251,6 +380,7 @@ export class GlobeView {
         height: from.height + (target.height - from.height) * e
       };
       this.svg.setAttribute('viewBox', `${this.currentViewBox.x} ${this.currentViewBox.y} ${this.currentViewBox.width} ${this.currentViewBox.height}`);
+      this.svg.classList.toggle('is-zoomed', this.currentViewBox.width < 960);
       this.refreshFixedSizeGraphics();
       if (p < 1) requestAnimationFrame(tick);
     };

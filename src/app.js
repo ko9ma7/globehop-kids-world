@@ -120,6 +120,10 @@ function renderAppShell() {
             <div class="map-label map-label-destination" id="mapDestinationLabel"></div>
             <div class="map-tooltip" id="mapTooltip" role="status" hidden></div>
             <button class="map-reset-button" id="resetMapButton" type="button">🌍 <span data-i18n="worldView"></span></button>
+            <div class="map-zoom-controls" id="mapZoomControls" aria-label="Map zoom controls">
+              <button type="button" data-zoom="in" aria-label="Zoom in" title="Zoom in">＋</button>
+              <button type="button" data-zoom="out" aria-label="Zoom out" title="Zoom out">−</button>
+            </div>
             <div class="map-camera-controls" id="mapCameraControls" hidden>
               <button type="button" data-camera="route">✈️ <span data-i18n="routeFocus"></span></button>
               <button type="button" data-camera="origin">🔵 <span data-i18n="originFocus"></span></button>
@@ -200,7 +204,7 @@ function renderAppShell() {
       </section>
     </main>
 
-    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="3D front-hemisphere winding fix">V6.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
+    <footer class="site-footer"><span data-i18n="footer"></span><span class="build-version" title="Responsive map labels and 2D/3D zoom controls">V7.0</span><button type="button" id="footerInfo" class="text-button" data-i18n="dataSources"></button></footer>
 
     <dialog id="sourceDialog" class="source-dialog">
       <button class="dialog-close icon-button" type="button" data-dialog-close aria-label="Close">${icon('close')}</button>
@@ -1038,6 +1042,14 @@ function wireEvents() {
     hideMapTooltip();
     if (state.viewMode === 'globe') (globe3D || ensureGlobe3D())?.resetView();
     else globe2D?.resetView();
+  });
+  $('#mapZoomControls').addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-zoom]');
+    if (!button) return;
+    hideMapTooltip();
+    const factor = button.dataset.zoom === 'in' ? 1.22 : (1 / 1.22);
+    if (state.viewMode === 'globe') (globe3D || ensureGlobe3D())?.zoomBy(factor);
+    else globe2D?.zoomBy(factor);
   });
   $('#tripSelector').addEventListener('click', (e) => {
     const button = e.target.closest('button[data-trip]');

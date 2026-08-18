@@ -432,9 +432,9 @@ export class Globe3DView {
     let distance;
     if (angular < 0.30) {
       // ~0–17°: regional learning view. Seoul→Tokyo lands here.
-      distance = 1.36;
+      distance = (this.cssWidth || 900) < 560 ? 1.82 : 1.62;
     } else if (angular < 0.55) {
-      distance = 1.48;
+      distance = (this.cssWidth || 900) < 560 ? 1.92 : 1.72;
     } else if (angular < 0.95) {
       distance = 1.85 + angular * 0.30;
     } else if (angular < 1.35) {
@@ -491,7 +491,7 @@ export class Globe3DView {
       fromDistance: this.distance,
       toYaw: targetYaw,
       toPitch: clamp(pitch, -1.25, 1.25),
-      toDistance: clamp(distance, 1.15, 5)
+      toDistance: clamp(distance, 1.28, 5)
     };
   }
 
@@ -511,6 +511,13 @@ export class Globe3DView {
 
   worldView() {
     this.animateCameraTo(-20 * RAD, 18 * RAD, 3.85, 900);
+  }
+
+  zoomBy(factor = 1.15) {
+    if (!Number.isFinite(factor) || factor <= 0) return;
+    this.focusAnimation = null;
+    // distance is inverse zoom: smaller distance means closer.
+    this.distance = clamp(this.distance / factor, 1.28, 5);
   }
 
   redrawTexture() {
@@ -562,31 +569,10 @@ export class Globe3DView {
       ctx.stroke();
     }
 
-    // Stamp the active origin/destination country names directly onto the globe texture.
-    // This keeps Korea/Japan identifiable even when floating route labels are hidden or moving.
-    const drawSurfaceCountryName = (code2, label, color) => {
-      if (!code2 || !label) return;
-      const country = this.countryByCode.get(code2);
-      if (!country || !Number.isFinite(Number(country.lat)) || !Number.isFinite(Number(country.lon))) return;
-      const x = ((Number(country.lon) + 180) / 360) * width;
-      const y = ((90 - Number(country.lat)) / 180) * height;
-      ctx.save();
-      ctx.font = '800 30px system-ui, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.lineWidth = 7;
-      ctx.strokeStyle = 'rgba(4,18,30,.86)';
-      ctx.strokeText(label, x, y);
-      ctx.fillStyle = color;
-      ctx.fillText(label, x, y);
-      ctx.restore();
-    };
-    if (this.route) {
-      const originLabel = this.route.originData.countryLabel || this.countryByCode.get(this.originCountry)?.name || this.originCountry;
-      const destinationLabel = this.route.destinationData.countryLabel || this.countryByCode.get(this.destinationCountry)?.name || this.destinationCountry;
-      drawSurfaceCountryName(this.originCountry, originLabel, '#bfeeff');
-      if (this.destinationCountry !== this.originCountry) drawSurfaceCountryName(this.destinationCountry, destinationLabel, '#fff0a7');
-    }
+    // Country names are intentionally NOT painted into the globe texture.
+    // Texture text scales with the 3D surface and becomes enormous when zooming in.
+    // Route country labels are rendered in screen space in drawOverlay(), where their
+    // visual size can stay readable on desktop and mobile.
 
     const gl = this.gl;
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
@@ -612,7 +598,7 @@ export class Globe3DView {
         const pinch = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
         if (this.lastPinchDistance != null) {
           const delta = pinch - this.lastPinchDistance;
-          this.distance = clamp(this.distance - delta * 0.008, 1.15, 5);
+          this.distance = clamp(this.distance - delta * 0.008, 1.28, 5);
         }
         this.lastPinchDistance = pinch;
         this.lastPointer = { x: event.clientX, y: event.clientY };
@@ -650,7 +636,7 @@ export class Globe3DView {
     target.addEventListener('wheel', (event) => {
       event.preventDefault();
       this.focusAnimation = null;
-      this.distance = clamp(this.distance + event.deltaY * 0.0025, 1.15, 5);
+      this.distance = clamp(this.distance + event.deltaY * 0.0025, 1.28, 5);
     }, { passive: false });
   }
 
@@ -784,7 +770,14 @@ export class Globe3DView {
     this.visibleProjectedPoints = [];
     const markerPositions = [];
 
-    const scale = this.devicePixelRatio;
+    const dpr = this.devicePixelRatio;
+    const cssW = this.cssWidth || (w / dpr);
+    const cssH = this.cssHeight || (h / dpr);
+    // Screen-space UI scale: text/markers stay nearly the same CSS size while the globe zooms.
+    // It only changes slightly for small mobile canvases.
+    const uiFactor = clamp(cssW / 780, 0.86, 1.08);
+    const scale = dpr * uiFactor;
+    const compactLabels = cssW < 560;
     const drawMarker = (data, color, size = 5, interactive = true) => {
       const projected = this.projectObjectVector(latLonToVec(data.lat, data.lon), 1.025);
       if (!projected || !projected.front) return;
@@ -811,7 +804,7 @@ export class Globe3DView {
     const drawRouteLabel = (projected, text, accent, placement = 'above') => {
       if (!projected?.front || !text) return;
       ctx.save();
-      ctx.font = `700 ${10 * scale}px system-ui, sans-serif`;
+      ctx.font = `700 ${(compactLabels ? 9 : 10) * scale}px system-ui, sans-serif`;
       const padX = 8 * scale;
       const boxH = 23 * scale;
       const textW = ctx.measureText(text).width;
@@ -841,15 +834,16 @@ export class Globe3DView {
       const projected = this.projectObjectVector(latLonToVec(Number(country.lat), Number(country.lon)), 1.045);
       if (!projected?.front) return;
       ctx.save();
-      const title = `${flagEmoji(code2)} ${label}`;
-      ctx.font = `800 ${12 * scale}px system-ui, sans-serif`;
-      const padX = 10 * scale;
+      const title = compactLabels ? `${flagEmoji(code2)} ${label}` : `${flagEmoji(code2)} ${label}`;
+      const labelPx = compactLabels ? 9.5 : 11;
+      ctx.font = `800 ${labelPx * scale}px system-ui, sans-serif`;
+      const padX = (compactLabels ? 7 : 9) * scale;
       const boxW = ctx.measureText(title).width + padX * 2;
-      const boxH = 30 * scale;
-      let x = side < 0 ? projected.x - boxW - 20 * scale : projected.x + 20 * scale;
+      const boxH = (compactLabels ? 23 : 27) * scale;
+      let x = side < 0 ? projected.x - boxW - 14 * scale : projected.x + 14 * scale;
       let y = projected.y - boxH / 2;
       x = clamp(x, 8 * scale, w - boxW - 8 * scale);
-      y = clamp(y, 48 * scale, h - boxH - 12 * scale);
+      y = clamp(y, 42 * scale, h - boxH - 10 * scale);
       ctx.strokeStyle = color;
       ctx.lineWidth = 1.5 * scale;
       ctx.fillStyle = 'rgba(6,24,39,.94)';
@@ -907,8 +901,10 @@ export class Globe3DView {
       const selected = place.countryCode === this.selectedCountry;
       const routeOrigin = place.countryCode === routeOriginCode && !selected;
       if (nearRouteEndpoint(place)) continue;
-      if (selected && selectedShown >= 8) continue;
-      if (routeOrigin && originShown >= 3) continue;
+      const maxSelected = this.distance < 1.65 ? (compactLabels ? 7 : 10) : this.distance < 2.4 ? 7 : 4;
+      const maxOrigin = this.distance < 1.8 ? 3 : 2;
+      if (selected && selectedShown >= maxSelected) continue;
+      if (routeOrigin && originShown >= maxOrigin) continue;
       const color = place.type === 'landmark' ? '#ffc24b' : place.type === 'capital' ? '#b3ee72' : '#6fd8ff';
       const size = place.type === 'landmark' ? 4.6 : place.type === 'capital' ? 3.0 : 3.4;
       drawMarker(place, color, size);
@@ -975,7 +971,7 @@ export class Globe3DView {
       if (plane2?.front) {
         ctx.save();
         ctx.translate(plane2.x, plane2.y);
-        ctx.font = `${24 * scale}px sans-serif`;
+        ctx.font = `${(compactLabels ? 19 : 22) * scale}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.shadowColor = 'rgba(0,0,0,.4)';
