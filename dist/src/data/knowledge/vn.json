@@ -1,0 +1,161 @@
+{
+  "code2": "VN",
+  "specialties": [
+    "Coffee",
+    "Rice",
+    "Fish sauce"
+  ],
+  "animals": [
+    "Saola",
+    "Asian elephant"
+  ],
+  "plants": [
+    "Lotus",
+    "Bamboo"
+  ],
+  "facts": [
+    "Vietnam is long and narrow from north to south.",
+    "The Mekong Delta is an important rice-growing region.",
+    "Motorbikes are a common way to travel in cities."
+  ],
+  "ko": {
+    "specialties": [
+      "커피",
+      "쌀",
+      "피시소스"
+    ],
+    "animals": [
+      "사올라",
+      "아시아코끼리"
+    ],
+    "plants": [
+      "연꽃",
+      "대나무"
+    ],
+    "facts": [
+      "베트남은 남북으로 길게 뻗은 나라입니다.",
+      "메콩강 삼각주는 중요한 쌀 생산 지역입니다.",
+      "도시에서는 오토바이가 흔한 이동수단입니다."
+    ],
+    "overview": "베트남은 남북으로 길게 뻗어 있어 도시와 삼각주, 산지가 함께 있어요.",
+    "greeting": "안녕하세요: 씬짜오 (Xin chào)",
+    "climate": "북부·중부·남부의 날씨가 동시에 다를 수 있어요.",
+    "bestSeason": "지역에 따라 건기에 여행하기 더 편한 경우가 많아요.",
+    "travelTips": "길거리 음식과 오토바이 풍경이 도시 여행의 인상적인 부분이에요.",
+    "landmarks": [
+      "하롱베이",
+      "호이안 올드타운",
+      "호찌민 묘소",
+      "퐁냐께방 국립공원",
+      "메콩강 삼각주"
+    ],
+    "foods": [
+      "쌀국수",
+      "반미",
+      "분짜",
+      "짜조",
+      "카페쓰어다"
+    ],
+    "festivals": [
+      "뗏",
+      "중추절",
+      "후에 페스티벌"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Ha Long Bay",
+        "nameKo": "하롱베이",
+        "wikiTitle": "Hạ Long Bay",
+        "descriptionKo": "바다 위에 수많은 석회암 섬이 솟아 있는 풍경으로 유명해요.",
+        "lat": 20.9101,
+        "lon": 107.1839
+      },
+      {
+        "name": "Hoi An Ancient Town",
+        "nameKo": "호이안 올드타운",
+        "wikiTitle": "Hội An",
+        "descriptionKo": "노란 건물과 등불 거리로 유명한 역사 도시예요.",
+        "lat": 15.8801,
+        "lon": 108.338
+      },
+      {
+        "name": "Ho Chi Minh Mausoleum",
+        "nameKo": "호찌민 묘소",
+        "wikiTitle": "Ho Chi Minh Mausoleum",
+        "descriptionKo": "하노이 바딘 광장에 있는 국가적 기념 건축물이에요.",
+        "lat": 21.0368,
+        "lon": 105.8346
+      },
+      {
+        "name": "Phong Nha-Ke Bang National Park",
+        "nameKo": "퐁냐께방 국립공원",
+        "wikiTitle": "Phong Nha-Kẻ Bàng National Park",
+        "descriptionKo": "거대한 동굴과 석회암 산지로 유명한 국립공원이에요.",
+        "lat": 17.59,
+        "lon": 106.283
+      },
+      {
+        "name": "Mekong Delta",
+        "nameKo": "메콩강 삼각주",
+        "wikiTitle": "Mekong Delta",
+        "descriptionKo": "수로와 농촌 풍경이 이어지는 베트남 남부의 큰 삼각주예요.",
+        "lat": 10.0359,
+        "lon": 105.788
+      }
+    ]
+  },
+  "overview": "Vietnam stretches a long distance north to south and has busy cities, deltas, and mountains.",
+  "greeting": "Hello: Xin chào",
+  "climate": "The north, center, and south can have different weather at the same time.",
+  "bestSeason": "Dry-season travel is often easier depending on region.",
+  "travelTips": "Street food and motorbike traffic are a memorable part of many cities.",
+  "landmarks": [
+    "Ha Long Bay",
+    "Hoi An Ancient Town",
+    "Ho Chi Minh Mausoleum",
+    "Phong Nha-Ke Bang National Park",
+    "Mekong Delta"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Ha Long Bay",
+      "nameKo": "하롱베이",
+      "wikiTitle": "Hạ Long Bay",
+      "descriptionKo": "바다 위에 수많은 석회암 섬이 솟아 있는 풍경으로 유명해요.",
+      "lat": 20.9101,
+      "lon": 107.1839
+    },
+    {
+      "name": "Hoi An Ancient Town",
+      "nameKo": "호이안 올드타운",
+      "wikiTitle": "Hội An",
+      "descriptionKo": "노란 건물과 등불 거리로 유명한 역사 도시예요.",
+      "lat": 15.8801,
+      "lon": 108.338
+    },
+    {
+      "name": "Ho Chi Minh Mausoleum",
+      "nameKo": "호찌민 묘소",
+      "wikiTitle": "Ho Chi Minh Mausoleum",
+      "descriptionKo": "하노이 바딘 광장에 있는 국가적 기념 건축물이에요.",
+      "lat": 21.0368,
+      "lon": 105.8346
+    },
+    {
+      "name": "Phong Nha-Ke Bang National Park",
+      "nameKo": "퐁냐께방 국립공원",
+      "wikiTitle": "Phong Nha-Kẻ Bàng National Park",
+      "descriptionKo": "거대한 동굴과 석회암 산지로 유명한 국립공원이에요.",
+      "lat": 17.59,
+      "lon": 106.283
+    },
+    {
+      "name": "Mekong Delta",
+      "nameKo": "메콩강 삼각주",
+      "wikiTitle": "Mekong Delta",
+      "descriptionKo": "수로와 농촌 풍경이 이어지는 베트남 남부의 큰 삼각주예요.",
+      "lat": 10.0359,
+      "lon": 105.788
+    }
+  ]
+}

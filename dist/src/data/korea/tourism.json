@@ -1,0 +1,1991 @@
+{
+  "version": 1,
+  "cityAliases": {
+    "Seoul": "서울",
+    "Busan": "부산",
+    "Incheon": "인천",
+    "Daegu": "대구",
+    "Gwangju": "광주",
+    "Daejeon": "대전",
+    "Suwon": "수원",
+    "Goyang-si": "고양",
+    "Seongnam-si": "성남",
+    "Ulsan": "울산",
+    "Bucheon-si": "부천",
+    "Cheongju-si": "청주",
+    "Ansan-si": "안산",
+    "Cheonan": "천안",
+    "Jeonju": "전주",
+    "Hwaseong-si": "화성",
+    "Anyang-si": "안양",
+    "Kimhae": "김해",
+    "Changwon": "창원",
+    "Pohang": "포항",
+    "Jeju City": "제주시",
+    "Uijeongbu-si": "의정부",
+    "Gumi": "구미",
+    "Gwangmyeong": "광명",
+    "Sejong": "세종",
+    "Wŏnju": "원주",
+    "Chinju": "진주",
+    "Iksan": "익산",
+    "Yeosu": "여수",
+    "Gunpo": "군포",
+    "Mokpo": "목포",
+    "Hanam": "하남",
+    "Gunsan": "군산",
+    "Suncheon": "순천",
+    "Chuncheon": "춘천",
+    "Chungju": "충주",
+    "Icheon-si": "이천",
+    "Guri-si": "구리",
+    "Gangneung": "강릉",
+    "Yangju": "양주",
+    "Seogwipo": "서귀포",
+    "Osan": "오산",
+    "Andong": "안동",
+    "Gyeongju": "경주",
+    "Gimcheon": "김천",
+    "Jeongeup": "정읍",
+    "Gyeongsan-si": "경산",
+    "Sangju": "상주",
+    "Donghae City": "동해",
+    "Asan": "아산",
+    "Namyangju": "남양주",
+    "Kwangyang": "광양",
+    "Hongseong": "홍성",
+    "Sokcho": "속초",
+    "Yeongju": "영주",
+    "Mungyeong": "문경",
+    "Muan": "무안",
+    "Seosan": "서산",
+    "Gongju": "공주",
+    "Yangsan": "양산",
+    "Anseong": "안성",
+    "Boryeong": "보령",
+    "Tongyeong": "통영",
+    "Geoje": "거제",
+    "Nonsan": "논산",
+    "Miryang": "밀양",
+    "Paju": "파주",
+    "Pyeongtaek": "평택",
+    "Yongin": "용인",
+    "Siheung": "시흥",
+    "Gimpo-si": "김포"
+  },
+  "cityProfiles": {
+    "Seoul": {
+      "nameKo": "서울",
+      "summaryKo": "궁궐과 한강, 산, 전통 골목과 현대적인 도심을 한 번에 볼 수 있는 대한민국의 수도예요.",
+      "tags": [
+        "궁궐",
+        "한강",
+        "전통문화",
+        "전망"
+      ],
+      "attractions": [
+        {
+          "name": "Gyeongbokgung Palace",
+          "nameKo": "경복궁",
+          "wikiTitle": "Gyeongbokgung",
+          "lat": 37.5796,
+          "lon": 126.977,
+          "category": "역사",
+          "descriptionKo": "조선의 대표 궁궐"
+        },
+        {
+          "name": "N Seoul Tower",
+          "nameKo": "N서울타워",
+          "wikiTitle": "N Seoul Tower",
+          "lat": 37.5512,
+          "lon": 126.9882,
+          "category": "전망",
+          "descriptionKo": "남산에서 서울을 내려다보는 전망 명소"
+        },
+        {
+          "name": "Bukchon Hanok Village",
+          "nameKo": "북촌한옥마을",
+          "wikiTitle": "Bukchon Hanok Village",
+          "lat": 37.5826,
+          "lon": 126.9831,
+          "category": "전통",
+          "descriptionKo": "한옥 골목이 이어지는 전통 주거 지역"
+        },
+        {
+          "name": "Lotte World Tower",
+          "nameKo": "롯데월드타워",
+          "wikiTitle": "Lotte World Tower",
+          "lat": 37.5125,
+          "lon": 127.1025,
+          "category": "현대",
+          "descriptionKo": "서울 동남권의 초고층 전망 명소"
+        }
+      ]
+    },
+    "Busan": {
+      "nameKo": "부산",
+      "summaryKo": "해변·항구·산복도로와 시장이 어우러진 대한민국 대표 해양도시예요.",
+      "tags": [
+        "바다",
+        "해변",
+        "시장",
+        "야경"
+      ],
+      "attractions": [
+        {
+          "name": "Haeundae Beach",
+          "nameKo": "해운대해수욕장",
+          "wikiTitle": "Haeundae Beach",
+          "lat": 35.1587,
+          "lon": 129.1604,
+          "category": "해변",
+          "descriptionKo": "부산을 대표하는 도심 해변"
+        },
+        {
+          "name": "Gamcheon Culture Village",
+          "nameKo": "감천문화마을",
+          "wikiTitle": "Gamcheon Culture Village",
+          "lat": 35.0975,
+          "lon": 129.0106,
+          "category": "마을",
+          "descriptionKo": "산비탈의 다채로운 골목 풍경"
+        },
+        {
+          "name": "Haedong Yonggungsa",
+          "nameKo": "해동용궁사",
+          "wikiTitle": "Haedong Yonggungsa",
+          "lat": 35.1883,
+          "lon": 129.2232,
+          "category": "사찰",
+          "descriptionKo": "바닷가 절벽과 맞닿은 사찰"
+        },
+        {
+          "name": "Gwangalli Beach",
+          "nameKo": "광안리해수욕장",
+          "wikiTitle": "Gwangalli Beach",
+          "lat": 35.1532,
+          "lon": 129.1186,
+          "category": "야경",
+          "descriptionKo": "광안대교 야경으로 유명한 해변"
+        }
+      ]
+    },
+    "Incheon": {
+      "nameKo": "인천",
+      "summaryKo": "개항장 역사와 섬, 국제도시 송도가 공존하는 서해의 관문 도시예요.",
+      "tags": [
+        "개항장",
+        "섬",
+        "송도",
+        "바다"
+      ],
+      "attractions": [
+        {
+          "name": "Songdo Central Park",
+          "nameKo": "송도센트럴파크",
+          "wikiTitle": "Songdo Central Park",
+          "lat": 37.3927,
+          "lon": 126.637,
+          "category": "공원",
+          "descriptionKo": "송도 도심 수변공원"
+        },
+        {
+          "name": "Incheon Chinatown",
+          "nameKo": "인천 차이나타운",
+          "wikiTitle": "Incheon Chinatown",
+          "lat": 37.4753,
+          "lon": 126.617,
+          "category": "거리",
+          "descriptionKo": "개항장 역사가 남은 차이나타운"
+        },
+        {
+          "name": "Wolmido",
+          "nameKo": "월미도",
+          "wikiTitle": "Wolmido",
+          "lat": 37.4736,
+          "lon": 126.596,
+          "category": "해안",
+          "descriptionKo": "바다 산책과 놀이시설이 있는 해안 관광지"
+        }
+      ]
+    },
+    "Daegu": {
+      "nameKo": "대구",
+      "summaryKo": "근대골목, 전통시장, 팔공산과 앞산을 함께 즐길 수 있는 내륙 중심도시예요.",
+      "tags": [
+        "시장",
+        "산",
+        "근대골목"
+      ],
+      "attractions": [
+        {
+          "name": "Seomun Market",
+          "nameKo": "서문시장",
+          "wikiTitle": "Seomun Market",
+          "lat": 35.869,
+          "lon": 128.5805,
+          "category": "시장",
+          "descriptionKo": "대구의 대표 전통시장"
+        },
+        {
+          "name": "Apsan Park",
+          "nameKo": "앞산공원",
+          "wikiTitle": "Apsan Park",
+          "lat": 35.8326,
+          "lon": 128.577,
+          "category": "산",
+          "descriptionKo": "도심 가까이에서 전망을 즐기는 산"
+        },
+        {
+          "name": "Palgongsan",
+          "nameKo": "팔공산",
+          "wikiTitle": "Palgongsan",
+          "lat": 35.99,
+          "lon": 128.69,
+          "category": "산",
+          "descriptionKo": "대구 북동쪽의 대표 산악 관광지"
+        }
+      ]
+    },
+    "Gwangju": {
+      "nameKo": "광주",
+      "summaryKo": "예술과 민주주의 역사, 무등산이 도시의 성격을 만드는 호남의 중심도시예요.",
+      "tags": [
+        "예술",
+        "역사",
+        "무등산"
+      ],
+      "attractions": [
+        {
+          "name": "Asia Culture Center",
+          "nameKo": "국립아시아문화전당",
+          "wikiTitle": "Asia Culture Center",
+          "lat": 35.1467,
+          "lon": 126.9194,
+          "category": "문화",
+          "descriptionKo": "전시·공연·문화콘텐츠 복합공간"
+        },
+        {
+          "name": "Mudeungsan",
+          "nameKo": "무등산",
+          "wikiTitle": "Mudeungsan",
+          "lat": 35.134,
+          "lon": 126.988,
+          "category": "산",
+          "descriptionKo": "광주를 상징하는 국립공원 산"
+        },
+        {
+          "name": "Yangnim-dong",
+          "nameKo": "양림동 역사문화마을",
+          "wikiTitle": "Yangnim-dong",
+          "lat": 35.141,
+          "lon": 126.914,
+          "category": "거리",
+          "descriptionKo": "근대 건축과 문화공간이 모인 동네"
+        }
+      ]
+    },
+    "Daejeon": {
+      "nameKo": "대전",
+      "summaryKo": "과학 연구단지와 온천, 도심 녹지가 함께 있는 대한민국의 과학도시예요.",
+      "tags": [
+        "과학",
+        "온천",
+        "공원"
+      ],
+      "attractions": [
+        {
+          "name": "Expo Science Park",
+          "nameKo": "엑스포과학공원",
+          "wikiTitle": "Expo Science Park",
+          "lat": 36.376,
+          "lon": 127.387,
+          "category": "과학",
+          "descriptionKo": "대전엑스포의 상징 시설이 남은 과학공원"
+        },
+        {
+          "name": "Hanbat Arboretum",
+          "nameKo": "한밭수목원",
+          "wikiTitle": "Hanbat Arboretum",
+          "lat": 36.3665,
+          "lon": 127.389,
+          "category": "공원",
+          "descriptionKo": "도심 대형 수목원"
+        },
+        {
+          "name": "Yuseong Hot Springs",
+          "nameKo": "유성온천",
+          "wikiTitle": "Yuseong Hot Springs",
+          "lat": 36.355,
+          "lon": 127.34,
+          "category": "온천",
+          "descriptionKo": "오래된 온천 관광지"
+        }
+      ]
+    },
+    "Suwon": {
+      "nameKo": "수원",
+      "summaryKo": "세계유산 수원화성을 중심으로 성곽과 행궁, 현대 도시가 이어지는 경기도의 대표 도시예요.",
+      "tags": [
+        "성곽",
+        "세계유산",
+        "행궁"
+      ],
+      "attractions": [
+        {
+          "name": "Hwaseong Fortress",
+          "nameKo": "수원화성",
+          "wikiTitle": "Hwaseong Fortress",
+          "lat": 37.286,
+          "lon": 127.014,
+          "category": "세계유산",
+          "descriptionKo": "정조 시대에 축조된 성곽"
+        },
+        {
+          "name": "Hwaseong Haenggung",
+          "nameKo": "화성행궁",
+          "wikiTitle": "Hwaseong Haenggung",
+          "lat": 37.281,
+          "lon": 127.014,
+          "category": "궁궐",
+          "descriptionKo": "수원화성 안의 대표 행궁"
+        },
+        {
+          "name": "Gwanggyo Lake Park",
+          "nameKo": "광교호수공원",
+          "wikiTitle": "Gwanggyo Lake Park",
+          "lat": 37.29,
+          "lon": 127.064,
+          "category": "공원",
+          "descriptionKo": "호수와 산책로가 이어지는 대형 공원"
+        }
+      ]
+    },
+    "Jeonju": {
+      "nameKo": "전주",
+      "summaryKo": "한옥마을과 전통음식, 조선 왕실의 흔적을 가까운 거리에서 볼 수 있는 문화도시예요.",
+      "tags": [
+        "한옥",
+        "한식",
+        "전통문화"
+      ],
+      "attractions": [
+        {
+          "name": "Jeonju Hanok Village",
+          "nameKo": "전주한옥마을",
+          "wikiTitle": "Jeonju Hanok Village",
+          "lat": 35.815,
+          "lon": 127.153,
+          "category": "전통",
+          "descriptionKo": "대규모 한옥이 모여 있는 대표 관광지"
+        },
+        {
+          "name": "Gyeonggijeon",
+          "nameKo": "경기전",
+          "wikiTitle": "Gyeonggijeon",
+          "lat": 35.815,
+          "lon": 127.149,
+          "category": "역사",
+          "descriptionKo": "태조 어진을 모신 전주의 역사 유적"
+        },
+        {
+          "name": "Nambu Market",
+          "nameKo": "전주 남부시장",
+          "wikiTitle": "Nambu Market (Jeonju)",
+          "lat": 35.811,
+          "lon": 127.147,
+          "category": "시장",
+          "descriptionKo": "먹거리와 청년몰로 유명한 전통시장"
+        }
+      ]
+    },
+    "Ulsan": {
+      "nameKo": "울산",
+      "summaryKo": "산업도시 이미지와 함께 태화강, 동해 해안, 고래문화가 강한 해양도시예요.",
+      "tags": [
+        "해안",
+        "고래",
+        "정원"
+      ],
+      "attractions": [
+        {
+          "name": "Daewangam Park",
+          "nameKo": "대왕암공원",
+          "wikiTitle": "Daewangam Park",
+          "lat": 35.491,
+          "lon": 129.438,
+          "category": "해안",
+          "descriptionKo": "기암과 해송길이 이어지는 동해안 공원"
+        },
+        {
+          "name": "Taehwagang National Garden",
+          "nameKo": "태화강 국가정원",
+          "wikiTitle": "Taehwagang National Garden",
+          "lat": 35.55,
+          "lon": 129.296,
+          "category": "정원",
+          "descriptionKo": "태화강을 따라 조성된 국가정원"
+        },
+        {
+          "name": "Jangsaengpo Whale Museum",
+          "nameKo": "장생포 고래문화특구",
+          "wikiTitle": "Jangsaengpo Whale Museum",
+          "lat": 35.503,
+          "lon": 129.387,
+          "category": "문화",
+          "descriptionKo": "울산의 고래 역사와 문화를 살펴보는 곳"
+        }
+      ]
+    },
+    "Cheongju-si": {
+      "nameKo": "청주",
+      "summaryKo": "직지와 인쇄문화, 산성, 호수 주변 관광을 함께 볼 수 있는 충북의 중심도시예요.",
+      "tags": [
+        "직지",
+        "산성",
+        "역사"
+      ],
+      "attractions": [
+        {
+          "name": "Cheongju Early Printing Museum",
+          "nameKo": "청주고인쇄박물관",
+          "wikiTitle": "Cheongju Early Printing Museum",
+          "lat": 36.642,
+          "lon": 127.471,
+          "category": "역사",
+          "descriptionKo": "직지와 금속활자 문화를 소개하는 박물관"
+        },
+        {
+          "name": "Sangdangsanseong",
+          "nameKo": "상당산성",
+          "wikiTitle": "Sangdangsanseong",
+          "lat": 36.656,
+          "lon": 127.543,
+          "category": "성곽",
+          "descriptionKo": "산 위를 두르는 청주의 대표 산성"
+        },
+        {
+          "name": "Cheongnamdae",
+          "nameKo": "청남대",
+          "wikiTitle": "Cheongnamdae",
+          "lat": 36.462,
+          "lon": 127.488,
+          "category": "정원",
+          "descriptionKo": "대청호 주변의 옛 대통령 별장"
+        }
+      ]
+    },
+    "Jeju City": {
+      "nameKo": "제주시",
+      "summaryKo": "화산섬 제주의 북쪽 중심도시로 오름·해변·한라산과 섬 문화를 폭넓게 만날 수 있어요.",
+      "tags": [
+        "화산",
+        "오름",
+        "해변",
+        "한라산"
+      ],
+      "attractions": [
+        {
+          "name": "Hallasan",
+          "nameKo": "한라산",
+          "wikiTitle": "Hallasan",
+          "lat": 33.3617,
+          "lon": 126.5292,
+          "category": "자연",
+          "descriptionKo": "제주 중앙의 화산 산체이자 대한민국 최고봉"
+        },
+        {
+          "name": "Yongduam",
+          "nameKo": "용두암",
+          "wikiTitle": "Yongduam",
+          "lat": 33.516,
+          "lon": 126.511,
+          "category": "해안",
+          "descriptionKo": "용 머리 모양의 해안 화산암"
+        },
+        {
+          "name": "Hamdeok Beach",
+          "nameKo": "함덕해수욕장",
+          "wikiTitle": "Hamdeok Beach",
+          "lat": 33.543,
+          "lon": 126.669,
+          "category": "해변",
+          "descriptionKo": "맑은 바다색으로 유명한 제주 동북부 해변"
+        }
+      ]
+    },
+    "Seogwipo": {
+      "nameKo": "서귀포",
+      "summaryKo": "폭포·주상절리·성산일출봉 등 제주의 화산지형과 남쪽 바다를 집중해서 볼 수 있는 도시예요.",
+      "tags": [
+        "폭포",
+        "화산지형",
+        "바다"
+      ],
+      "attractions": [
+        {
+          "name": "Seongsan Ilchulbong",
+          "nameKo": "성산일출봉",
+          "wikiTitle": "Seongsan Ilchulbong",
+          "lat": 33.4581,
+          "lon": 126.9425,
+          "category": "세계유산",
+          "descriptionKo": "바다 옆에 솟은 독특한 응회구"
+        },
+        {
+          "name": "Jeongbang Waterfall",
+          "nameKo": "정방폭포",
+          "wikiTitle": "Jeongbang Waterfall",
+          "lat": 33.244,
+          "lon": 126.571,
+          "category": "폭포",
+          "descriptionKo": "바다 가까이 떨어지는 제주 대표 폭포"
+        },
+        {
+          "name": "Cheonjiyeon Waterfall",
+          "nameKo": "천지연폭포",
+          "wikiTitle": "Cheonjiyeon Waterfall",
+          "lat": 33.246,
+          "lon": 126.554,
+          "category": "폭포",
+          "descriptionKo": "서귀포 도심에서 접근하기 쉬운 폭포"
+        }
+      ]
+    },
+    "Gyeongju": {
+      "nameKo": "경주",
+      "summaryKo": "신라 천년 수도의 유적이 도시 전체에 펼쳐진 대표 역사 관광도시예요.",
+      "tags": [
+        "신라",
+        "세계유산",
+        "고분",
+        "사찰"
+      ],
+      "attractions": [
+        {
+          "name": "Bulguksa",
+          "nameKo": "불국사",
+          "wikiTitle": "Bulguksa",
+          "lat": 35.79,
+          "lon": 129.332,
+          "category": "세계유산",
+          "descriptionKo": "신라 불교문화를 대표하는 사찰"
+        },
+        {
+          "name": "Donggung Palace and Wolji Pond",
+          "nameKo": "동궁과 월지",
+          "wikiTitle": "Donggung Palace and Wolji Pond",
+          "lat": 35.8346,
+          "lon": 129.2266,
+          "category": "역사",
+          "descriptionKo": "야경으로도 유명한 신라 궁원 유적"
+        },
+        {
+          "name": "Cheomseongdae",
+          "nameKo": "첨성대",
+          "wikiTitle": "Cheomseongdae",
+          "lat": 35.8347,
+          "lon": 129.219,
+          "category": "역사",
+          "descriptionKo": "신라 시대 천문 관측 유적"
+        },
+        {
+          "name": "Daereungwon",
+          "nameKo": "대릉원",
+          "wikiTitle": "Daereungwon",
+          "lat": 35.838,
+          "lon": 129.212,
+          "category": "고분",
+          "descriptionKo": "신라 왕족 고분이 모인 고분공원"
+        }
+      ]
+    },
+    "Gangneung": {
+      "nameKo": "강릉",
+      "summaryKo": "동해 바다와 커피거리, 조선시대 문화유산을 함께 즐길 수 있는 강원 대표 관광도시예요.",
+      "tags": [
+        "동해",
+        "커피",
+        "호수"
+      ],
+      "attractions": [
+        {
+          "name": "Gyeongpo Beach",
+          "nameKo": "경포해변",
+          "wikiTitle": "Gyeongpo Beach",
+          "lat": 37.795,
+          "lon": 128.907,
+          "category": "해변",
+          "descriptionKo": "경포호와 가까운 동해 대표 해변"
+        },
+        {
+          "name": "Anmok Beach",
+          "nameKo": "안목해변·커피거리",
+          "wikiTitle": "Anmok Beach",
+          "lat": 37.771,
+          "lon": 128.948,
+          "category": "카페",
+          "descriptionKo": "바다를 따라 카페가 이어지는 거리"
+        },
+        {
+          "name": "Ojukheon",
+          "nameKo": "오죽헌",
+          "wikiTitle": "Ojukheon",
+          "lat": 37.779,
+          "lon": 128.875,
+          "category": "역사",
+          "descriptionKo": "신사임당과 율곡 이이로 유명한 고택"
+        }
+      ]
+    },
+    "Sokcho": {
+      "nameKo": "속초",
+      "summaryKo": "설악산과 동해, 항구 먹거리를 짧은 거리에서 함께 즐길 수 있는 강원 북부 관광도시예요.",
+      "tags": [
+        "설악산",
+        "동해",
+        "항구"
+      ],
+      "attractions": [
+        {
+          "name": "Seoraksan",
+          "nameKo": "설악산",
+          "wikiTitle": "Seoraksan",
+          "lat": 38.119,
+          "lon": 128.466,
+          "category": "국립공원",
+          "descriptionKo": "기암과 단풍으로 유명한 국립공원"
+        },
+        {
+          "name": "Sokcho Beach",
+          "nameKo": "속초해수욕장",
+          "wikiTitle": "Sokcho Beach",
+          "lat": 38.191,
+          "lon": 128.601,
+          "category": "해변",
+          "descriptionKo": "속초 시내와 가까운 동해 해변"
+        },
+        {
+          "name": "Abai Village",
+          "nameKo": "아바이마을",
+          "wikiTitle": "Abai Village",
+          "lat": 38.204,
+          "lon": 128.594,
+          "category": "마을",
+          "descriptionKo": "실향민 문화와 먹거리로 알려진 마을"
+        }
+      ]
+    },
+    "Chuncheon": {
+      "nameKo": "춘천",
+      "summaryKo": "호수와 산, 닭갈비, 근교 섬 관광으로 유명한 강원 내륙의 레저도시예요.",
+      "tags": [
+        "호수",
+        "섬",
+        "레저"
+      ],
+      "attractions": [
+        {
+          "name": "Namiseom",
+          "nameKo": "남이섬",
+          "wikiTitle": "Namiseom",
+          "lat": 37.791,
+          "lon": 127.526,
+          "category": "섬",
+          "descriptionKo": "숲길과 문화공간이 있는 북한강의 섬"
+        },
+        {
+          "name": "Soyanggang Skywalk",
+          "nameKo": "소양강스카이워크",
+          "wikiTitle": "Soyanggang Skywalk",
+          "lat": 37.893,
+          "lon": 127.723,
+          "category": "전망",
+          "descriptionKo": "소양강 위를 걷는 유리 전망시설"
+        },
+        {
+          "name": "Samaksan",
+          "nameKo": "삼악산",
+          "wikiTitle": "Samaksan",
+          "lat": 37.839,
+          "lon": 127.66,
+          "category": "산",
+          "descriptionKo": "의암호 주변 전망을 볼 수 있는 산"
+        }
+      ]
+    },
+    "Yeosu": {
+      "nameKo": "여수",
+      "summaryKo": "다도해 풍경과 야경, 섬과 해상케이블카가 강점인 남해안 대표 관광도시예요.",
+      "tags": [
+        "다도해",
+        "야경",
+        "섬"
+      ],
+      "attractions": [
+        {
+          "name": "Odongdo",
+          "nameKo": "오동도",
+          "wikiTitle": "Odongdo",
+          "lat": 34.744,
+          "lon": 127.766,
+          "category": "섬",
+          "descriptionKo": "동백나무와 해안 산책로로 유명한 섬"
+        },
+        {
+          "name": "Hyangiram",
+          "nameKo": "향일암",
+          "wikiTitle": "Hyangiram",
+          "lat": 34.593,
+          "lon": 127.806,
+          "category": "사찰",
+          "descriptionKo": "남해 일출 전망으로 유명한 암자"
+        },
+        {
+          "name": "Yeosu Maritime Cable Car",
+          "nameKo": "여수해상케이블카",
+          "wikiTitle": "Yeosu Maritime Cable Car",
+          "lat": 34.738,
+          "lon": 127.741,
+          "category": "전망",
+          "descriptionKo": "바다 위를 가로지르는 케이블카"
+        }
+      ]
+    },
+    "Suncheon": {
+      "nameKo": "순천",
+      "summaryKo": "광대한 습지와 국가정원, 낙안읍성으로 자연과 전통마을을 함께 볼 수 있어요.",
+      "tags": [
+        "습지",
+        "정원",
+        "읍성"
+      ],
+      "attractions": [
+        {
+          "name": "Suncheon Bay Wetland Reserve",
+          "nameKo": "순천만습지",
+          "wikiTitle": "Suncheon Bay",
+          "lat": 34.885,
+          "lon": 127.509,
+          "category": "습지",
+          "descriptionKo": "갈대밭과 갯벌이 펼쳐진 대표 생태관광지"
+        },
+        {
+          "name": "Suncheon Bay National Garden",
+          "nameKo": "순천만국가정원",
+          "wikiTitle": "Suncheon Bay National Garden",
+          "lat": 34.929,
+          "lon": 127.509,
+          "category": "정원",
+          "descriptionKo": "국가정원으로 지정된 대형 정원"
+        },
+        {
+          "name": "Naganeupseong",
+          "nameKo": "낙안읍성",
+          "wikiTitle": "Naganeupseong",
+          "lat": 34.906,
+          "lon": 127.341,
+          "category": "전통마을",
+          "descriptionKo": "성곽 안 전통마을이 보존된 읍성"
+        }
+      ]
+    },
+    "Andong": {
+      "nameKo": "안동",
+      "summaryKo": "하회마을과 서원, 유교문화가 잘 남아 있는 경북의 대표 전통문화 도시예요.",
+      "tags": [
+        "하회마을",
+        "유교",
+        "서원"
+      ],
+      "attractions": [
+        {
+          "name": "Hahoe Folk Village",
+          "nameKo": "안동 하회마을",
+          "wikiTitle": "Hahoe Folk Village",
+          "lat": 36.539,
+          "lon": 128.518,
+          "category": "세계유산",
+          "descriptionKo": "낙동강이 감싸는 전통마을"
+        },
+        {
+          "name": "Wolyeonggyo Bridge",
+          "nameKo": "월영교",
+          "wikiTitle": "Wolyeonggyo Bridge",
+          "lat": 36.577,
+          "lon": 128.762,
+          "category": "야경",
+          "descriptionKo": "안동호의 대표 목책 인도교"
+        },
+        {
+          "name": "Dosan Seowon",
+          "nameKo": "도산서원",
+          "wikiTitle": "Dosan Seowon",
+          "lat": 36.727,
+          "lon": 128.844,
+          "category": "서원",
+          "descriptionKo": "퇴계 이황과 관련된 대표 서원"
+        }
+      ]
+    },
+    "Pohang": {
+      "nameKo": "포항",
+      "summaryKo": "동해 일출과 철강도시 풍경, 해안 산책과 새로운 조형물을 함께 볼 수 있어요.",
+      "tags": [
+        "일출",
+        "동해",
+        "해안"
+      ],
+      "attractions": [
+        {
+          "name": "Homigot",
+          "nameKo": "호미곶",
+          "wikiTitle": "Homigot",
+          "lat": 36.076,
+          "lon": 129.568,
+          "category": "일출",
+          "descriptionKo": "한반도 동쪽 끝 일출 명소"
+        },
+        {
+          "name": "Space Walk",
+          "nameKo": "스페이스워크",
+          "wikiTitle": "Space Walk",
+          "lat": 36.066,
+          "lon": 129.391,
+          "category": "조형물",
+          "descriptionKo": "환호공원의 체험형 곡선 조형물"
+        },
+        {
+          "name": "Jukdo Market",
+          "nameKo": "죽도시장",
+          "wikiTitle": "Jukdo Market",
+          "lat": 36.035,
+          "lon": 129.367,
+          "category": "시장",
+          "descriptionKo": "수산물과 먹거리로 유명한 전통시장"
+        }
+      ]
+    },
+    "Mokpo": {
+      "nameKo": "목포",
+      "summaryKo": "유달산과 항구, 근대도시 풍경을 중심으로 남도 여행의 출발점 역할을 하는 도시예요.",
+      "tags": [
+        "항구",
+        "유달산",
+        "근대문화"
+      ],
+      "attractions": [
+        {
+          "name": "Yudalsan",
+          "nameKo": "유달산",
+          "wikiTitle": "Yudalsan",
+          "lat": 34.79,
+          "lon": 126.374,
+          "category": "산",
+          "descriptionKo": "목포항과 다도해를 내려다보는 산"
+        },
+        {
+          "name": "Gatbawi",
+          "nameKo": "갓바위",
+          "wikiTitle": "Gatbawi",
+          "lat": 34.792,
+          "lon": 126.433,
+          "category": "자연",
+          "descriptionKo": "바닷가 풍화지형으로 유명한 바위"
+        },
+        {
+          "name": "Mokpo Marine Cable Car",
+          "nameKo": "목포해상케이블카",
+          "wikiTitle": "Mokpo Marine Cable Car",
+          "lat": 34.794,
+          "lon": 126.376,
+          "category": "전망",
+          "descriptionKo": "유달산과 바다를 잇는 해상케이블카"
+        }
+      ]
+    },
+    "Gunsan": {
+      "nameKo": "군산",
+      "summaryKo": "개항기 근대건축과 철길마을, 고군산군도 섬 여행이 어우러진 서해 관광도시예요.",
+      "tags": [
+        "근대문화",
+        "철길",
+        "섬"
+      ],
+      "attractions": [
+        {
+          "name": "Gunsan Modern History Museum",
+          "nameKo": "군산근대역사박물관",
+          "wikiTitle": "Gunsan Modern History Museum",
+          "lat": 35.988,
+          "lon": 126.711,
+          "category": "박물관",
+          "descriptionKo": "개항 이후 군산의 근대사를 다루는 박물관"
+        },
+        {
+          "name": "Gyeongam-dong Railroad Village",
+          "nameKo": "경암동 철길마을",
+          "wikiTitle": "Gyeongam-dong Railroad Village",
+          "lat": 35.981,
+          "lon": 126.724,
+          "category": "거리",
+          "descriptionKo": "주택 사이 옛 철길 풍경으로 유명한 마을"
+        },
+        {
+          "name": "Seonyudo",
+          "nameKo": "선유도",
+          "wikiTitle": "Seonyudo (Gunsan)",
+          "lat": 35.817,
+          "lon": 126.406,
+          "category": "섬",
+          "descriptionKo": "고군산군도의 대표 섬 관광지"
+        }
+      ]
+    },
+    "Gongju": {
+      "nameKo": "공주",
+      "summaryKo": "백제 수도의 성곽과 왕릉, 사찰을 볼 수 있는 충남의 역사문화도시예요.",
+      "tags": [
+        "백제",
+        "성곽",
+        "왕릉"
+      ],
+      "attractions": [
+        {
+          "name": "Gongsanseong",
+          "nameKo": "공산성",
+          "wikiTitle": "Gongsanseong",
+          "lat": 36.463,
+          "lon": 127.126,
+          "category": "세계유산",
+          "descriptionKo": "금강을 내려다보는 백제시대 성곽"
+        },
+        {
+          "name": "Tomb of King Muryeong",
+          "nameKo": "무령왕릉과 왕릉원",
+          "wikiTitle": "Tomb of King Muryeong",
+          "lat": 36.466,
+          "lon": 127.112,
+          "category": "세계유산",
+          "descriptionKo": "백제 왕릉과 출토문화를 살펴보는 유적"
+        },
+        {
+          "name": "Magoksa",
+          "nameKo": "마곡사",
+          "wikiTitle": "Magoksa",
+          "lat": 36.555,
+          "lon": 127.019,
+          "category": "사찰",
+          "descriptionKo": "태화산 계곡에 자리한 사찰"
+        }
+      ]
+    },
+    "Boryeong": {
+      "nameKo": "보령",
+      "summaryKo": "대천해수욕장과 머드축제, 서해 낙조로 유명한 충남 해양 관광도시예요.",
+      "tags": [
+        "해변",
+        "머드축제",
+        "서해"
+      ],
+      "attractions": [
+        {
+          "name": "Daecheon Beach",
+          "nameKo": "대천해수욕장",
+          "wikiTitle": "Daecheon Beach",
+          "lat": 36.306,
+          "lon": 126.513,
+          "category": "해변",
+          "descriptionKo": "보령머드축제로 유명한 서해 해변"
+        },
+        {
+          "name": "Muchangpo Beach",
+          "nameKo": "무창포해수욕장",
+          "wikiTitle": "Muchangpo Beach",
+          "lat": 36.248,
+          "lon": 126.536,
+          "category": "해변",
+          "descriptionKo": "바닷길 현상과 낙조로 알려진 해변"
+        },
+        {
+          "name": "Seongjusan",
+          "nameKo": "성주산",
+          "wikiTitle": "Seongjusan",
+          "lat": 36.31,
+          "lon": 126.654,
+          "category": "산",
+          "descriptionKo": "보령 내륙의 산림휴양 관광지"
+        }
+      ]
+    },
+    "Tongyeong": {
+      "nameKo": "통영",
+      "summaryKo": "한려수도 섬 풍경과 케이블카, 예술가의 흔적이 어우러진 남해안 항구도시예요.",
+      "tags": [
+        "한려수도",
+        "섬",
+        "케이블카"
+      ],
+      "attractions": [
+        {
+          "name": "Mireuksan",
+          "nameKo": "미륵산",
+          "wikiTitle": "Mireuksan (Tongyeong)",
+          "lat": 34.824,
+          "lon": 128.416,
+          "category": "전망",
+          "descriptionKo": "한려수도 전망으로 유명한 통영의 산"
+        },
+        {
+          "name": "Dongpirang Village",
+          "nameKo": "동피랑벽화마을",
+          "wikiTitle": "Dongpirang Village",
+          "lat": 34.845,
+          "lon": 128.424,
+          "category": "마을",
+          "descriptionKo": "항구 언덕의 벽화 골목"
+        },
+        {
+          "name": "Hansando",
+          "nameKo": "한산도",
+          "wikiTitle": "Hansando",
+          "lat": 34.78,
+          "lon": 128.5,
+          "category": "섬",
+          "descriptionKo": "이순신과 한산대첩 역사로 유명한 섬"
+        }
+      ]
+    },
+    "Geoje": {
+      "nameKo": "거제",
+      "summaryKo": "큰 섬 전체에 해안 절경과 식물원, 조선업 도시 풍경이 펼쳐지는 남해 관광도시예요.",
+      "tags": [
+        "섬",
+        "해안",
+        "정원"
+      ],
+      "attractions": [
+        {
+          "name": "Oedo Botania",
+          "nameKo": "외도 보타니아",
+          "wikiTitle": "Oedo Botania",
+          "lat": 34.769,
+          "lon": 128.713,
+          "category": "정원",
+          "descriptionKo": "섬 전체를 정원으로 꾸민 해상 식물원"
+        },
+        {
+          "name": "Windy Hill",
+          "nameKo": "바람의 언덕",
+          "wikiTitle": "Windy Hill (Geoje)",
+          "lat": 34.744,
+          "lon": 128.664,
+          "category": "해안",
+          "descriptionKo": "남해 바다 전망과 풍차로 유명한 언덕"
+        },
+        {
+          "name": "Geoje POW Camp",
+          "nameKo": "거제 포로수용소 유적공원",
+          "wikiTitle": "Geoje POW Camp",
+          "lat": 34.88,
+          "lon": 128.621,
+          "category": "역사",
+          "descriptionKo": "한국전쟁 포로수용소 역사를 다루는 공원"
+        }
+      ]
+    }
+  },
+  "nationalAttractions": [
+    {
+      "name": "Gyeongbokgung Palace",
+      "nameKo": "경복궁",
+      "wikiTitle": "Gyeongbokgung",
+      "lat": 37.5796,
+      "lon": 126.977,
+      "category": "역사",
+      "descriptionKo": "조선의 대표 궁궐",
+      "cityKey": "Seoul",
+      "cityNameKo": "서울"
+    },
+    {
+      "name": "N Seoul Tower",
+      "nameKo": "N서울타워",
+      "wikiTitle": "N Seoul Tower",
+      "lat": 37.5512,
+      "lon": 126.9882,
+      "category": "전망",
+      "descriptionKo": "남산에서 서울을 내려다보는 전망 명소",
+      "cityKey": "Seoul",
+      "cityNameKo": "서울"
+    },
+    {
+      "name": "Bukchon Hanok Village",
+      "nameKo": "북촌한옥마을",
+      "wikiTitle": "Bukchon Hanok Village",
+      "lat": 37.5826,
+      "lon": 126.9831,
+      "category": "전통",
+      "descriptionKo": "한옥 골목이 이어지는 전통 주거 지역",
+      "cityKey": "Seoul",
+      "cityNameKo": "서울"
+    },
+    {
+      "name": "Lotte World Tower",
+      "nameKo": "롯데월드타워",
+      "wikiTitle": "Lotte World Tower",
+      "lat": 37.5125,
+      "lon": 127.1025,
+      "category": "현대",
+      "descriptionKo": "서울 동남권의 초고층 전망 명소",
+      "cityKey": "Seoul",
+      "cityNameKo": "서울"
+    },
+    {
+      "name": "Haeundae Beach",
+      "nameKo": "해운대해수욕장",
+      "wikiTitle": "Haeundae Beach",
+      "lat": 35.1587,
+      "lon": 129.1604,
+      "category": "해변",
+      "descriptionKo": "부산을 대표하는 도심 해변",
+      "cityKey": "Busan",
+      "cityNameKo": "부산"
+    },
+    {
+      "name": "Gamcheon Culture Village",
+      "nameKo": "감천문화마을",
+      "wikiTitle": "Gamcheon Culture Village",
+      "lat": 35.0975,
+      "lon": 129.0106,
+      "category": "마을",
+      "descriptionKo": "산비탈의 다채로운 골목 풍경",
+      "cityKey": "Busan",
+      "cityNameKo": "부산"
+    },
+    {
+      "name": "Haedong Yonggungsa",
+      "nameKo": "해동용궁사",
+      "wikiTitle": "Haedong Yonggungsa",
+      "lat": 35.1883,
+      "lon": 129.2232,
+      "category": "사찰",
+      "descriptionKo": "바닷가 절벽과 맞닿은 사찰",
+      "cityKey": "Busan",
+      "cityNameKo": "부산"
+    },
+    {
+      "name": "Gwangalli Beach",
+      "nameKo": "광안리해수욕장",
+      "wikiTitle": "Gwangalli Beach",
+      "lat": 35.1532,
+      "lon": 129.1186,
+      "category": "야경",
+      "descriptionKo": "광안대교 야경으로 유명한 해변",
+      "cityKey": "Busan",
+      "cityNameKo": "부산"
+    },
+    {
+      "name": "Songdo Central Park",
+      "nameKo": "송도센트럴파크",
+      "wikiTitle": "Songdo Central Park",
+      "lat": 37.3927,
+      "lon": 126.637,
+      "category": "공원",
+      "descriptionKo": "송도 도심 수변공원",
+      "cityKey": "Incheon",
+      "cityNameKo": "인천"
+    },
+    {
+      "name": "Incheon Chinatown",
+      "nameKo": "인천 차이나타운",
+      "wikiTitle": "Incheon Chinatown",
+      "lat": 37.4753,
+      "lon": 126.617,
+      "category": "거리",
+      "descriptionKo": "개항장 역사가 남은 차이나타운",
+      "cityKey": "Incheon",
+      "cityNameKo": "인천"
+    },
+    {
+      "name": "Wolmido",
+      "nameKo": "월미도",
+      "wikiTitle": "Wolmido",
+      "lat": 37.4736,
+      "lon": 126.596,
+      "category": "해안",
+      "descriptionKo": "바다 산책과 놀이시설이 있는 해안 관광지",
+      "cityKey": "Incheon",
+      "cityNameKo": "인천"
+    },
+    {
+      "name": "Seomun Market",
+      "nameKo": "서문시장",
+      "wikiTitle": "Seomun Market",
+      "lat": 35.869,
+      "lon": 128.5805,
+      "category": "시장",
+      "descriptionKo": "대구의 대표 전통시장",
+      "cityKey": "Daegu",
+      "cityNameKo": "대구"
+    },
+    {
+      "name": "Apsan Park",
+      "nameKo": "앞산공원",
+      "wikiTitle": "Apsan Park",
+      "lat": 35.8326,
+      "lon": 128.577,
+      "category": "산",
+      "descriptionKo": "도심 가까이에서 전망을 즐기는 산",
+      "cityKey": "Daegu",
+      "cityNameKo": "대구"
+    },
+    {
+      "name": "Palgongsan",
+      "nameKo": "팔공산",
+      "wikiTitle": "Palgongsan",
+      "lat": 35.99,
+      "lon": 128.69,
+      "category": "산",
+      "descriptionKo": "대구 북동쪽의 대표 산악 관광지",
+      "cityKey": "Daegu",
+      "cityNameKo": "대구"
+    },
+    {
+      "name": "Asia Culture Center",
+      "nameKo": "국립아시아문화전당",
+      "wikiTitle": "Asia Culture Center",
+      "lat": 35.1467,
+      "lon": 126.9194,
+      "category": "문화",
+      "descriptionKo": "전시·공연·문화콘텐츠 복합공간",
+      "cityKey": "Gwangju",
+      "cityNameKo": "광주"
+    },
+    {
+      "name": "Mudeungsan",
+      "nameKo": "무등산",
+      "wikiTitle": "Mudeungsan",
+      "lat": 35.134,
+      "lon": 126.988,
+      "category": "산",
+      "descriptionKo": "광주를 상징하는 국립공원 산",
+      "cityKey": "Gwangju",
+      "cityNameKo": "광주"
+    },
+    {
+      "name": "Yangnim-dong",
+      "nameKo": "양림동 역사문화마을",
+      "wikiTitle": "Yangnim-dong",
+      "lat": 35.141,
+      "lon": 126.914,
+      "category": "거리",
+      "descriptionKo": "근대 건축과 문화공간이 모인 동네",
+      "cityKey": "Gwangju",
+      "cityNameKo": "광주"
+    },
+    {
+      "name": "Expo Science Park",
+      "nameKo": "엑스포과학공원",
+      "wikiTitle": "Expo Science Park",
+      "lat": 36.376,
+      "lon": 127.387,
+      "category": "과학",
+      "descriptionKo": "대전엑스포의 상징 시설이 남은 과학공원",
+      "cityKey": "Daejeon",
+      "cityNameKo": "대전"
+    },
+    {
+      "name": "Hanbat Arboretum",
+      "nameKo": "한밭수목원",
+      "wikiTitle": "Hanbat Arboretum",
+      "lat": 36.3665,
+      "lon": 127.389,
+      "category": "공원",
+      "descriptionKo": "도심 대형 수목원",
+      "cityKey": "Daejeon",
+      "cityNameKo": "대전"
+    },
+    {
+      "name": "Yuseong Hot Springs",
+      "nameKo": "유성온천",
+      "wikiTitle": "Yuseong Hot Springs",
+      "lat": 36.355,
+      "lon": 127.34,
+      "category": "온천",
+      "descriptionKo": "오래된 온천 관광지",
+      "cityKey": "Daejeon",
+      "cityNameKo": "대전"
+    },
+    {
+      "name": "Hwaseong Fortress",
+      "nameKo": "수원화성",
+      "wikiTitle": "Hwaseong Fortress",
+      "lat": 37.286,
+      "lon": 127.014,
+      "category": "세계유산",
+      "descriptionKo": "정조 시대에 축조된 성곽",
+      "cityKey": "Suwon",
+      "cityNameKo": "수원"
+    },
+    {
+      "name": "Hwaseong Haenggung",
+      "nameKo": "화성행궁",
+      "wikiTitle": "Hwaseong Haenggung",
+      "lat": 37.281,
+      "lon": 127.014,
+      "category": "궁궐",
+      "descriptionKo": "수원화성 안의 대표 행궁",
+      "cityKey": "Suwon",
+      "cityNameKo": "수원"
+    },
+    {
+      "name": "Gwanggyo Lake Park",
+      "nameKo": "광교호수공원",
+      "wikiTitle": "Gwanggyo Lake Park",
+      "lat": 37.29,
+      "lon": 127.064,
+      "category": "공원",
+      "descriptionKo": "호수와 산책로가 이어지는 대형 공원",
+      "cityKey": "Suwon",
+      "cityNameKo": "수원"
+    },
+    {
+      "name": "Jeonju Hanok Village",
+      "nameKo": "전주한옥마을",
+      "wikiTitle": "Jeonju Hanok Village",
+      "lat": 35.815,
+      "lon": 127.153,
+      "category": "전통",
+      "descriptionKo": "대규모 한옥이 모여 있는 대표 관광지",
+      "cityKey": "Jeonju",
+      "cityNameKo": "전주"
+    },
+    {
+      "name": "Gyeonggijeon",
+      "nameKo": "경기전",
+      "wikiTitle": "Gyeonggijeon",
+      "lat": 35.815,
+      "lon": 127.149,
+      "category": "역사",
+      "descriptionKo": "태조 어진을 모신 전주의 역사 유적",
+      "cityKey": "Jeonju",
+      "cityNameKo": "전주"
+    },
+    {
+      "name": "Nambu Market",
+      "nameKo": "전주 남부시장",
+      "wikiTitle": "Nambu Market (Jeonju)",
+      "lat": 35.811,
+      "lon": 127.147,
+      "category": "시장",
+      "descriptionKo": "먹거리와 청년몰로 유명한 전통시장",
+      "cityKey": "Jeonju",
+      "cityNameKo": "전주"
+    },
+    {
+      "name": "Daewangam Park",
+      "nameKo": "대왕암공원",
+      "wikiTitle": "Daewangam Park",
+      "lat": 35.491,
+      "lon": 129.438,
+      "category": "해안",
+      "descriptionKo": "기암과 해송길이 이어지는 동해안 공원",
+      "cityKey": "Ulsan",
+      "cityNameKo": "울산"
+    },
+    {
+      "name": "Taehwagang National Garden",
+      "nameKo": "태화강 국가정원",
+      "wikiTitle": "Taehwagang National Garden",
+      "lat": 35.55,
+      "lon": 129.296,
+      "category": "정원",
+      "descriptionKo": "태화강을 따라 조성된 국가정원",
+      "cityKey": "Ulsan",
+      "cityNameKo": "울산"
+    },
+    {
+      "name": "Jangsaengpo Whale Museum",
+      "nameKo": "장생포 고래문화특구",
+      "wikiTitle": "Jangsaengpo Whale Museum",
+      "lat": 35.503,
+      "lon": 129.387,
+      "category": "문화",
+      "descriptionKo": "울산의 고래 역사와 문화를 살펴보는 곳",
+      "cityKey": "Ulsan",
+      "cityNameKo": "울산"
+    },
+    {
+      "name": "Cheongju Early Printing Museum",
+      "nameKo": "청주고인쇄박물관",
+      "wikiTitle": "Cheongju Early Printing Museum",
+      "lat": 36.642,
+      "lon": 127.471,
+      "category": "역사",
+      "descriptionKo": "직지와 금속활자 문화를 소개하는 박물관",
+      "cityKey": "Cheongju-si",
+      "cityNameKo": "청주"
+    },
+    {
+      "name": "Sangdangsanseong",
+      "nameKo": "상당산성",
+      "wikiTitle": "Sangdangsanseong",
+      "lat": 36.656,
+      "lon": 127.543,
+      "category": "성곽",
+      "descriptionKo": "산 위를 두르는 청주의 대표 산성",
+      "cityKey": "Cheongju-si",
+      "cityNameKo": "청주"
+    },
+    {
+      "name": "Cheongnamdae",
+      "nameKo": "청남대",
+      "wikiTitle": "Cheongnamdae",
+      "lat": 36.462,
+      "lon": 127.488,
+      "category": "정원",
+      "descriptionKo": "대청호 주변의 옛 대통령 별장",
+      "cityKey": "Cheongju-si",
+      "cityNameKo": "청주"
+    },
+    {
+      "name": "Hallasan",
+      "nameKo": "한라산",
+      "wikiTitle": "Hallasan",
+      "lat": 33.3617,
+      "lon": 126.5292,
+      "category": "자연",
+      "descriptionKo": "제주 중앙의 화산 산체이자 대한민국 최고봉",
+      "cityKey": "Jeju City",
+      "cityNameKo": "제주시"
+    },
+    {
+      "name": "Yongduam",
+      "nameKo": "용두암",
+      "wikiTitle": "Yongduam",
+      "lat": 33.516,
+      "lon": 126.511,
+      "category": "해안",
+      "descriptionKo": "용 머리 모양의 해안 화산암",
+      "cityKey": "Jeju City",
+      "cityNameKo": "제주시"
+    },
+    {
+      "name": "Hamdeok Beach",
+      "nameKo": "함덕해수욕장",
+      "wikiTitle": "Hamdeok Beach",
+      "lat": 33.543,
+      "lon": 126.669,
+      "category": "해변",
+      "descriptionKo": "맑은 바다색으로 유명한 제주 동북부 해변",
+      "cityKey": "Jeju City",
+      "cityNameKo": "제주시"
+    },
+    {
+      "name": "Seongsan Ilchulbong",
+      "nameKo": "성산일출봉",
+      "wikiTitle": "Seongsan Ilchulbong",
+      "lat": 33.4581,
+      "lon": 126.9425,
+      "category": "세계유산",
+      "descriptionKo": "바다 옆에 솟은 독특한 응회구",
+      "cityKey": "Seogwipo",
+      "cityNameKo": "서귀포"
+    },
+    {
+      "name": "Jeongbang Waterfall",
+      "nameKo": "정방폭포",
+      "wikiTitle": "Jeongbang Waterfall",
+      "lat": 33.244,
+      "lon": 126.571,
+      "category": "폭포",
+      "descriptionKo": "바다 가까이 떨어지는 제주 대표 폭포",
+      "cityKey": "Seogwipo",
+      "cityNameKo": "서귀포"
+    },
+    {
+      "name": "Cheonjiyeon Waterfall",
+      "nameKo": "천지연폭포",
+      "wikiTitle": "Cheonjiyeon Waterfall",
+      "lat": 33.246,
+      "lon": 126.554,
+      "category": "폭포",
+      "descriptionKo": "서귀포 도심에서 접근하기 쉬운 폭포",
+      "cityKey": "Seogwipo",
+      "cityNameKo": "서귀포"
+    },
+    {
+      "name": "Bulguksa",
+      "nameKo": "불국사",
+      "wikiTitle": "Bulguksa",
+      "lat": 35.79,
+      "lon": 129.332,
+      "category": "세계유산",
+      "descriptionKo": "신라 불교문화를 대표하는 사찰",
+      "cityKey": "Gyeongju",
+      "cityNameKo": "경주"
+    },
+    {
+      "name": "Donggung Palace and Wolji Pond",
+      "nameKo": "동궁과 월지",
+      "wikiTitle": "Donggung Palace and Wolji Pond",
+      "lat": 35.8346,
+      "lon": 129.2266,
+      "category": "역사",
+      "descriptionKo": "야경으로도 유명한 신라 궁원 유적",
+      "cityKey": "Gyeongju",
+      "cityNameKo": "경주"
+    },
+    {
+      "name": "Cheomseongdae",
+      "nameKo": "첨성대",
+      "wikiTitle": "Cheomseongdae",
+      "lat": 35.8347,
+      "lon": 129.219,
+      "category": "역사",
+      "descriptionKo": "신라 시대 천문 관측 유적",
+      "cityKey": "Gyeongju",
+      "cityNameKo": "경주"
+    },
+    {
+      "name": "Daereungwon",
+      "nameKo": "대릉원",
+      "wikiTitle": "Daereungwon",
+      "lat": 35.838,
+      "lon": 129.212,
+      "category": "고분",
+      "descriptionKo": "신라 왕족 고분이 모인 고분공원",
+      "cityKey": "Gyeongju",
+      "cityNameKo": "경주"
+    },
+    {
+      "name": "Gyeongpo Beach",
+      "nameKo": "경포해변",
+      "wikiTitle": "Gyeongpo Beach",
+      "lat": 37.795,
+      "lon": 128.907,
+      "category": "해변",
+      "descriptionKo": "경포호와 가까운 동해 대표 해변",
+      "cityKey": "Gangneung",
+      "cityNameKo": "강릉"
+    },
+    {
+      "name": "Anmok Beach",
+      "nameKo": "안목해변·커피거리",
+      "wikiTitle": "Anmok Beach",
+      "lat": 37.771,
+      "lon": 128.948,
+      "category": "카페",
+      "descriptionKo": "바다를 따라 카페가 이어지는 거리",
+      "cityKey": "Gangneung",
+      "cityNameKo": "강릉"
+    },
+    {
+      "name": "Ojukheon",
+      "nameKo": "오죽헌",
+      "wikiTitle": "Ojukheon",
+      "lat": 37.779,
+      "lon": 128.875,
+      "category": "역사",
+      "descriptionKo": "신사임당과 율곡 이이로 유명한 고택",
+      "cityKey": "Gangneung",
+      "cityNameKo": "강릉"
+    },
+    {
+      "name": "Seoraksan",
+      "nameKo": "설악산",
+      "wikiTitle": "Seoraksan",
+      "lat": 38.119,
+      "lon": 128.466,
+      "category": "국립공원",
+      "descriptionKo": "기암과 단풍으로 유명한 국립공원",
+      "cityKey": "Sokcho",
+      "cityNameKo": "속초"
+    },
+    {
+      "name": "Sokcho Beach",
+      "nameKo": "속초해수욕장",
+      "wikiTitle": "Sokcho Beach",
+      "lat": 38.191,
+      "lon": 128.601,
+      "category": "해변",
+      "descriptionKo": "속초 시내와 가까운 동해 해변",
+      "cityKey": "Sokcho",
+      "cityNameKo": "속초"
+    },
+    {
+      "name": "Abai Village",
+      "nameKo": "아바이마을",
+      "wikiTitle": "Abai Village",
+      "lat": 38.204,
+      "lon": 128.594,
+      "category": "마을",
+      "descriptionKo": "실향민 문화와 먹거리로 알려진 마을",
+      "cityKey": "Sokcho",
+      "cityNameKo": "속초"
+    },
+    {
+      "name": "Namiseom",
+      "nameKo": "남이섬",
+      "wikiTitle": "Namiseom",
+      "lat": 37.791,
+      "lon": 127.526,
+      "category": "섬",
+      "descriptionKo": "숲길과 문화공간이 있는 북한강의 섬",
+      "cityKey": "Chuncheon",
+      "cityNameKo": "춘천"
+    },
+    {
+      "name": "Soyanggang Skywalk",
+      "nameKo": "소양강스카이워크",
+      "wikiTitle": "Soyanggang Skywalk",
+      "lat": 37.893,
+      "lon": 127.723,
+      "category": "전망",
+      "descriptionKo": "소양강 위를 걷는 유리 전망시설",
+      "cityKey": "Chuncheon",
+      "cityNameKo": "춘천"
+    },
+    {
+      "name": "Samaksan",
+      "nameKo": "삼악산",
+      "wikiTitle": "Samaksan",
+      "lat": 37.839,
+      "lon": 127.66,
+      "category": "산",
+      "descriptionKo": "의암호 주변 전망을 볼 수 있는 산",
+      "cityKey": "Chuncheon",
+      "cityNameKo": "춘천"
+    },
+    {
+      "name": "Odongdo",
+      "nameKo": "오동도",
+      "wikiTitle": "Odongdo",
+      "lat": 34.744,
+      "lon": 127.766,
+      "category": "섬",
+      "descriptionKo": "동백나무와 해안 산책로로 유명한 섬",
+      "cityKey": "Yeosu",
+      "cityNameKo": "여수"
+    },
+    {
+      "name": "Hyangiram",
+      "nameKo": "향일암",
+      "wikiTitle": "Hyangiram",
+      "lat": 34.593,
+      "lon": 127.806,
+      "category": "사찰",
+      "descriptionKo": "남해 일출 전망으로 유명한 암자",
+      "cityKey": "Yeosu",
+      "cityNameKo": "여수"
+    },
+    {
+      "name": "Yeosu Maritime Cable Car",
+      "nameKo": "여수해상케이블카",
+      "wikiTitle": "Yeosu Maritime Cable Car",
+      "lat": 34.738,
+      "lon": 127.741,
+      "category": "전망",
+      "descriptionKo": "바다 위를 가로지르는 케이블카",
+      "cityKey": "Yeosu",
+      "cityNameKo": "여수"
+    },
+    {
+      "name": "Suncheon Bay Wetland Reserve",
+      "nameKo": "순천만습지",
+      "wikiTitle": "Suncheon Bay",
+      "lat": 34.885,
+      "lon": 127.509,
+      "category": "습지",
+      "descriptionKo": "갈대밭과 갯벌이 펼쳐진 대표 생태관광지",
+      "cityKey": "Suncheon",
+      "cityNameKo": "순천"
+    },
+    {
+      "name": "Suncheon Bay National Garden",
+      "nameKo": "순천만국가정원",
+      "wikiTitle": "Suncheon Bay National Garden",
+      "lat": 34.929,
+      "lon": 127.509,
+      "category": "정원",
+      "descriptionKo": "국가정원으로 지정된 대형 정원",
+      "cityKey": "Suncheon",
+      "cityNameKo": "순천"
+    },
+    {
+      "name": "Naganeupseong",
+      "nameKo": "낙안읍성",
+      "wikiTitle": "Naganeupseong",
+      "lat": 34.906,
+      "lon": 127.341,
+      "category": "전통마을",
+      "descriptionKo": "성곽 안 전통마을이 보존된 읍성",
+      "cityKey": "Suncheon",
+      "cityNameKo": "순천"
+    },
+    {
+      "name": "Hahoe Folk Village",
+      "nameKo": "안동 하회마을",
+      "wikiTitle": "Hahoe Folk Village",
+      "lat": 36.539,
+      "lon": 128.518,
+      "category": "세계유산",
+      "descriptionKo": "낙동강이 감싸는 전통마을",
+      "cityKey": "Andong",
+      "cityNameKo": "안동"
+    },
+    {
+      "name": "Wolyeonggyo Bridge",
+      "nameKo": "월영교",
+      "wikiTitle": "Wolyeonggyo Bridge",
+      "lat": 36.577,
+      "lon": 128.762,
+      "category": "야경",
+      "descriptionKo": "안동호의 대표 목책 인도교",
+      "cityKey": "Andong",
+      "cityNameKo": "안동"
+    },
+    {
+      "name": "Dosan Seowon",
+      "nameKo": "도산서원",
+      "wikiTitle": "Dosan Seowon",
+      "lat": 36.727,
+      "lon": 128.844,
+      "category": "서원",
+      "descriptionKo": "퇴계 이황과 관련된 대표 서원",
+      "cityKey": "Andong",
+      "cityNameKo": "안동"
+    },
+    {
+      "name": "Homigot",
+      "nameKo": "호미곶",
+      "wikiTitle": "Homigot",
+      "lat": 36.076,
+      "lon": 129.568,
+      "category": "일출",
+      "descriptionKo": "한반도 동쪽 끝 일출 명소",
+      "cityKey": "Pohang",
+      "cityNameKo": "포항"
+    },
+    {
+      "name": "Space Walk",
+      "nameKo": "스페이스워크",
+      "wikiTitle": "Space Walk",
+      "lat": 36.066,
+      "lon": 129.391,
+      "category": "조형물",
+      "descriptionKo": "환호공원의 체험형 곡선 조형물",
+      "cityKey": "Pohang",
+      "cityNameKo": "포항"
+    },
+    {
+      "name": "Jukdo Market",
+      "nameKo": "죽도시장",
+      "wikiTitle": "Jukdo Market",
+      "lat": 36.035,
+      "lon": 129.367,
+      "category": "시장",
+      "descriptionKo": "수산물과 먹거리로 유명한 전통시장",
+      "cityKey": "Pohang",
+      "cityNameKo": "포항"
+    },
+    {
+      "name": "Yudalsan",
+      "nameKo": "유달산",
+      "wikiTitle": "Yudalsan",
+      "lat": 34.79,
+      "lon": 126.374,
+      "category": "산",
+      "descriptionKo": "목포항과 다도해를 내려다보는 산",
+      "cityKey": "Mokpo",
+      "cityNameKo": "목포"
+    },
+    {
+      "name": "Gatbawi",
+      "nameKo": "갓바위",
+      "wikiTitle": "Gatbawi",
+      "lat": 34.792,
+      "lon": 126.433,
+      "category": "자연",
+      "descriptionKo": "바닷가 풍화지형으로 유명한 바위",
+      "cityKey": "Mokpo",
+      "cityNameKo": "목포"
+    },
+    {
+      "name": "Mokpo Marine Cable Car",
+      "nameKo": "목포해상케이블카",
+      "wikiTitle": "Mokpo Marine Cable Car",
+      "lat": 34.794,
+      "lon": 126.376,
+      "category": "전망",
+      "descriptionKo": "유달산과 바다를 잇는 해상케이블카",
+      "cityKey": "Mokpo",
+      "cityNameKo": "목포"
+    },
+    {
+      "name": "Gunsan Modern History Museum",
+      "nameKo": "군산근대역사박물관",
+      "wikiTitle": "Gunsan Modern History Museum",
+      "lat": 35.988,
+      "lon": 126.711,
+      "category": "박물관",
+      "descriptionKo": "개항 이후 군산의 근대사를 다루는 박물관",
+      "cityKey": "Gunsan",
+      "cityNameKo": "군산"
+    },
+    {
+      "name": "Gyeongam-dong Railroad Village",
+      "nameKo": "경암동 철길마을",
+      "wikiTitle": "Gyeongam-dong Railroad Village",
+      "lat": 35.981,
+      "lon": 126.724,
+      "category": "거리",
+      "descriptionKo": "주택 사이 옛 철길 풍경으로 유명한 마을",
+      "cityKey": "Gunsan",
+      "cityNameKo": "군산"
+    },
+    {
+      "name": "Seonyudo",
+      "nameKo": "선유도",
+      "wikiTitle": "Seonyudo (Gunsan)",
+      "lat": 35.817,
+      "lon": 126.406,
+      "category": "섬",
+      "descriptionKo": "고군산군도의 대표 섬 관광지",
+      "cityKey": "Gunsan",
+      "cityNameKo": "군산"
+    },
+    {
+      "name": "Gongsanseong",
+      "nameKo": "공산성",
+      "wikiTitle": "Gongsanseong",
+      "lat": 36.463,
+      "lon": 127.126,
+      "category": "세계유산",
+      "descriptionKo": "금강을 내려다보는 백제시대 성곽",
+      "cityKey": "Gongju",
+      "cityNameKo": "공주"
+    },
+    {
+      "name": "Tomb of King Muryeong",
+      "nameKo": "무령왕릉과 왕릉원",
+      "wikiTitle": "Tomb of King Muryeong",
+      "lat": 36.466,
+      "lon": 127.112,
+      "category": "세계유산",
+      "descriptionKo": "백제 왕릉과 출토문화를 살펴보는 유적",
+      "cityKey": "Gongju",
+      "cityNameKo": "공주"
+    },
+    {
+      "name": "Magoksa",
+      "nameKo": "마곡사",
+      "wikiTitle": "Magoksa",
+      "lat": 36.555,
+      "lon": 127.019,
+      "category": "사찰",
+      "descriptionKo": "태화산 계곡에 자리한 사찰",
+      "cityKey": "Gongju",
+      "cityNameKo": "공주"
+    },
+    {
+      "name": "Daecheon Beach",
+      "nameKo": "대천해수욕장",
+      "wikiTitle": "Daecheon Beach",
+      "lat": 36.306,
+      "lon": 126.513,
+      "category": "해변",
+      "descriptionKo": "보령머드축제로 유명한 서해 해변",
+      "cityKey": "Boryeong",
+      "cityNameKo": "보령"
+    },
+    {
+      "name": "Muchangpo Beach",
+      "nameKo": "무창포해수욕장",
+      "wikiTitle": "Muchangpo Beach",
+      "lat": 36.248,
+      "lon": 126.536,
+      "category": "해변",
+      "descriptionKo": "바닷길 현상과 낙조로 알려진 해변",
+      "cityKey": "Boryeong",
+      "cityNameKo": "보령"
+    },
+    {
+      "name": "Seongjusan",
+      "nameKo": "성주산",
+      "wikiTitle": "Seongjusan",
+      "lat": 36.31,
+      "lon": 126.654,
+      "category": "산",
+      "descriptionKo": "보령 내륙의 산림휴양 관광지",
+      "cityKey": "Boryeong",
+      "cityNameKo": "보령"
+    },
+    {
+      "name": "Mireuksan",
+      "nameKo": "미륵산",
+      "wikiTitle": "Mireuksan (Tongyeong)",
+      "lat": 34.824,
+      "lon": 128.416,
+      "category": "전망",
+      "descriptionKo": "한려수도 전망으로 유명한 통영의 산",
+      "cityKey": "Tongyeong",
+      "cityNameKo": "통영"
+    },
+    {
+      "name": "Dongpirang Village",
+      "nameKo": "동피랑벽화마을",
+      "wikiTitle": "Dongpirang Village",
+      "lat": 34.845,
+      "lon": 128.424,
+      "category": "마을",
+      "descriptionKo": "항구 언덕의 벽화 골목",
+      "cityKey": "Tongyeong",
+      "cityNameKo": "통영"
+    },
+    {
+      "name": "Hansando",
+      "nameKo": "한산도",
+      "wikiTitle": "Hansando",
+      "lat": 34.78,
+      "lon": 128.5,
+      "category": "섬",
+      "descriptionKo": "이순신과 한산대첩 역사로 유명한 섬",
+      "cityKey": "Tongyeong",
+      "cityNameKo": "통영"
+    },
+    {
+      "name": "Oedo Botania",
+      "nameKo": "외도 보타니아",
+      "wikiTitle": "Oedo Botania",
+      "lat": 34.769,
+      "lon": 128.713,
+      "category": "정원",
+      "descriptionKo": "섬 전체를 정원으로 꾸민 해상 식물원",
+      "cityKey": "Geoje",
+      "cityNameKo": "거제"
+    },
+    {
+      "name": "Windy Hill",
+      "nameKo": "바람의 언덕",
+      "wikiTitle": "Windy Hill (Geoje)",
+      "lat": 34.744,
+      "lon": 128.664,
+      "category": "해안",
+      "descriptionKo": "남해 바다 전망과 풍차로 유명한 언덕",
+      "cityKey": "Geoje",
+      "cityNameKo": "거제"
+    },
+    {
+      "name": "Geoje POW Camp",
+      "nameKo": "거제 포로수용소 유적공원",
+      "wikiTitle": "Geoje POW Camp",
+      "lat": 34.88,
+      "lon": 128.621,
+      "category": "역사",
+      "descriptionKo": "한국전쟁 포로수용소 역사를 다루는 공원",
+      "cityKey": "Geoje",
+      "cityNameKo": "거제"
+    }
+  ]
+}

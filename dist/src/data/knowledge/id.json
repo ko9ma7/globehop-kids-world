@@ -1,0 +1,160 @@
+{
+  "code2": "ID",
+  "specialties": [
+    "Rice",
+    "Coffee",
+    "Spices"
+  ],
+  "animals": [
+    "Orangutan",
+    "Komodo dragon"
+  ],
+  "plants": [
+    "Rafflesia",
+    "Teak"
+  ],
+  "landmarks": [
+    "Borobudur",
+    "Prambanan",
+    "Bali",
+    "Komodo National Park",
+    "Mount Bromo"
+  ],
+  "overview": "Indonesia is a huge archipelago between the Indian and Pacific oceans, with thousands of islands and many cultures.",
+  "greeting": "Hello: Halo / Selamat datang",
+  "climate": "Warm and tropical in most regions, with wet and dry seasons.",
+  "bestSeason": "The drier season is easier for many outdoor trips.",
+  "travelTips": "Island-to-island travel often uses flights or ferries.",
+  "facts": [
+    "Indonesia is made up of thousands of islands.",
+    "Java is one of the world’s most populated islands.",
+    "Many volcanoes are part of the Pacific Ring of Fire."
+  ],
+  "ko": {
+    "specialties": [
+      "쌀",
+      "커피",
+      "향신료"
+    ],
+    "animals": [
+      "오랑우탄",
+      "코모도왕도마뱀"
+    ],
+    "plants": [
+      "라플레시아",
+      "티크"
+    ],
+    "landmarks": [
+      "보로부두르",
+      "프람바난",
+      "발리",
+      "코모도 국립공원",
+      "브로모산"
+    ],
+    "overview": "인도네시아는 인도양과 태평양 사이에 있는 거대한 군도 국가로, 수많은 섬과 다양한 문화가 있어요.",
+    "greeting": "안녕하세요: 할로 / 슬라맛 다땅",
+    "climate": "대부분 덥고 습한 열대기후이며 우기와 건기가 있어요.",
+    "bestSeason": "많은 지역에서 건기가 야외 여행하기 편해요.",
+    "travelTips": "섬 사이 이동에는 비행기나 페리를 자주 이용해요.",
+    "facts": [
+      "인도네시아는 수천 개의 섬으로 이루어져 있어요.",
+      "자바섬은 세계에서 인구가 매우 많은 섬 가운데 하나예요.",
+      "환태평양 조산대에 속해 화산이 많아요."
+    ],
+    "foods": [
+      "나시고렝",
+      "미고렝",
+      "사테",
+      "렌당"
+    ],
+    "festivals": [
+      "녜삐",
+      "와이삭",
+      "발리 예술축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Borobudur",
+        "nameKo": "보로부두르",
+        "wikiTitle": "Borobudur",
+        "descriptionKo": "거대한 불교 석조 사원으로 유명한 자바의 유적이에요.",
+        "lat": -7.6079,
+        "lon": 110.2038
+      },
+      {
+        "name": "Prambanan",
+        "nameKo": "프람바난",
+        "wikiTitle": "Prambanan",
+        "descriptionKo": "높은 힌두교 사원 탑들이 모여 있는 자바의 유적이에요.",
+        "lat": -7.752,
+        "lon": 110.4915
+      },
+      {
+        "name": "Bali",
+        "nameKo": "발리",
+        "wikiTitle": "Bali",
+        "descriptionKo": "사원과 해변, 논 풍경으로 유명한 인도네시아의 섬이에요.",
+        "lat": -8.3405,
+        "lon": 115.092
+      },
+      {
+        "name": "Komodo National Park",
+        "nameKo": "코모도 국립공원",
+        "wikiTitle": "Komodo National Park",
+        "descriptionKo": "코모도왕도마뱀과 섬·바다 생태계로 유명해요.",
+        "lat": -8.5516,
+        "lon": 119.4833
+      },
+      {
+        "name": "Mount Bromo",
+        "nameKo": "브로모산",
+        "wikiTitle": "Mount Bromo",
+        "descriptionKo": "넓은 칼데라 안에서 솟은 활화산 풍경으로 유명해요.",
+        "lat": -7.9425,
+        "lon": 112.953
+      }
+    ]
+  },
+  "famousPlaces": [
+    {
+      "name": "Borobudur",
+      "nameKo": "보로부두르",
+      "wikiTitle": "Borobudur",
+      "descriptionKo": "거대한 불교 석조 사원으로 유명한 자바의 유적이에요.",
+      "lat": -7.6079,
+      "lon": 110.2038
+    },
+    {
+      "name": "Prambanan",
+      "nameKo": "프람바난",
+      "wikiTitle": "Prambanan",
+      "descriptionKo": "높은 힌두교 사원 탑들이 모여 있는 자바의 유적이에요.",
+      "lat": -7.752,
+      "lon": 110.4915
+    },
+    {
+      "name": "Bali",
+      "nameKo": "발리",
+      "wikiTitle": "Bali",
+      "descriptionKo": "사원과 해변, 논 풍경으로 유명한 인도네시아의 섬이에요.",
+      "lat": -8.3405,
+      "lon": 115.092
+    },
+    {
+      "name": "Komodo National Park",
+      "nameKo": "코모도 국립공원",
+      "wikiTitle": "Komodo National Park",
+      "descriptionKo": "코모도왕도마뱀과 섬·바다 생태계로 유명해요.",
+      "lat": -8.5516,
+      "lon": 119.4833
+    },
+    {
+      "name": "Mount Bromo",
+      "nameKo": "브로모산",
+      "wikiTitle": "Mount Bromo",
+      "descriptionKo": "넓은 칼데라 안에서 솟은 활화산 풍경으로 유명해요.",
+      "lat": -7.9425,
+      "lon": 112.953
+    }
+  ]
+}

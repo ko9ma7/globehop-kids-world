@@ -1,0 +1,161 @@
+{
+  "code2": "IT",
+  "specialties": [
+    "Olive oil",
+    "Cheese",
+    "Leather goods"
+  ],
+  "animals": [
+    "Italian wolf",
+    "Alpine marmot"
+  ],
+  "plants": [
+    "Olive tree",
+    "Stone pine"
+  ],
+  "facts": [
+    "Italy’s mainland has a boot-like shape.",
+    "The Alps border the north and the Apennines run down the peninsula.",
+    "Many ancient Roman sites are preserved."
+  ],
+  "ko": {
+    "specialties": [
+      "올리브오일",
+      "치즈",
+      "가죽제품"
+    ],
+    "animals": [
+      "이탈리아늑대",
+      "알프스마멋"
+    ],
+    "plants": [
+      "올리브나무",
+      "이탈리아소나무"
+    ],
+    "facts": [
+      "이탈리아 본토는 장화처럼 보이는 모양으로 유명합니다.",
+      "북쪽에는 알프스, 반도 안쪽에는 아펜니노산맥이 이어집니다.",
+      "고대 로마 유적이 많이 남아 있습니다."
+    ],
+    "overview": "이탈리아는 로마 역사와 예술, 파스타, 산맥, 지중해 해안으로 유명해요.",
+    "greeting": "안녕하세요: 차오 / 부온조르노",
+    "climate": "북부와 남부는 날씨와 풍경이 꽤 다를 수 있어요.",
+    "bestSeason": "봄과 가을이 관광하기 편한 편이에요.",
+    "travelTips": "여러 도시를 다닐 때 기차가 유용해요.",
+    "landmarks": [
+      "콜로세움",
+      "피사의 사탑",
+      "베네치아",
+      "피렌체 대성당",
+      "폼페이"
+    ],
+    "foods": [
+      "피자",
+      "파스타",
+      "젤라토",
+      "리소토",
+      "티라미수"
+    ],
+    "festivals": [
+      "베네치아 카니발",
+      "시에나 팔리오",
+      "베로나 오페라 축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Colosseum",
+        "nameKo": "콜로세움",
+        "wikiTitle": "Colosseum",
+        "descriptionKo": "고대 로마 시대의 거대한 원형 경기장이에요.",
+        "lat": 41.8902,
+        "lon": 12.4922
+      },
+      {
+        "name": "Leaning Tower of Pisa",
+        "nameKo": "피사의 사탑",
+        "wikiTitle": "Leaning Tower of Pisa",
+        "descriptionKo": "기울어진 모습으로 세계적으로 유명한 종탑이에요.",
+        "lat": 43.723,
+        "lon": 10.3966
+      },
+      {
+        "name": "Venice",
+        "nameKo": "베네치아",
+        "wikiTitle": "Venice",
+        "descriptionKo": "운하와 곤돌라, 섬으로 이루어진 독특한 도시예요.",
+        "lat": 45.4408,
+        "lon": 12.3155
+      },
+      {
+        "name": "Florence Cathedral",
+        "nameKo": "피렌체 대성당",
+        "wikiTitle": "Florence Cathedral",
+        "descriptionKo": "거대한 붉은 돔으로 유명한 르네상스 도시의 대표 건축물이에요.",
+        "lat": 43.7731,
+        "lon": 11.256
+      },
+      {
+        "name": "Pompeii",
+        "nameKo": "폼페이",
+        "wikiTitle": "Pompeii",
+        "descriptionKo": "베수비오 화산 폭발로 묻혔다가 발굴된 고대 로마 도시예요.",
+        "lat": 40.7508,
+        "lon": 14.4869
+      }
+    ]
+  },
+  "overview": "Italy is famous for Roman history, art, pasta, mountains, and Mediterranean coasts.",
+  "greeting": "Hello: Ciao / Buongiorno",
+  "climate": "Northern and southern Italy can feel different in weather and landscape.",
+  "bestSeason": "Spring and autumn are comfortable for sightseeing.",
+  "travelTips": "Trains are useful for visiting many cities.",
+  "landmarks": [
+    "Colosseum",
+    "Leaning Tower of Pisa",
+    "Venice",
+    "Florence Cathedral",
+    "Pompeii"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Colosseum",
+      "nameKo": "콜로세움",
+      "wikiTitle": "Colosseum",
+      "descriptionKo": "고대 로마 시대의 거대한 원형 경기장이에요.",
+      "lat": 41.8902,
+      "lon": 12.4922
+    },
+    {
+      "name": "Leaning Tower of Pisa",
+      "nameKo": "피사의 사탑",
+      "wikiTitle": "Leaning Tower of Pisa",
+      "descriptionKo": "기울어진 모습으로 세계적으로 유명한 종탑이에요.",
+      "lat": 43.723,
+      "lon": 10.3966
+    },
+    {
+      "name": "Venice",
+      "nameKo": "베네치아",
+      "wikiTitle": "Venice",
+      "descriptionKo": "운하와 곤돌라, 섬으로 이루어진 독특한 도시예요.",
+      "lat": 45.4408,
+      "lon": 12.3155
+    },
+    {
+      "name": "Florence Cathedral",
+      "nameKo": "피렌체 대성당",
+      "wikiTitle": "Florence Cathedral",
+      "descriptionKo": "거대한 붉은 돔으로 유명한 르네상스 도시의 대표 건축물이에요.",
+      "lat": 43.7731,
+      "lon": 11.256
+    },
+    {
+      "name": "Pompeii",
+      "nameKo": "폼페이",
+      "wikiTitle": "Pompeii",
+      "descriptionKo": "베수비오 화산 폭발로 묻혔다가 발굴된 고대 로마 도시예요.",
+      "lat": 40.7508,
+      "lon": 14.4869
+    }
+  ]
+}

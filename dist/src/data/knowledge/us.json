@@ -1,0 +1,182 @@
+{
+  "code2": "US",
+  "specialties": [
+    "Corn",
+    "Technology products",
+    "Cranberries"
+  ],
+  "animals": [
+    "Bald eagle",
+    "American bison"
+  ],
+  "plants": [
+    "Giant sequoia",
+    "Saguaro cactus"
+  ],
+  "facts": [
+    "The United States spans several time zones.",
+    "The Mississippi-Missouri system is one of the world’s major river systems.",
+    "National parks protect many different landscapes."
+  ],
+  "ko": {
+    "specialties": [
+      "옥수수",
+      "기술제품",
+      "크랜베리"
+    ],
+    "animals": [
+      "흰머리수리",
+      "아메리카들소"
+    ],
+    "plants": [
+      "자이언트세쿼이아",
+      "사와로선인장"
+    ],
+    "facts": [
+      "미국은 여러 시간대에 걸쳐 있는 큰 나라입니다.",
+      "미시시피-미주리강 수계는 세계적인 대형 하천 수계입니다.",
+      "국립공원이 다양한 자연환경을 보호하고 있습니다.",
+      "미국 본토는 여러 시간대에 걸쳐 있어요.",
+      "국립공원이 사막·산·숲·습지 등 다양한 자연환경을 보호해요.",
+      "주마다 문화와 음식의 특징이 크게 달라요."
+    ],
+    "overview": "미국은 다양한 기후와 여러 시간대, 유명 도시와 국립공원을 가진 큰 나라예요.",
+    "greeting": "안녕하세요: 헬로 (Hello)",
+    "climate": "알래스카의 추운 기후부터 하와이와 플로리다의 열대 기후까지 다양해요.",
+    "bestSeason": "많은 도시에서 봄과 가을이 비교적 쾌적해요.",
+    "travelTips": "거리가 멀어서 도시 사이 이동은 국내선 비행기를 많이 이용해요.",
+    "landmarks": [
+      "자유의 여신상",
+      "그랜드캐니언",
+      "금문교",
+      "옐로스톤 국립공원",
+      "타임스스퀘어",
+      "월트 디즈니 월드"
+    ],
+    "foods": [
+      "햄버거",
+      "바비큐",
+      "팬케이크",
+      "클램차우더",
+      "텍스멕스"
+    ],
+    "festivals": [
+      "독립기념일",
+      "메이시스 추수감사절 퍼레이드",
+      "마디그라"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Statue of Liberty",
+        "nameKo": "자유의 여신상",
+        "wikiTitle": "Statue of Liberty",
+        "descriptionKo": "뉴욕항에 서 있는 자유와 이민 역사의 상징이에요.",
+        "lat": 40.6892,
+        "lon": -74.0445
+      },
+      {
+        "name": "Grand Canyon",
+        "nameKo": "그랜드캐니언",
+        "wikiTitle": "Grand Canyon",
+        "descriptionKo": "콜로라도강이 만든 거대한 협곡이에요.",
+        "lat": 36.1069,
+        "lon": -112.1129
+      },
+      {
+        "name": "Golden Gate Bridge",
+        "nameKo": "금문교",
+        "wikiTitle": "Golden Gate Bridge",
+        "descriptionKo": "샌프란시스코를 대표하는 붉은 현수교예요.",
+        "lat": 37.8199,
+        "lon": -122.4783
+      },
+      {
+        "name": "Yellowstone National Park",
+        "nameKo": "옐로스톤 국립공원",
+        "wikiTitle": "Yellowstone National Park",
+        "descriptionKo": "간헐천과 온천, 야생동물로 유명한 국립공원이에요.",
+        "lat": 44.6,
+        "lon": -110.5
+      },
+      {
+        "name": "Times Square",
+        "nameKo": "타임스스퀘어",
+        "wikiTitle": "Times Square",
+        "descriptionKo": "대형 전광판과 극장가로 유명한 뉴욕의 번화가예요.",
+        "lat": 40.758,
+        "lon": -73.9855
+      },
+      {
+        "name": "Walt Disney World",
+        "nameKo": "월트 디즈니 월드",
+        "wikiTitle": "Walt Disney World",
+        "descriptionKo": "플로리다에 있는 대규모 테마파크 리조트예요.",
+        "lat": 28.3772,
+        "lon": -81.5707
+      }
+    ]
+  },
+  "overview": "The United States is a large country with many climates, famous cities, national parks, and several time zones.",
+  "greeting": "Hello: Hello",
+  "climate": "The climate ranges from arctic in Alaska to tropical in Hawaii and Florida.",
+  "bestSeason": "Spring and autumn are often comfortable in many cities.",
+  "travelTips": "Distances are big, so domestic flights are common between faraway cities.",
+  "landmarks": [
+    "Statue of Liberty",
+    "Grand Canyon",
+    "Golden Gate Bridge",
+    "Yellowstone National Park",
+    "Times Square",
+    "Walt Disney World"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Statue of Liberty",
+      "nameKo": "자유의 여신상",
+      "wikiTitle": "Statue of Liberty",
+      "descriptionKo": "뉴욕항에 서 있는 자유와 이민 역사의 상징이에요.",
+      "lat": 40.6892,
+      "lon": -74.0445
+    },
+    {
+      "name": "Grand Canyon",
+      "nameKo": "그랜드캐니언",
+      "wikiTitle": "Grand Canyon",
+      "descriptionKo": "콜로라도강이 만든 거대한 협곡이에요.",
+      "lat": 36.1069,
+      "lon": -112.1129
+    },
+    {
+      "name": "Golden Gate Bridge",
+      "nameKo": "금문교",
+      "wikiTitle": "Golden Gate Bridge",
+      "descriptionKo": "샌프란시스코를 대표하는 붉은 현수교예요.",
+      "lat": 37.8199,
+      "lon": -122.4783
+    },
+    {
+      "name": "Yellowstone National Park",
+      "nameKo": "옐로스톤 국립공원",
+      "wikiTitle": "Yellowstone National Park",
+      "descriptionKo": "간헐천과 온천, 야생동물로 유명한 국립공원이에요.",
+      "lat": 44.6,
+      "lon": -110.5
+    },
+    {
+      "name": "Times Square",
+      "nameKo": "타임스스퀘어",
+      "wikiTitle": "Times Square",
+      "descriptionKo": "대형 전광판과 극장가로 유명한 뉴욕의 번화가예요.",
+      "lat": 40.758,
+      "lon": -73.9855
+    },
+    {
+      "name": "Walt Disney World",
+      "nameKo": "월트 디즈니 월드",
+      "wikiTitle": "Walt Disney World",
+      "descriptionKo": "플로리다에 있는 대규모 테마파크 리조트예요.",
+      "lat": 28.3772,
+      "lon": -81.5707
+    }
+  ]
+}

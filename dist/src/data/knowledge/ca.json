@@ -1,0 +1,160 @@
+{
+  "code2": "CA",
+  "specialties": [
+    "Maple syrup",
+    "Wheat",
+    "Lobster"
+  ],
+  "animals": [
+    "Beaver",
+    "Moose"
+  ],
+  "plants": [
+    "Sugar maple",
+    "Black spruce"
+  ],
+  "facts": [
+    "Canada has a very long coastline.",
+    "A large share of the country is covered by forests and lakes.",
+    "English and French are federal official languages."
+  ],
+  "ko": {
+    "specialties": [
+      "메이플시럽",
+      "밀",
+      "바닷가재"
+    ],
+    "animals": [
+      "비버",
+      "무스"
+    ],
+    "plants": [
+      "설탕단풍나무",
+      "검은가문비"
+    ],
+    "facts": [
+      "캐나다는 매우 긴 해안선을 가진 나라입니다.",
+      "국토의 넓은 부분에 숲과 호수가 있습니다.",
+      "연방 차원의 공용어는 영어와 프랑스어입니다."
+    ],
+    "overview": "캐나다는 숲과 호수, 눈 오는 겨울, 두 개의 연방 공용어로 잘 알려져 있어요.",
+    "greeting": "안녕하세요: 헬로 / 봉주르",
+    "climate": "많은 지역은 겨울이 춥고, 일부 해안 지역은 비교적 온화해요.",
+    "bestSeason": "여름은 야외 여행에 인기가 많아요.",
+    "travelTips": "거리가 길 수 있어서 지역별로 여행 계획을 세우는 게 좋아요.",
+    "landmarks": [
+      "나이아가라 폭포",
+      "밴프 국립공원",
+      "CN타워",
+      "올드 퀘벡",
+      "레이크 루이스"
+    ],
+    "foods": [
+      "푸틴",
+      "메이플시럽",
+      "연어",
+      "버터타르트"
+    ],
+    "festivals": [
+      "캘거리 스탬피드",
+      "퀘벡 겨울축제",
+      "캐나다데이"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Niagara Falls",
+        "nameKo": "나이아가라 폭포",
+        "wikiTitle": "Niagara Falls",
+        "descriptionKo": "캐나다와 미국 국경에 있는 거대한 폭포예요.",
+        "lat": 43.0896,
+        "lon": -79.0849
+      },
+      {
+        "name": "Banff National Park",
+        "nameKo": "밴프 국립공원",
+        "wikiTitle": "Banff National Park",
+        "descriptionKo": "로키산맥의 호수와 산 풍경으로 유명한 국립공원이에요.",
+        "lat": 51.4968,
+        "lon": -115.9281
+      },
+      {
+        "name": "CN Tower",
+        "nameKo": "CN타워",
+        "wikiTitle": "CN Tower",
+        "descriptionKo": "토론토 스카이라인을 대표하는 높은 전망탑이에요.",
+        "lat": 43.6426,
+        "lon": -79.3871
+      },
+      {
+        "name": "Old Quebec",
+        "nameKo": "올드 퀘벡",
+        "wikiTitle": "Old Quebec",
+        "descriptionKo": "성벽과 유럽풍 건축이 남아 있는 역사 지구예요.",
+        "lat": 46.8139,
+        "lon": -71.208
+      },
+      {
+        "name": "Lake Louise",
+        "nameKo": "레이크 루이스",
+        "wikiTitle": "Lake Louise (Alberta)",
+        "descriptionKo": "청록빛 물과 로키산맥 풍경으로 유명한 호수예요.",
+        "lat": 51.4254,
+        "lon": -116.1773
+      }
+    ]
+  },
+  "overview": "Canada is known for forests, lakes, snowy winters, and two federal official languages.",
+  "greeting": "Hello: Hello / Bonjour",
+  "climate": "Canada has cold winters in many areas and milder coasts in some regions.",
+  "bestSeason": "Summer is popular for outdoor travel.",
+  "travelTips": "Distances can be large, so plan travel by region.",
+  "landmarks": [
+    "Niagara Falls",
+    "Banff National Park",
+    "CN Tower",
+    "Old Quebec",
+    "Lake Louise"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Niagara Falls",
+      "nameKo": "나이아가라 폭포",
+      "wikiTitle": "Niagara Falls",
+      "descriptionKo": "캐나다와 미국 국경에 있는 거대한 폭포예요.",
+      "lat": 43.0896,
+      "lon": -79.0849
+    },
+    {
+      "name": "Banff National Park",
+      "nameKo": "밴프 국립공원",
+      "wikiTitle": "Banff National Park",
+      "descriptionKo": "로키산맥의 호수와 산 풍경으로 유명한 국립공원이에요.",
+      "lat": 51.4968,
+      "lon": -115.9281
+    },
+    {
+      "name": "CN Tower",
+      "nameKo": "CN타워",
+      "wikiTitle": "CN Tower",
+      "descriptionKo": "토론토 스카이라인을 대표하는 높은 전망탑이에요.",
+      "lat": 43.6426,
+      "lon": -79.3871
+    },
+    {
+      "name": "Old Quebec",
+      "nameKo": "올드 퀘벡",
+      "wikiTitle": "Old Quebec",
+      "descriptionKo": "성벽과 유럽풍 건축이 남아 있는 역사 지구예요.",
+      "lat": 46.8139,
+      "lon": -71.208
+    },
+    {
+      "name": "Lake Louise",
+      "nameKo": "레이크 루이스",
+      "wikiTitle": "Lake Louise (Alberta)",
+      "descriptionKo": "청록빛 물과 로키산맥 풍경으로 유명한 호수예요.",
+      "lat": 51.4254,
+      "lon": -116.1773
+    }
+  ]
+}

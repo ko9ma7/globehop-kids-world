@@ -1,0 +1,160 @@
+{
+  "code2": "AU",
+  "specialties": [
+    "Wool",
+    "Macadamia nuts",
+    "Opals"
+  ],
+  "animals": [
+    "Kangaroo",
+    "Koala"
+  ],
+  "plants": [
+    "Eucalyptus",
+    "Golden wattle"
+  ],
+  "facts": [
+    "Australia is both a country and a continent.",
+    "Much of the interior is dry.",
+    "The Great Barrier Reef lies off the northeast coast."
+  ],
+  "ko": {
+    "specialties": [
+      "양모",
+      "마카다미아",
+      "오팔"
+    ],
+    "animals": [
+      "캥거루",
+      "코알라"
+    ],
+    "plants": [
+      "유칼립투스",
+      "골든와틀"
+    ],
+    "facts": [
+      "호주는 나라 이름이면서 대륙 이름이기도 합니다.",
+      "내륙의 넓은 지역은 건조합니다.",
+      "북동쪽 바다에는 그레이트배리어리프가 있습니다."
+    ],
+    "overview": "호주는 나라 이름이자 대륙 이름이기도 하며, 사막과 산호초, 독특한 동물이 많아요.",
+    "greeting": "안녕하세요: 헬로 / G’day",
+    "climate": "내륙은 건조한 곳이 많지만 지역에 따라 기후가 달라요.",
+    "bestSeason": "많은 지역에서 봄과 가을이 여행하기 좋아요.",
+    "travelTips": "도시 사이 거리가 멀어서 비행기를 자주 이용해요.",
+    "landmarks": [
+      "시드니 오페라하우스",
+      "그레이트배리어리프",
+      "울루루",
+      "트웰브 아포슬스",
+      "데인트리 열대우림"
+    ],
+    "foods": [
+      "미트파이",
+      "바비큐",
+      "라밍턴",
+      "베지마이트"
+    ],
+    "festivals": [
+      "시드니 새해 불꽃놀이",
+      "비비드 시드니",
+      "멜버른 컵"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Sydney Opera House",
+        "nameKo": "시드니 오페라하우스",
+        "wikiTitle": "Sydney Opera House",
+        "descriptionKo": "돛처럼 생긴 지붕으로 유명한 시드니의 공연장이에요.",
+        "lat": -33.8568,
+        "lon": 151.2153
+      },
+      {
+        "name": "Great Barrier Reef",
+        "nameKo": "그레이트배리어리프",
+        "wikiTitle": "Great Barrier Reef",
+        "descriptionKo": "세계 최대 규모의 산호초 생태계예요.",
+        "lat": -18.2871,
+        "lon": 147.6992
+      },
+      {
+        "name": "Uluru",
+        "nameKo": "울루루",
+        "wikiTitle": "Uluru",
+        "descriptionKo": "호주 중앙부의 거대한 붉은 사암 바위예요.",
+        "lat": -25.3444,
+        "lon": 131.0369
+      },
+      {
+        "name": "Twelve Apostles",
+        "nameKo": "트웰브 아포슬스",
+        "wikiTitle": "The Twelve Apostles (Victoria)",
+        "descriptionKo": "그레이트오션로드 해안의 석회암 기둥 지형이에요.",
+        "lat": -38.6659,
+        "lon": 143.104
+      },
+      {
+        "name": "Daintree Rainforest",
+        "nameKo": "데인트리 열대우림",
+        "wikiTitle": "Daintree Rainforest",
+        "descriptionKo": "퀸즐랜드 북부의 오래된 열대우림 지역이에요.",
+        "lat": -16.17,
+        "lon": 145.418
+      }
+    ]
+  },
+  "overview": "Australia is both a country and a continent, with deserts, reefs, and unique wildlife.",
+  "greeting": "Hello: Hello / G’day",
+  "climate": "Much of Australia is dry, but climates vary by region.",
+  "bestSeason": "Spring and autumn are comfortable in many places.",
+  "travelTips": "Cities are far apart, so flights are common.",
+  "landmarks": [
+    "Sydney Opera House",
+    "Great Barrier Reef",
+    "Uluru",
+    "Twelve Apostles",
+    "Daintree Rainforest"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Sydney Opera House",
+      "nameKo": "시드니 오페라하우스",
+      "wikiTitle": "Sydney Opera House",
+      "descriptionKo": "돛처럼 생긴 지붕으로 유명한 시드니의 공연장이에요.",
+      "lat": -33.8568,
+      "lon": 151.2153
+    },
+    {
+      "name": "Great Barrier Reef",
+      "nameKo": "그레이트배리어리프",
+      "wikiTitle": "Great Barrier Reef",
+      "descriptionKo": "세계 최대 규모의 산호초 생태계예요.",
+      "lat": -18.2871,
+      "lon": 147.6992
+    },
+    {
+      "name": "Uluru",
+      "nameKo": "울루루",
+      "wikiTitle": "Uluru",
+      "descriptionKo": "호주 중앙부의 거대한 붉은 사암 바위예요.",
+      "lat": -25.3444,
+      "lon": 131.0369
+    },
+    {
+      "name": "Twelve Apostles",
+      "nameKo": "트웰브 아포슬스",
+      "wikiTitle": "The Twelve Apostles (Victoria)",
+      "descriptionKo": "그레이트오션로드 해안의 석회암 기둥 지형이에요.",
+      "lat": -38.6659,
+      "lon": 143.104
+    },
+    {
+      "name": "Daintree Rainforest",
+      "nameKo": "데인트리 열대우림",
+      "wikiTitle": "Daintree Rainforest",
+      "descriptionKo": "퀸즐랜드 북부의 오래된 열대우림 지역이에요.",
+      "lat": -16.17,
+      "lon": 145.418
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "code2": "IN",
+  "specialties": [
+    "Tea",
+    "Spices",
+    "Textiles"
+  ],
+  "animals": [
+    "Bengal tiger",
+    "Indian elephant"
+  ],
+  "plants": [
+    "Lotus",
+    "Neem tree"
+  ],
+  "facts": [
+    "India has many languages and cultures across a very large land area.",
+    "The Ganges is one of the country’s most important rivers.",
+    "Many people celebrate colorful festivals such as Diwali and Holi."
+  ],
+  "overview": "India is one of the world’s most populous countries and has mountains, deserts, forests, coasts, and huge cities.",
+  "greeting": "Hello: Namaste (नमस्ते)",
+  "climate": "The weather changes a lot by region, and monsoon rains are important in many places.",
+  "bestSeason": "Winter and the cooler dry season are often easiest for travel.",
+  "travelTips": "India is very large, so train and domestic air travel are both useful.",
+  "landmarks": [
+    "Taj Mahal",
+    "Red Fort",
+    "Gateway of India",
+    "Varanasi",
+    "Hawa Mahal"
+  ],
+  "ko": {
+    "specialties": [
+      "차",
+      "향신료",
+      "직물"
+    ],
+    "animals": [
+      "벵골호랑이",
+      "인도코끼리"
+    ],
+    "plants": [
+      "연꽃",
+      "님나무"
+    ],
+    "facts": [
+      "인도는 아주 넓은 나라로 언어와 문화가 무척 다양해요.",
+      "갠지스강은 인도에서 매우 중요한 강 가운데 하나예요.",
+      "디왈리와 홀리처럼 화려한 축제가 널리 알려져 있어요."
+    ],
+    "overview": "인도는 세계에서 인구가 많은 나라 가운데 하나이며, 산·사막·숲·해안과 큰 도시가 함께 있어요.",
+    "greeting": "안녕하세요: 나마스테 (नमस्ते)",
+    "climate": "지역마다 날씨 차이가 크고, 계절풍 비가 중요한 곳이 많아요.",
+    "bestSeason": "겨울과 비교적 선선한 건기가 여행하기 편한 편이에요.",
+    "travelTips": "나라가 매우 커서 기차와 국내선 비행기를 함께 많이 이용해요.",
+    "landmarks": [
+      "타지마할",
+      "레드 포트",
+      "인도문",
+      "바라나시",
+      "하와마할"
+    ],
+    "foods": [
+      "커리",
+      "비리아니",
+      "난",
+      "도사",
+      "사모사"
+    ],
+    "festivals": [
+      "디왈리",
+      "홀리",
+      "두세라",
+      "푸시카르 낙타축제"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Taj Mahal",
+        "nameKo": "타지마할",
+        "wikiTitle": "Taj Mahal",
+        "descriptionKo": "아그라에 있는 흰 대리석 영묘로 인도의 대표 건축물이에요.",
+        "lat": 27.1751,
+        "lon": 78.0421
+      },
+      {
+        "name": "Red Fort",
+        "nameKo": "레드 포트",
+        "wikiTitle": "Red Fort",
+        "descriptionKo": "델리에 있는 붉은 사암 성채예요.",
+        "lat": 28.6562,
+        "lon": 77.241
+      },
+      {
+        "name": "Gateway of India",
+        "nameKo": "인도문",
+        "wikiTitle": "Gateway of India",
+        "descriptionKo": "뭄바이 항구에 있는 대표적인 기념문이에요.",
+        "lat": 18.922,
+        "lon": 72.8347
+      },
+      {
+        "name": "Varanasi",
+        "nameKo": "바라나시",
+        "wikiTitle": "Varanasi",
+        "descriptionKo": "갠지스강을 따라 오래된 종교 문화가 이어지는 도시예요.",
+        "lat": 25.3176,
+        "lon": 82.9739
+      },
+      {
+        "name": "Hawa Mahal",
+        "nameKo": "하와마할",
+        "wikiTitle": "Hawa Mahal",
+        "descriptionKo": "자이푸르의 분홍색 외관과 수많은 창으로 유명한 궁전이에요.",
+        "lat": 26.9239,
+        "lon": 75.8267
+      }
+    ]
+  },
+  "famousPlaces": [
+    {
+      "name": "Taj Mahal",
+      "nameKo": "타지마할",
+      "wikiTitle": "Taj Mahal",
+      "descriptionKo": "아그라에 있는 흰 대리석 영묘로 인도의 대표 건축물이에요.",
+      "lat": 27.1751,
+      "lon": 78.0421
+    },
+    {
+      "name": "Red Fort",
+      "nameKo": "레드 포트",
+      "wikiTitle": "Red Fort",
+      "descriptionKo": "델리에 있는 붉은 사암 성채예요.",
+      "lat": 28.6562,
+      "lon": 77.241
+    },
+    {
+      "name": "Gateway of India",
+      "nameKo": "인도문",
+      "wikiTitle": "Gateway of India",
+      "descriptionKo": "뭄바이 항구에 있는 대표적인 기념문이에요.",
+      "lat": 18.922,
+      "lon": 72.8347
+    },
+    {
+      "name": "Varanasi",
+      "nameKo": "바라나시",
+      "wikiTitle": "Varanasi",
+      "descriptionKo": "갠지스강을 따라 오래된 종교 문화가 이어지는 도시예요.",
+      "lat": 25.3176,
+      "lon": 82.9739
+    },
+    {
+      "name": "Hawa Mahal",
+      "nameKo": "하와마할",
+      "wikiTitle": "Hawa Mahal",
+      "descriptionKo": "자이푸르의 분홍색 외관과 수많은 창으로 유명한 궁전이에요.",
+      "lat": 26.9239,
+      "lon": 75.8267
+    }
+  ]
+}

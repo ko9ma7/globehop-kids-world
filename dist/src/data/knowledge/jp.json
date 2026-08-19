@@ -1,0 +1,263 @@
+{
+  "code2": "JP",
+  "specialties": [
+    "Matcha",
+    "Seafood",
+    "Ceramics"
+  ],
+  "animals": [
+    "Japanese macaque",
+    "Red-crowned crane"
+  ],
+  "plants": [
+    "Cherry blossom",
+    "Japanese cedar"
+  ],
+  "facts": [
+    "Japan is an island country made of thousands of islands.",
+    "Shinkansen trains connect many major cities.",
+    "Mount Fuji is the country’s highest mountain."
+  ],
+  "ko": {
+    "specialties": [
+      "말차",
+      "해산물",
+      "도자기"
+    ],
+    "animals": [
+      "일본원숭이",
+      "두루미"
+    ],
+    "plants": [
+      "벚꽃",
+      "삼나무"
+    ],
+    "facts": [
+      "일본은 수천 개의 섬으로 이루어진 섬나라입니다.",
+      "신칸센이 주요 도시를 빠르게 연결합니다.",
+      "후지산은 일본에서 가장 높은 산입니다.",
+      "신칸센은 여러 대도시를 빠르게 연결해요.",
+      "일본에는 온천 마을이 많고 목욕 문화가 발달했어요.",
+      "지역마다 음식과 축제의 특징이 크게 달라요."
+    ],
+    "overview": "일본은 동아시아의 섬나라로, 큰 도시와 화산, 숲, 해안 지역이 함께 있는 나라예요.",
+    "greeting": "안녕하세요: 곤니치와 (こんにちは)",
+    "climate": "눈이 많이 오는 홋카이도부터 따뜻한 오키나와까지 지역별 날씨 차이가 커요.",
+    "bestSeason": "봄과 가을은 날씨가 온화해 많이 찾는 시기예요.",
+    "travelTips": "기차가 정시성이 높고, 교통카드를 쓰면 도시 이동이 편해요.",
+    "landmarks": [
+      "후지산",
+      "도쿄 스카이트리",
+      "후시미 이나리 신사",
+      "금각사",
+      "히메지성",
+      "이쓰쿠시마 신사",
+      "나라공원",
+      "시부야 스크램블 교차로",
+      "아라시야마",
+      "오사카성"
+    ],
+    "geography": "일본은 홋카이도·혼슈·시코쿠·규슈를 비롯한 수천 개의 섬으로 이루어진 나라예요. 산지가 많고 화산과 온천도 흔해요.",
+    "history": "오랜 신사·사찰 문화와 성곽 도시의 흔적이 남아 있고, 오늘날에는 전통과 첨단 기술이 함께 보이는 나라예요.",
+    "culture": "스시·라멘 같은 음식, 애니메이션과 게임, 다도·꽃꽂이, 지역 축제까지 매우 다양한 문화를 만날 수 있어요.",
+    "etiquette": "대중교통에서는 조용히 이야기하고, 줄을 서며, 신사·사찰에서는 안내 표지와 예절을 따르는 것이 좋아요.",
+    "foods": [
+      "스시",
+      "라멘",
+      "우동",
+      "소바",
+      "오코노미야키",
+      "텐푸라",
+      "와가시",
+      "오니기리"
+    ],
+    "festivals": [
+      "벚꽃놀이(하나미)",
+      "기온마쓰리",
+      "다나바타",
+      "삿포로 눈축제",
+      "오봉"
+    ],
+    "famousPlaces": [
+      {
+        "name": "Mount Fuji",
+        "nameKo": "후지산",
+        "wikiTitle": "Mount Fuji",
+        "descriptionKo": "일본에서 가장 높은 산이자 일본을 상징하는 대표적인 화산이에요.",
+        "lat": 35.3606,
+        "lon": 138.7274
+      },
+      {
+        "name": "Tokyo Skytree",
+        "nameKo": "도쿄 스카이트리",
+        "wikiTitle": "Tokyo Skytree",
+        "descriptionKo": "도쿄의 넓은 도시 풍경을 내려다볼 수 있는 초고층 전파탑이에요.",
+        "lat": 35.7101,
+        "lon": 139.8107
+      },
+      {
+        "name": "Fushimi Inari-taisha",
+        "nameKo": "후시미 이나리 신사",
+        "wikiTitle": "Fushimi Inari-taisha",
+        "descriptionKo": "붉은 도리이가 길게 이어지는 교토의 유명한 신사예요.",
+        "lat": 34.9671,
+        "lon": 135.7727
+      },
+      {
+        "name": "Kinkaku-ji",
+        "nameKo": "금각사",
+        "wikiTitle": "Kinkaku-ji",
+        "descriptionKo": "금빛 외관이 연못에 비치는 모습으로 유명한 교토의 사찰이에요.",
+        "lat": 35.0394,
+        "lon": 135.7292
+      },
+      {
+        "name": "Himeji Castle",
+        "nameKo": "히메지성",
+        "wikiTitle": "Himeji Castle",
+        "descriptionKo": "하얀 외관 때문에 백로성이라고도 불리는 일본 대표 성곽이에요.",
+        "lat": 34.8394,
+        "lon": 134.6939
+      },
+      {
+        "name": "Itsukushima Shrine",
+        "nameKo": "이쓰쿠시마 신사",
+        "wikiTitle": "Itsukushima Shrine",
+        "descriptionKo": "바다 위에 떠 있는 것처럼 보이는 붉은 도리이로 유명해요.",
+        "lat": 34.2959,
+        "lon": 132.3198
+      },
+      {
+        "name": "Nara Park",
+        "nameKo": "나라공원",
+        "wikiTitle": "Nara Park",
+        "descriptionKo": "사슴을 가까이에서 볼 수 있고 주변에 오래된 사찰이 많은 공원이에요.",
+        "lat": 34.685,
+        "lon": 135.843
+      },
+      {
+        "name": "Shibuya Crossing",
+        "nameKo": "시부야 스크램블 교차로",
+        "wikiTitle": "Shibuya Crossing",
+        "descriptionKo": "수많은 사람이 한꺼번에 건너는 도쿄의 상징적인 교차로예요.",
+        "lat": 35.6595,
+        "lon": 139.7005
+      },
+      {
+        "name": "Arashiyama",
+        "nameKo": "아라시야마",
+        "wikiTitle": "Arashiyama",
+        "descriptionKo": "대나무숲과 강, 산 풍경으로 유명한 교토 서쪽 지역이에요.",
+        "lat": 35.0094,
+        "lon": 135.6668
+      },
+      {
+        "name": "Osaka Castle",
+        "nameKo": "오사카성",
+        "wikiTitle": "Osaka Castle",
+        "descriptionKo": "오사카의 역사를 보여주는 대표적인 성과 공원이에요.",
+        "lat": 34.6873,
+        "lon": 135.5262
+      }
+    ]
+  },
+  "overview": "Japan is an island country in East Asia with busy cities, volcanoes, forests, and many coastal communities.",
+  "greeting": "Hello: Konnichiwa (こんにちは)",
+  "climate": "From snowy Hokkaido to warm Okinawa, the weather changes a lot by region.",
+  "bestSeason": "Spring and autumn are popular for mild weather.",
+  "travelTips": "Trains are punctual, and IC cards make city travel easier.",
+  "landmarks": [
+    "Mount Fuji",
+    "Tokyo Skytree",
+    "Fushimi Inari-taisha",
+    "Kinkaku-ji",
+    "Himeji Castle",
+    "Itsukushima Shrine",
+    "Nara Park",
+    "Shibuya Crossing",
+    "Arashiyama",
+    "Osaka Castle"
+  ],
+  "famousPlaces": [
+    {
+      "name": "Mount Fuji",
+      "nameKo": "후지산",
+      "wikiTitle": "Mount Fuji",
+      "descriptionKo": "일본에서 가장 높은 산이자 일본을 상징하는 대표적인 화산이에요.",
+      "lat": 35.3606,
+      "lon": 138.7274
+    },
+    {
+      "name": "Tokyo Skytree",
+      "nameKo": "도쿄 스카이트리",
+      "wikiTitle": "Tokyo Skytree",
+      "descriptionKo": "도쿄의 넓은 도시 풍경을 내려다볼 수 있는 초고층 전파탑이에요.",
+      "lat": 35.7101,
+      "lon": 139.8107
+    },
+    {
+      "name": "Fushimi Inari-taisha",
+      "nameKo": "후시미 이나리 신사",
+      "wikiTitle": "Fushimi Inari-taisha",
+      "descriptionKo": "붉은 도리이가 길게 이어지는 교토의 유명한 신사예요.",
+      "lat": 34.9671,
+      "lon": 135.7727
+    },
+    {
+      "name": "Kinkaku-ji",
+      "nameKo": "금각사",
+      "wikiTitle": "Kinkaku-ji",
+      "descriptionKo": "금빛 외관이 연못에 비치는 모습으로 유명한 교토의 사찰이에요.",
+      "lat": 35.0394,
+      "lon": 135.7292
+    },
+    {
+      "name": "Himeji Castle",
+      "nameKo": "히메지성",
+      "wikiTitle": "Himeji Castle",
+      "descriptionKo": "하얀 외관 때문에 백로성이라고도 불리는 일본 대표 성곽이에요.",
+      "lat": 34.8394,
+      "lon": 134.6939
+    },
+    {
+      "name": "Itsukushima Shrine",
+      "nameKo": "이쓰쿠시마 신사",
+      "wikiTitle": "Itsukushima Shrine",
+      "descriptionKo": "바다 위에 떠 있는 것처럼 보이는 붉은 도리이로 유명해요.",
+      "lat": 34.2959,
+      "lon": 132.3198
+    },
+    {
+      "name": "Nara Park",
+      "nameKo": "나라공원",
+      "wikiTitle": "Nara Park",
+      "descriptionKo": "사슴을 가까이에서 볼 수 있고 주변에 오래된 사찰이 많은 공원이에요.",
+      "lat": 34.685,
+      "lon": 135.843
+    },
+    {
+      "name": "Shibuya Crossing",
+      "nameKo": "시부야 스크램블 교차로",
+      "wikiTitle": "Shibuya Crossing",
+      "descriptionKo": "수많은 사람이 한꺼번에 건너는 도쿄의 상징적인 교차로예요.",
+      "lat": 35.6595,
+      "lon": 139.7005
+    },
+    {
+      "name": "Arashiyama",
+      "nameKo": "아라시야마",
+      "wikiTitle": "Arashiyama",
+      "descriptionKo": "대나무숲과 강, 산 풍경으로 유명한 교토 서쪽 지역이에요.",
+      "lat": 35.0094,
+      "lon": 135.6668
+    },
+    {
+      "name": "Osaka Castle",
+      "nameKo": "오사카성",
+      "wikiTitle": "Osaka Castle",
+      "descriptionKo": "오사카의 역사를 보여주는 대표적인 성과 공원이에요.",
+      "lat": 34.6873,
+      "lon": 135.5262
+    }
+  ]
+}
