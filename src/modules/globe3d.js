@@ -778,17 +778,18 @@ export class Globe3DView {
     const uiFactor = clamp(cssW / 780, 0.86, 1.08);
     const scale = dpr * uiFactor;
     const compactLabels = cssW < 560;
+    const zoomMarkerFactor = clamp(Math.pow(3.05 / Math.max(1.28, this.distance), 0.36), 0.88, 1.58);
     const drawMarker = (data, color, size = 5, interactive = true) => {
       const projected = this.projectObjectVector(latLonToVec(data.lat, data.lon), 1.025);
-      if (!projected || !projected.front) return;
+      if (!projected || !projected.front) return false;
       if (interactive) {
-        const spacing = (data.type === 'landmark' ? 9 : data.type === 'capital' ? 7 : 8) * scale;
-        if (markerPositions.some((p) => Math.hypot(p.x - projected.x, p.y - projected.y) < spacing)) return;
+        const spacing = (data.type === 'landmark' ? 8.5 : data.type === 'capital' ? 6.5 : 7.2) * scale * Math.min(1.32, zoomMarkerFactor);
+        if (markerPositions.some((p) => Math.hypot(p.x - projected.x, p.y - projected.y) < spacing)) return false;
         markerPositions.push(projected);
       }
       ctx.save();
       ctx.beginPath();
-      ctx.arc(projected.x, projected.y, size * scale, 0, TAU);
+      ctx.arc(projected.x, projected.y, size * scale * zoomMarkerFactor, 0, TAU);
       ctx.fillStyle = color;
       ctx.shadowColor = color;
       ctx.shadowBlur = 9 * scale;
@@ -799,6 +800,7 @@ export class Globe3DView {
       ctx.stroke();
       ctx.restore();
       if (interactive) this.visibleProjectedPoints.push({ ...projected, data });
+      return true;
     };
 
     const drawRouteLabel = (projected, text, accent, placement = 'above') => {
@@ -885,30 +887,46 @@ export class Globe3DView {
       .sort((a, b) => {
         const priority = (place) => {
           if (place.isSearchedPoint) return 0;
-          if (place.countryCode === routeDestinationCode && place.type === 'landmark') return 1;
-          if (place.countryCode === this.selectedCountry && place.type === 'landmark') return 2;
-          if (place.countryCode === this.selectedCountry && place.type === 'city') return 3;
-          if (place.countryCode === routeOriginCode && place.type === 'city') return 4;
-          if (place.type === 'capital') return 5;
+          if (place.isKoreaTourismPoint && place.countryCode === this.selectedCountry) return 1;
+          if (place.countryCode === routeDestinationCode && place.type === 'landmark') return 2;
+          if (place.countryCode === this.selectedCountry && place.type === 'landmark') return 3;
+          if (place.countryCode === this.selectedCountry && place.type === 'capital') return 4;
+          if (place.countryCode === this.selectedCountry && place.type === 'city') return 5;
+          if (place.countryCode === routeOriginCode && place.type === 'city') return 6;
+          if (place.type === 'capital') return 7;
           return 9;
         };
-        return priority(a) - priority(b);
+        const p = priority(a) - priority(b);
+        if (p) return p;
+        return (Number(b.population) || 0) - (Number(a.population) || 0) || (Number(a.cityRank) || 999999) - (Number(b.cityRank) || 999999);
       });
 
     let selectedShown = 0;
+    let selectedLandmarksShown = 0;
     let originShown = 0;
     for (const place of markerCandidates) {
       const selected = place.countryCode === this.selectedCountry;
       const routeOrigin = place.countryCode === routeOriginCode && !selected;
       if (nearRouteEndpoint(place)) continue;
-      const maxSelected = this.distance < 1.65 ? (compactLabels ? 7 : 10) : this.distance < 2.4 ? 7 : 4;
-      const maxOrigin = this.distance < 1.8 ? 3 : 2;
+      const maxSelected = this.distance < 1.45 ? (compactLabels ? 90 : 160)
+        : this.distance < 1.7 ? (compactLabels ? 65 : 120)
+          : this.distance < 2.0 ? (compactLabels ? 42 : 80)
+            : this.distance < 2.4 ? (compactLabels ? 24 : 45)
+              : this.distance < 3.0 ? (compactLabels ? 14 : 26) : 10;
+      const maxOrigin = this.distance < 1.8 ? 8 : this.distance < 2.5 ? 5 : 3;
+      const maxSelectedLandmarks = this.distance < 1.5 ? 52 : this.distance < 1.8 ? 36 : this.distance < 2.2 ? 22 : this.distance < 2.8 ? 14 : 8;
       if (selected && selectedShown >= maxSelected) continue;
+      if (selected && place.type === 'landmark' && selectedLandmarksShown >= maxSelectedLandmarks) continue;
       if (routeOrigin && originShown >= maxOrigin) continue;
       const color = place.type === 'landmark' ? '#ffc24b' : place.type === 'capital' ? '#b3ee72' : '#6fd8ff';
-      const size = place.type === 'landmark' ? 4.6 : place.type === 'capital' ? 3.0 : 3.4;
-      drawMarker(place, color, size);
-      if (selected) selectedShown += 1;
+      const population = Number(place.population) || 0;
+      const size = place.type === 'landmark' ? 4.4 : place.type === 'capital' ? 3.4 : population >= 1000000 ? 3.5 : population >= 200000 ? 3.0 : population >= 50000 ? 2.55 : 2.25;
+      const drawn = drawMarker(place, color, size);
+      if (!drawn) continue;
+      if (selected) {
+        selectedShown += 1;
+        if (place.type === 'landmark') selectedLandmarksShown += 1;
+      }
       if (routeOrigin) originShown += 1;
     }
 

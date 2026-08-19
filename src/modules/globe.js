@@ -26,6 +26,7 @@ export class GlobeView {
     this.currentRoute = null;
     this.originCountry = null;
     this.destinationCountry = null;
+    this.selectedCountry = null;
     this.onHover = onHover;
     this.onLeave = onLeave;
     this.onCountryClick = onCountryClick;
@@ -70,7 +71,7 @@ export class GlobeView {
   }
 
   clampViewBox(box) {
-    const minWidth = 120;
+    const minWidth = 34;
     const width = Math.max(minWidth, Math.min(1000, box.width));
     const height = width / 2;
     const x = Math.max(0, Math.min(1000 - width, box.x));
@@ -105,7 +106,7 @@ export class GlobeView {
       x: this.currentViewBox.x + this.currentViewBox.width / 2,
       y: this.currentViewBox.y + this.currentViewBox.height / 2
     };
-    const newWidth = Math.max(120, Math.min(1000, this.currentViewBox.width / factor));
+    const newWidth = Math.max(34, Math.min(1000, this.currentViewBox.width / factor));
     const ratio = newWidth / this.currentViewBox.width;
     const newHeight = newWidth / 2;
     const next = {
@@ -218,7 +219,9 @@ export class GlobeView {
   }
 
   markerVisualScale() {
-    return Math.max(0.18, Math.min(1, this.currentViewBox.width / 1000));
+    const geographicRatio = Math.max(0.12, Math.min(1, this.currentViewBox.width / 1000));
+    // Let points grow moderately on screen as the user zooms instead of staying pixel-identical.
+    return Math.max(0.04, Math.min(1, Math.pow(geographicRatio, 0.72)));
   }
 
   pointTransform(x, y) {
@@ -231,15 +234,21 @@ export class GlobeView {
     const frag = document.createDocumentFragment();
     for (const place of places) {
       const p = equirectProject(place.lat, place.lon);
+      const population = Number(place.population) || 0;
+      const radius = place.type === 'landmark' ? 4.8 : place.type === 'capital' ? 3.2 : population >= 1000000 ? 3.4 : population >= 200000 ? 3.0 : population >= 50000 ? 2.6 : 2.25;
       const g = svgEl('g', {
         class: `map-place-point map-place-${place.type || 'city'}`,
         transform: this.pointTransform(p.x, p.y),
         tabindex: place.isCapitalPoint ? '-1' : '0', role: 'button',
-        'aria-label': place.name || place.nameKo || place.id,
+        'aria-label': place.nameKo || place.name || place.id,
         'data-country': place.countryCode || '', 'data-searched': place.isSearchedPoint ? '1' : '0',
+        'data-dynamic-city': place.isDynamicCity ? '1' : '0',
+        'data-dynamic-landmark': place.isDynamicLandmark ? '1' : '0',
+        'data-population': String(population),
+        'data-rank': String(place.cityRank || 999999),
         'data-x': p.x, 'data-y': p.y
       });
-      g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: place.type === 'landmark' ? '5.2' : place.type === 'capital' ? '2.4' : '3.7', class: 'map-place-dot' }));
+      g.appendChild(svgEl('circle', { cx: '0', cy: '0', r: String(radius), class: 'map-place-dot' }));
       const showHover = (event) => this.onHover?.({ kind: 'place', data: place }, { clientX: event.clientX, clientY: event.clientY });
       g.addEventListener('pointerenter', showHover);
       g.addEventListener('pointermove', showHover);
@@ -249,6 +258,7 @@ export class GlobeView {
       frag.appendChild(g);
     }
     this.placeLayer.appendChild(frag);
+    this.updatePlaceVisibility();
   }
 
   refreshFixedSizeGraphics() {
@@ -264,16 +274,51 @@ export class GlobeView {
     if (this.traveler && this.traveler.dataset.x && this.traveler.dataset.y) {
       this.updateTravelerTransform(Number(this.traveler.dataset.x), Number(this.traveler.dataset.y));
     }
+    this.updatePlaceVisibility();
+  }
+
+  updatePlaceVisibility() {
+    if (!this.placeLayer) return;
+    const nodes = [...this.placeLayer.querySelectorAll('.map-place-point')];
+    const box = this.currentViewBox;
+    const zoom = 1000 / Math.max(1, box.width);
+    const marginX = box.width * 0.08;
+    const marginY = box.height * 0.10;
+    const cityCandidates = [];
+    const landmarkCandidates = [];
+    for (const node of nodes) {
+      const country = node.dataset.country;
+      const relevant = !this.selectedCountry || country === this.selectedCountry || country === this.originCountry || node.dataset.searched === '1';
+      node.classList.toggle('is-muted-point', !relevant);
+      const dynamicCity = node.dataset.dynamicCity === '1';
+      const dynamicLandmark = node.dataset.dynamicLandmark === '1';
+      if (!dynamicCity && !dynamicLandmark) {
+        node.classList.remove('is-density-hidden');
+        continue;
+      }
+      const x = Number(node.dataset.x);
+      const y = Number(node.dataset.y);
+      const inside = x >= box.x - marginX && x <= box.x + box.width + marginX && y >= box.y - marginY && y <= box.y + box.height + marginY;
+      if (!relevant || !inside || (this.selectedCountry && country !== this.selectedCountry && node.dataset.searched !== '1')) {
+        node.classList.add('is-density-hidden');
+        continue;
+      }
+      (dynamicLandmark ? landmarkCandidates : cityCandidates).push(node);
+    }
+    const cityLimit = zoom < 1.35 ? 10 : zoom < 2 ? 24 : zoom < 3.2 ? 60 : zoom < 5 ? 140 : zoom < 7 ? 260 : zoom < 15 ? 480 : 800;
+    const landmarkLimit = zoom < 1.35 ? 5 : zoom < 2 ? 10 : zoom < 3.2 ? 18 : zoom < 5 ? 32 : zoom < 12 ? 70 : 110;
+    cityCandidates.sort((a, b) => Number(b.dataset.population || 0) - Number(a.dataset.population || 0) || Number(a.dataset.rank || 999999) - Number(b.dataset.rank || 999999));
+    landmarkCandidates.sort((a, b) => Number(a.dataset.rank || 999999) - Number(b.dataset.rank || 999999));
+    cityCandidates.forEach((node, index) => node.classList.toggle('is-density-hidden', index >= cityLimit));
+    landmarkCandidates.forEach((node, index) => node.classList.toggle('is-density-hidden', index >= landmarkLimit));
   }
 
   highlightCountry(code2) {
+    this.selectedCountry = code2 || null;
     this.landLayer.querySelectorAll('.country-shape.is-selected').forEach((p) => p.classList.remove('is-selected'));
     if (code2) this.landLayer.querySelectorAll(`[data-code="${CSS.escape(code2)}"]`).forEach((p) => p.classList.add('is-selected'));
     this.updateRouteCountryClasses();
-    this.placeLayer.querySelectorAll('.map-place-point').forEach((point) => {
-      const relevant = !code2 || point.dataset.country === code2 || point.dataset.country === this.originCountry || point.dataset.searched === '1';
-      point.classList.toggle('is-muted-point', !relevant);
-    });
+    this.updatePlaceVisibility();
   }
 
   updateRouteCountryClasses() {

@@ -213,10 +213,10 @@ button:disabled { opacity: .55; cursor: wait; }
 .flag-emoji { width: 54px; height: 54px; display: grid; place-items: center; flex: 0 0 auto; font-size: 34px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
 .country-heading h2 { margin: 2px 0 0; font-size: 27px; line-height: 1.05; letter-spacing: -.04em; overflow-wrap: anywhere; }
 .country-heading p { margin: 6px 0 0; color: var(--muted); font-size: 11px; }
-.media-section, .facts-section, .knowledge-section { padding: 18px 20px 20px; }
-.media-section, .knowledge-section { border-top: 1px solid var(--line); }
+.city-section, .media-section, .facts-section, .knowledge-section { padding: 18px 20px 20px; }
+.city-section, .media-section, .knowledge-section { border-top: 1px solid var(--line); }
 .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.media-section h3, .facts-section h3, .knowledge-section h3, .history-section h2 { margin: 0; font-size: 15px; letter-spacing: -.02em; }
+.city-section h3, .media-section h3, .facts-section h3, .knowledge-section h3, .history-section h2 { margin: 0; font-size: 15px; letter-spacing: -.02em; }
 .data-badge { padding: 5px 8px; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: 9px; font-weight: 800; }
 .media-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
 .media-card { margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface-2) 45%, var(--surface)); }
@@ -356,7 +356,7 @@ button:disabled { opacity: .55; cursor: wait; }
   .country-heading { padding: 16px; }
   .flag-emoji { width: 48px; height: 48px; font-size: 30px; }
   .country-heading h2 { font-size: 23px; }
-  .media-section, .facts-section, .knowledge-section { padding: 16px; }
+  .city-section, .media-section, .facts-section, .knowledge-section { padding: 16px; }
   .facts-grid { grid-template-columns: 1fr 1fr; gap: 7px; }
   .fact-card { padding: 9px 8px; gap: 7px; }
   .fact-card strong { font-size: 11px; }
@@ -659,4 +659,129 @@ button:disabled { opacity: .55; cursor: wait; }
   .route-country-legend { top: 50px; }
   .globe-card.view-globe .map-zoom-controls { top: 90px; }
   .globe-card.view-map .map-zoom-controls { top: 46px; }
+}
+
+
+/* V8 city explorer */
+.city-section[hidden] { display: none !important; }
+.city-insights { margin-top: 12px; }
+.city-live-badge { background: var(--accent-soft); color: var(--primary); }
+.city-loading { min-height: 92px; display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px dashed var(--line); border-radius: 15px; background: color-mix(in srgb, var(--surface-2) 55%, var(--surface)); }
+.city-loading p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.city-loading-orbit { display: grid; place-items: center; width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%; background: var(--surface); animation: cityOrbit 1.8s ease-in-out infinite; }
+@keyframes cityOrbit { 0%,100% { transform: rotate(-8deg) scale(.96); } 50% { transform: rotate(8deg) scale(1.04); } }
+.city-overview-card { display: grid; grid-template-columns: 112px 1fr; gap: 12px; overflow: hidden; padding: 10px; border: 1px solid var(--line); border-radius: 16px; background: color-mix(in srgb, var(--surface-2) 52%, var(--surface)); }
+.city-overview-card img { width: 112px; height: 112px; object-fit: cover; border-radius: 12px; background: var(--surface-2); }
+.city-overview-card > div { min-width: 0; }
+.city-subheading { color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+.city-overview-card p { display: -webkit-box; margin: 5px 0 7px; overflow: hidden; color: var(--text); font-size: 10.5px; line-height: 1.55; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
+.city-overview-card a { color: var(--primary); font-size: 9px; font-weight: 800; text-decoration: none; }
+.city-overview-card a:hover { text-decoration: underline; }
+.city-live-group, .city-nearby-group, .other-cities-group { margin-top: 14px; }
+.city-live-group h4, .city-nearby-group h4, .other-cities-group h4 { margin: 0 0 8px; font-size: 11px; letter-spacing: -.01em; }
+.city-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.city-metric { min-width: 0; display: flex; gap: 8px; align-items: flex-start; padding: 9px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface-2) 42%, var(--surface)); }
+.city-metric-icon { width: 26px; height: 26px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 8px; background: var(--surface); font-size: 14px; }
+.city-metric div { min-width: 0; }
+.city-metric div > span, .city-metric strong, .city-metric small { display: block; }
+.city-metric div > span { color: var(--muted); font-size: 8.5px; }
+.city-metric strong { margin-top: 1px; overflow-wrap: anywhere; font-size: 11px; line-height: 1.3; }
+.city-metric small { margin-top: 2px; color: var(--muted); font-size: 7.5px; }
+.nearby-city-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.nearby-city-card { min-width: 0; overflow: hidden; display: grid; grid-template-columns: 72px 1fr; align-items: stretch; padding: 0; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); color: var(--text); text-align: left; cursor: pointer; transition: transform .16s ease, box-shadow .16s ease; }
+.nearby-city-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+.nearby-city-card img, .nearby-city-placeholder { width: 72px; height: 100%; min-height: 82px; object-fit: cover; background: var(--surface-2); }
+.nearby-city-placeholder { display: grid; place-items: center; font-size: 24px; }
+.nearby-city-card > span:last-child { min-width: 0; padding: 8px; }
+.nearby-city-card strong, .nearby-city-card small, .nearby-city-card em { display: block; }
+.nearby-city-card strong { overflow: hidden; font-size: 10px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
+.nearby-city-card small { margin-top: 2px; color: var(--primary); font-size: 8px; font-weight: 800; }
+.nearby-city-card em { display: -webkit-box; margin-top: 5px; overflow: hidden; color: var(--muted); font-size: 8px; font-style: normal; line-height: 1.35; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.other-city-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.other-city-chips button { max-width: 100%; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--text); padding: 6px 9px; cursor: pointer; font-size: 9px; font-weight: 750; }
+.other-city-chips button:hover { border-color: var(--primary); }
+.other-city-chips small { margin-left: 4px; color: var(--muted); font-size: 7px; font-weight: 600; }
+.city-warning { margin: 10px 0 0; padding: 8px 10px; border-radius: 10px; background: var(--accent-soft); color: var(--muted); font-size: 9px; }
+.city-source-note { margin: 10px 0 0; color: var(--muted); font-size: 8px; line-height: 1.5; }
+
+@media (max-width: 720px) {
+  .city-overview-card { grid-template-columns: 88px 1fr; }
+  .city-overview-card img { width: 88px; height: 104px; }
+  .nearby-city-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .city-metrics-grid { grid-template-columns: 1fr; }
+  .city-overview-card { grid-template-columns: 1fr; }
+  .city-overview-card img { width: 100%; height: 160px; }
+}
+.city-reference-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.city-reference-links a { padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--primary); font-size: 8.5px; font-weight: 800; text-decoration: none; }
+.city-reference-links a:hover { background: var(--surface-2); }
+.country-city-directory > h4 { margin: 0; font-size: 11px; letter-spacing: -.01em; }
+.country-city-directory > p { margin: 4px 0 10px; color: var(--muted); font-size: 9px; line-height: 1.45; }
+.country-city-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
+.country-city-grid button { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface-2) 45%, var(--surface)); color: var(--text); text-align: left; cursor: pointer; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
+.country-city-grid button:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--primary) 55%, var(--line)); box-shadow: var(--shadow-sm); }
+.country-city-grid button > span { min-width: 0; }
+.country-city-grid strong, .country-city-grid small { display: block; }
+.country-city-grid strong { overflow: hidden; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.country-city-grid small { margin-top: 2px; overflow: hidden; color: var(--muted); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.country-city-grid em { flex: 0 0 auto; color: var(--primary); font-size: 8px; font-style: normal; font-weight: 800; }
+@media (max-width: 420px) { .country-city-grid { grid-template-columns: 1fr; } }
+
+/* V8.5 navigation, zoom-density cities, Korea tourism explorer */
+.country-heading-main { min-width: 0; flex: 1 1 auto; }
+.detail-navigation { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 9px; }
+.detail-nav-button { display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--surface-2) 72%, var(--surface)); color: var(--text); font: inherit; font-size: 9px; font-weight: 800; cursor: pointer; transition: border-color .16s ease, transform .16s ease, background .16s ease; }
+.detail-nav-button:hover, .detail-nav-button:focus-visible { transform: translateY(-1px); border-color: color-mix(in srgb, var(--primary) 60%, var(--line)); background: var(--surface-2); }
+.detail-nav-country { color: var(--primary-strong); }
+.map-place-point.is-density-hidden { display: none !important; }
+.map-place-point.is-muted-point { opacity: .22; }
+.map-place-point:not(.is-muted-point) { opacity: 1; }
+.country-city-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.country-city-title-row h4 { margin: 0; font-size: 11px; }
+.korea-map-badge { flex: 0 0 auto; padding: 4px 7px; border: 1px solid color-mix(in srgb, var(--primary) 32%, var(--line)); border-radius: 999px; background: color-mix(in srgb, var(--accent-soft) 70%, var(--surface)); color: var(--primary-strong); font-size: 8px; font-weight: 850; }
+.zoom-city-hint { display: flex; align-items: center; gap: 5px; margin: -2px 0 10px !important; padding: 7px 9px; border-radius: 10px; background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface)); color: var(--muted); font-size: 8.5px !important; }
+.zoom-city-hint strong { margin-left: auto; color: var(--primary-strong); font-size: 9px; }
+
+.city-photo-tour { margin: 0 0 12px; overflow: hidden; }
+.city-photo-tour-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+.city-photo-tour-heading h4 { margin: 0; font-size: 11px; }
+.city-photo-tour-heading > div { display: flex; gap: 5px; }
+.city-photo-tour-heading button { width: 29px; height: 29px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--text); font-size: 18px; cursor: pointer; }
+.city-photo-track { display: flex; gap: 9px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; overscroll-behavior-inline: contain; padding-bottom: 5px; }
+.city-photo-slide { position: relative; flex: 0 0 min(84%, 360px); margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 15px; background: var(--surface-2); scroll-snap-align: start; box-shadow: var(--shadow-sm); }
+.city-photo-slide img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--surface-2); }
+.city-photo-slide figcaption { position: absolute; inset: auto 0 0; padding: 28px 11px 9px; color: #fff; background: linear-gradient(transparent, rgba(4,18,28,.88)); }
+.city-photo-slide figcaption strong, .city-photo-slide figcaption span { display: block; }
+.city-photo-slide figcaption strong { font-size: 11px; text-shadow: 0 1px 5px rgba(0,0,0,.5); }
+.city-photo-slide figcaption span { display: -webkit-box; margin-top: 3px; overflow: hidden; font-size: 8px; line-height: 1.35; opacity: .9; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.city-photo-dots { display: flex; justify-content: center; gap: 5px; margin-top: 4px; }
+.city-photo-dots button { width: 6px; height: 6px; padding: 0; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--muted) 42%, transparent); cursor: pointer; }
+.city-photo-dots button.is-active { width: 17px; border-radius: 999px; background: var(--primary); }
+.city-overview-card-text { grid-template-columns: 1fr; }
+
+.korea-tourism-block { margin-top: 12px; padding: 11px; border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--line)); border-radius: 15px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 52%, var(--surface)), var(--surface)); }
+.korea-tourism-title { display: flex; align-items: flex-start; gap: 8px; }
+.korea-tourism-title > span { display: grid; place-items: center; width: 31px; height: 31px; flex: 0 0 auto; border-radius: 10px; background: var(--surface); font-size: 18px; }
+.korea-tourism-title h4 { margin: 0; font-size: 11px; }
+.korea-tourism-title p { margin: 3px 0 0; color: var(--muted); font-size: 8.5px; line-height: 1.45; }
+.tourism-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.tourism-tags span { padding: 4px 7px; border-radius: 999px; background: var(--surface); color: var(--primary-strong); font-size: 8px; font-weight: 800; }
+.tourism-highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.tourism-highlight-card { min-width: 0; display: grid; grid-template-columns: 66px 1fr; overflow: hidden; padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--text); text-align: left; cursor: pointer; }
+.tourism-highlight-card img, .tourism-image-fallback { width: 66px; height: 76px; object-fit: cover; background: var(--surface-2); }
+.tourism-image-fallback { display: grid; place-items: center; font-size: 23px; }
+.tourism-highlight-card > span:last-child { min-width: 0; padding: 7px; }
+.tourism-highlight-card strong, .tourism-highlight-card small, .tourism-highlight-card em { display: block; }
+.tourism-highlight-card strong { overflow: hidden; font-size: 9.5px; text-overflow: ellipsis; white-space: nowrap; }
+.tourism-highlight-card small { margin-top: 2px; color: var(--primary); font-size: 7.5px; font-weight: 800; }
+.tourism-highlight-card em { display: -webkit-box; margin-top: 4px; overflow: hidden; color: var(--muted); font-size: 7.5px; font-style: normal; line-height: 1.35; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+@media (max-width: 520px) {
+  .detail-navigation { margin-bottom: 7px; }
+  .detail-nav-button { min-height: 26px; padding: 4px 8px; font-size: 8.5px; }
+  .city-photo-slide { flex-basis: 91%; }
+  .tourism-highlight-grid { grid-template-columns: 1fr; }
 }
